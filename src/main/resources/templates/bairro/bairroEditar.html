@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout.html}">
+<head>
+<title>Edição de Bairros</title>
+</head>
+<body>
+	<section layout:fragment="content" class="distanciamento">
+		<h2 class="inline">Editar Bairro</h2>
+		<a class="btn btn-primary voltar" th:href="@{/local/bairros}">Voltar</a>
+		
+		<form th:action="@{/local/bairro/editar}" method="post" th:object="${bairro}">
+			<div th:replace="fragments/mensagemErro"></div>
+			<div th:replace="fragments/mensagemSucesso"></div>
+
+			<div class="form-item" th:classappend="${estado_ok}? is-invalid">
+				<label for="estado-select">Nome do Estado</label>
+				<select id="estado-select" name="idEstado" th:field="*{municipio.estado.id}"  class="form-control">
+					<option value="" selected>Escolha o nome do Estado</option>
+					<option th:each="est:${estados}" th:value="${est.id}" th:text="${est.nome}">
+				</select>
+			</div>
+			
+			<div class="form-item" id="municipio-div" th:classappend="${municipio_ok}? is-invalid">
+				<label for="estado">Nome do Município</label>
+				<select id="municipio-select" th:field="*{municipio.id}" class="form-control">
+					<option value="" selected>Escolha o nome do Município</option>
+					<option th:each="mun:${municipios}" th:value="${mun.id}" th:text="${mun.nome}">
+				</select>
+			</div>
+			
+			<div class="form-item" id="bairro-div" th:classappend="${#fields.hasErrors('nome')}? is-invalid">
+				<label for="nome">Nome do Bairro</label>
+				<input class="form-control" id="nome" th:field="*{nome}" 
+					placeholder="Digite o nome do Bairro">
+			</div>			
+		
+			<input type="hidden" th:field="*{id}" >
+			<button style="margin-top:10px" type="submit" class="btn btn-success">Atualizar Município</button>
+		</form>
+	</section>
+</body>
+</html>

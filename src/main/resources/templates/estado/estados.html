@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout.html}">
+<head>
+<title>Estados</title>
+</head>
+<body>
+	<section layout:fragment="content" class="distanciamento">
+		<h2 class="inline">Estados</h2>
+		<h2 class="inline" th:text="${texto_busca}"></h2>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/local/estado/cadastro}">Cadastrar Novo Estado</a>
+		<div class="pesquisa" style="margin:10px 0">
+			<form class="form-horizontal" th:action="@{/local/estado/pesquisa}">
+				<div class="input-group">
+					<input class="form-control col-3" name="pesquisa" placeholder="Pesquisar Estado">
+					<button class="btn btn-default input-group-append" type="submit">🔍</button>
+				</div>
+			</form>
+		</div>
+		
+		<div th:replace="fragments/mensagemSucesso"></div>
+		<div th:replace="fragments/mensagemErroSemForm"></div>
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th class="col-1">Id</th>
+					<th class="col-1">UF</th>
+					<th class="col-3">Estado</th>
+					<th class="col-2">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="estado:${estados}">
+					<td th:text="${estado.id}"/>
+					<td th:text="${estado.uf}"/>
+					<td th:text="${estado.nome}"/>
+					<td>
+						<a class="btn btn-primary" th:href="@{/local/estado/editar/{id}(id=${estado.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/local/estado/excluir/{id}(id=${estado.id})}">Excluir</a>
+					</td>
+				</tr>
+				<tr class="text-center">
+					 <td colspan="4" th:if="${#lists.isEmpty(estados)}">Nenhum estado cadastrado</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</body>
+</html>

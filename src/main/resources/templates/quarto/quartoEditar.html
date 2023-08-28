@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout.html}">
+<head>
+<title>Edição de Quartos</title>
+</head>
+<body>
+	<section layout:fragment="content" class="distanciamento">
+		<h2 class="inline">Editar Quarto</h2>
+		<a class="btn btn-primary voltar" th:href="@{/classificador/quartos}">Voltar</a>
+		
+		<form th:action="@{/classificador/quarto/editar}" method="post" th:object="${quarto}">
+			<div th:replace="fragments/mensagemErro"></div>
+			<div th:replace="fragments/mensagemSucesso"></div>
+			
+			<div class="form-item" th:classappend="${#fields.hasErrors('quantidade')}? is-invalid">
+				<label for="quantidade">Quantidade de Quartos</label>
+				<input class="form-control" id="quantidade" th:field="*{quantidade}" 
+					placeholder="Digite a quantidade de quartos">
+			</div>		
+			
+			<div class="form-item" th:classappend="${#fields.hasErrors('descricao')}? is-invalid">
+				<label for="descricao">Descrição dos Quartos</label>
+				<input class="form-control" id="descricao" th:field="*{descricao}" 
+					placeholder="Digite a Descrição dos Quartos">
+			</div>	
+			
+			<input type="hidden" th:field="*{id}" >
+			<button style="margin-top:10px" type="submit" class="btn btn-success">Atualizar Quarto</button>
+		</form>
+	</section>
+</body>
+</html>

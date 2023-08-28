@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layoutUser.html}">
+<head>
+<title>Imóveis</title>
+</head>
+<body>
+	<section layout:fragment="conteudo" class="distanciamento">
+		<h2 class="inline">Imóveis</h2>
+		
+		<a class="btn btn-primary voltar" style="margin: 0 5px" th:href="@{/user/imovel/pesquisar}">Pesquisar Imóvel</a>
+		<div th:replace="fragments/mensagemSucesso"></div>
+		<div th:replace="fragments/mensagemErroSemForm"></div>
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th class="col-1">Id</th>
+					<th class="col-2">Negócio</th>
+					<th class="col-2">Categoria</th>
+					<th class="col-2">Estado</th>
+					<th class="col-1">Quartos</th>
+					<th class="col-2">Preço</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="imovel:${imobiliaria}">
+					<td th:text="${imovel.id}"/>
+					<td th:text="${imovel.negocio.nome}"/>
+					<td th:text="${imovel.categoria.nome}"/>
+					<td th:text="${imovel.bairro?.municipio?.estado?.nome}"/>
+					<td th:text="${imovel.quartos.quantidade}"/>
+					<td th:inline="text">R$
+						[[${#numbers.formatDecimal(imovel.valor, 0, 'COMMA', 2, 'POINT')}]]</td>
+				</tr>
+				<tr class="text-center">
+					 <td colspan="6" th:if="${#lists.isEmpty(imobiliaria)}">Nenhum imóvel cadastrado</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</body>
+</html>

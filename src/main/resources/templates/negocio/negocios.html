@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout.html}">
+<head>
+<title>Negócios</title>
+</head>
+<body>
+	<section layout:fragment="content" class="distanciamento">
+		<h2 class="inline">Negócios</h2>
+		<h2 class="inline" th:text="${texto_busca}"></h2>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/classificador/negocio/cadastro}">Cadastrar Novo Negócio</a>
+		<div class="pesquisa" style="margin:10px 0">
+			<form class="form-horizontal" th:action="@{/classificador/negocio/pesquisa}">
+				<div class="input-group">
+					<input class="form-control col-3" name="pesquisa" placeholder="Pesquisar Negócio">
+					<button class="btn btn-default input-group-append" type="submit">🔍</button>
+				</div>
+			</form>
+		</div>
+		
+		<div th:replace="fragments/mensagemSucesso"></div>
+		<div th:replace="fragments/mensagemErroSemForm"></div>
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th class="col-1">Id</th>
+					<th class="col-2">Negócio</th>
+					<th class="col-2">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="negocio:${negocios}">
+					<td th:text="${negocio.id}"/>
+					<td th:text="${negocio.nome}"/>
+					<td>
+						<a class="btn btn-primary" th:href="@{/classificador/negocio/editar/{id}(id=${negocio.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/classificador/negocio/excluir/{id}(id=${negocio.id})}">Excluir</a>
+					</td>
+				</tr>
+				<tr class="text-center">
+					 <td colspan="4" th:if="${#lists.isEmpty(negocios)}">Nenhum negócio cadastrado</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</body>
+</html>

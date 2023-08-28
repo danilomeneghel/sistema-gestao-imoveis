@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout.html}">
+<head>
+<title>Edição de Imóveis</title>
+</head>
+<body>
+	<section layout:fragment="content" class="distanciamento">
+		<h2 class="inline">Atualizar Imóvel</h2>
+		<a class="btn btn-primary voltar" th:href="@{/imovel/todos}">Voltar</a>
+		
+		<div>
+			<form th:action="@{/imovel/editar}" method="post" th:object="${imovel}">
+				<div th:replace="fragments/mensagemErro"></div>
+				<div th:replace="fragments/mensagemSucesso"></div>
+				
+				<div class="row">
+					<div class="form-item col-5" th:classappend="${erroNegocio}? is-invalid">
+						<label for="negocio">Negócio</label>
+						<select th:field="*{negocio.id}" class="form-control">
+							<option value="" selected>Escolha o tipo de Negócio</option>
+							<option th:each="neg:${negocios}" th:value="${neg.id}" th:text="${neg.nome}">
+						</select>		
+					</div>		
+						
+					<div class="form-item col-5" th:classappend="${erroCategoria}? is-invalid">
+						<label for="categoria">Categoria</label>
+						<select th:field="*{categoria.id}" class="form-control">
+							<option value="" selected>Escolha o tipo de Categoria</option>
+							<option th:each="cat:${categorias}" th:value="${cat.id}" th:text="${cat.nome}">
+						</select>		
+					</div>		
+				</div>
+					
+				<div class="row">
+					<div class="form-item col-5" th:classappend="${erroQuarto}? is-invalid">
+						<label for="quarto">Quartos</label>
+						<select th:field="*{quartos.id}" class="form-control">
+							<option value="" selected>Escolha a quantidade de Quartos</option>
+							<option th:each="q:${quartos}" th:value="${q.id}" th:text="${q.descricao}">
+						</select>		
+					</div>		
+					
+					<div class="form-item col-5" th:classappend="${#fields.hasErrors('valor')}? is-invalid">
+						<label for="valor">Valor</label>
+						<input class="form-control" id="valor" th:field="*{valor}"
+							placeholder="Digite o Valor do Imóvel">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-item col-3" th:classappend="${erroEstado}? is-invalid">
+						<label for="estado-select">Estado</label>
+						<select id="estado-select"class="form-control" name="idEstado">
+							<option value="" selected>Escolha o Estado</option>
+							<option th:selected="${e.id==idEstado}" th:each="e:${estados}" th:value="${e.id}" th:text="${e.nome}">
+						</select>		
+					</div>	
+					
+					<div class="form-item col-4" id="municipio-div" th:styleappend="${idEstado}?'': 'display:none'" th:classappend="${erroMunicipio}? is-invalid">
+						<label for="municipio-select">Município</label>
+						<select id="municipio-select" class="form-control" name="idMunicipio">
+							<option value="" selected>Escolha o Município</option>
+							<option th:selected="${m.id==idMunicipio}" th:each="m:${municipios}" th:value="${m.id}" th:text="${m.nome}">
+						</select>		
+					</div>	
+					
+					<div class="form-item col-3" id="bairro-div" th:styleappend="${idMunicipio} and ${idEstado}?'': 'display:none'"  th:classappend="${erroBairro}? is-invalid">
+						<label for="bairro-select">Bairro</label>
+						<select id="bairro-select" th:field="*{bairro.id}" class="form-control">
+							<option value="" selected>Escolha o Bairro</option>
+							<option th:each="b:${bairros}" th:value="${b.id}" th:text="${b.nome}">
+						</select>		
+					</div>	
+				</div>
+				<input type="hidden" th:field="*{id}"/>
+				<button style="margin-top:10px" type="submit" class="btn btn-success">Atualizar Imóvel</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

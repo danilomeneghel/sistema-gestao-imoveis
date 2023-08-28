@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout.html}">
+<head>
+<title>Pesquisa de Imóveis</title>
+</head>
+<body>
+	<section layout:fragment="content" class="distanciamento">
+		<h2 class="inline">Pesquisar Imóvel</h2>
+		<a class="btn btn-primary voltar" th:href="@{/imovel/todos}">Voltar</a>
+		
+		<div>
+			<form th:action="@{/imovel/pesquisarResultado}" method="get" th:object="${imovel}">
+				<div th:replace="fragments/mensagemErro"></div>
+				<div th:replace="fragments/mensagemSucesso"></div>
+				
+				<div class="row">
+					<div class="form-item col-5" th:classappend="${erroNegocio}? is-invalid">
+						<label for="negocio">Negócio</label>
+						<select th:field="*{negocio.id}" class="form-control">
+							<option value="" selected>Escolha o tipo de Negócio</option>
+							<option th:each="neg:${negocios}" th:value="${neg.id}" th:text="${neg.nome}">
+						</select>		
+					</div>		
+						
+					<div class="form-item col-5" th:classappend="${erroCategoria}? is-invalid">
+						<label for="categoria">Categoria</label>
+						<select th:field="*{categoria.id}" class="form-control">
+							<option value="" selected>Escolha o tipo de Categoria</option>
+							<option th:each="cat:${categorias}" th:value="${cat.id}" th:text="${cat.nome}">
+						</select>		
+					</div>		
+				</div>
+					
+				<div class="row">
+					<div class="form-item col-5" th:classappend="${erroQuarto}? is-invalid">
+						<label for="quarto">Quartos</label>
+						<select th:field="*{quartos.id}" class="form-control">
+							<option value="" selected>Escolha a quantidade de Quartos</option>
+							<option th:each="q:${quartos}" th:value="${q.id}" th:text="${q.descricao}">
+						</select>		
+					</div>		
+				</div>
+				<div class="row">
+					<div class="form-item col-5" th:classappend="${#fields.hasErrors('valor')}? is-invalid">
+						<label for="valor">Valor Mínimo</label>
+						<input class="form-control" id="valor" name="valorMinimo" th:value="${valorMinimo}"
+							placeholder="Digite o Valor Mínimo">
+					</div>
+					<div class="form-item col-5" th:classappend="${#fields.hasErrors('valor')}? is-invalid">
+						<label for="valor">Valor Máximo</label>
+						<input class="form-control" id="valor" name="valorMaximo" th:value="${valorMaximo}"
+							placeholder="Digite o Valor Máximo">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-item col-3" th:classappend="${erroEstado}? is-invalid">
+						<label for="estado-select">Estado</label>
+						<select id="estado-select" name="idEstado" class="form-control">
+							<option value="" selected>Escolha o Estado</option>
+							<option th:selected="${e.id==idEstado}" th:each="e:${estados}" th:value="${e.id}" th:text="${e.nome}">
+						</select>		
+					</div>	
+					
+					<div class="form-item col-4" id="municipio-div" th:styleappend="${idEstado}?'': 'display:none'" th:classappend="${erroMunicipio}? is-invalid">
+						<label for="municipio-select">Município</label>
+						<select id="municipio-select" name="idMunicipio" class="form-control">
+							<option value="" selected>Escolha o Município</option>
+							<option th:selected="${m.id==idMunicipio}" th:each="m:${municipios}" th:value="${m.id}" th:text="${m.nome}">
+						</select>		
+					</div>	
+					
+					<div class="form-item col-3" id="bairro-div" th:styleappend="${idMunicipio} and ${idEstado}?'': 'display:none'" th:classappend="${erroBairro}? is-invalid">
+						<label for="bairro-select">Bairro</label>
+						<select id="bairro-select" th:field="*{bairro.id}" class="form-control">
+							<option value="" selected>Escolha o Bairro</option>
+							<option th:each="b:${bairros}" th:value="${b.id}" th:text="${b.nome}">
+						</select>		
+					</div>	
+				</div>
+				
+				<button style="margin-top:10px" type="submit" class="btn btn-success">Pesquisar Imóvel</button>
+			</form>
+		</div>
+		
+		<table class="table table-striped" th:if="${imobiliaria}">
+			<thead>
+				<tr>
+					<th class="col-1">Id</th>
+					<th class="col-1">Negócio</th>
+					<th class="col-1">Categoria</th>
+					<th class="col-2">Estado</th>
+					<th class="col-1">Quartos</th>
+					<th class="col-2">Preço</th>
+					<th class="col-3">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="imovel:${imobiliaria}">
+					<td th:text="${imovel.id}"/>
+					<td th:text="${imovel.negocio.nome}"/>
+					<td th:text="${imovel.categoria.nome}"/>
+					<td th:text="${imovel.bairro?.municipio?.estado?.nome}"/>
+					<td th:text="${imovel.quartos.quantidade}"/>
+					<td th:inline="text">R$
+						[[${#numbers.formatDecimal(imovel.valor, 0, 'COMMA', 2, 'POINT')}]]</td>
+					<td>
+						<a class="btn btn-primary" th:href="@{/imovel/visualizar/{id}(id=${imovel.id})}">Visualizar</a>
+						<a class="btn btn-primary" th:href="@{/imovel/editar/{id}(id=${imovel.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/imovel/excluir/{id}(id=${imovel.id})}">Excluir</a>
+					</td>
+				</tr>
+				<tr class="text-center">
+					 <td colspan="7" th:if="${#lists.isEmpty(imobiliaria)}">Nenhum imóvel encontrado</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</body>
+</html>

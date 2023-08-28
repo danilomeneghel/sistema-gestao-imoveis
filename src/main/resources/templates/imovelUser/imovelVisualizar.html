@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout.html}">
+<head>
+<title>Visualização de Imóvel</title>
+</head>
+<body>
+	<section layout:fragment="content" class="distanciamento">
+		<h2 class="inline">Visualizar Imóvel</h2>
+		<a class="btn btn-primary voltar" th:href="@{/user/imovel/todos}">Voltar</a>
+		
+		<div class="row">
+			<div class="col-3">
+				<h4>Categoria: </h4>
+				<h5 th:text="${imovel.categoria.nome}"></h5>
+			</div>
+			<div class="col-3">
+				<h4 >Negócio: </h4>
+				<h5  th:text="${imovel.negocio.nome}"></h5>
+			</div>
+			<div class="col-6">
+				<h4 >Quartos: </h4>
+				<h5  th:text="${imovel.quartos.descricao}"></h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				<h4 >Estado: </h4>
+				<h5 th:text="${imovel.bairro.municipio.estado.nome}"></h5>
+			</div>
+			<div class="col-3">
+				<h4 >Município: </h4>
+				<h5 th:text="${imovel.bairro.municipio.nome}"></h5>
+			</div>
+			<div class="col-6">
+				<h4 >Bairro: </h4>
+				<h5 th:text="${imovel.bairro.nome}"></h5>
+			</div>
+		</div>
+		<h3>Imagens:</h3>
+		<div th:unless="${imovel.imagens.size>0}">
+			<h5>Sem imagens</h5>
+		</div>
+		<div class="row" th:if="${imovel.imagens.size>0}">
+			<div class="card col-3 bg-dark" th:each="imagem:${imovel.imagens}">
+				<img class="card-img-top" th:src="@{${imagem.path}}">
+			</div>
+		</div>
+	</section>
+</body>
+</html>

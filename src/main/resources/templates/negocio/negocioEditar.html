@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout.html}">
+<head>
+<title>Edição de Negócios</title>
+</head>
+<body>
+	<section layout:fragment="content" class="distanciamento">
+		<h2 class="inline">Editar Negócio</h2>
+		<a class="btn btn-primary voltar" th:href="@{/classificador/negocios}">Voltar</a>
+		
+		<form th:action="@{/classificador/negocio/editar}" method="post" th:object="${negocio}">
+			<div th:replace="fragments/mensagemErro"></div>
+			<div th:replace="fragments/mensagemSucesso"></div>
+			
+			<div class="form-item" th:classappend="${#fields.hasErrors('nome')}? is-invalid">
+				<label for="nome">Negócio</label>
+				<input class="form-control" id="nome" th:field="*{nome}" 
+					placeholder="Digite o nome do Negócio">
+			</div>		
+			<input type="hidden" th:field="*{id}" >
+			<button style="margin-top:10px" type="submit" class="btn btn-success">Atualizar Negócio</button>
+		</form>
+	</section>
+</body>
+</html>
