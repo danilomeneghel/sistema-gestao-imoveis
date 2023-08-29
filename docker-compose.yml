@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  imobiliaria-db:
+    image: 'mysql:8.0.30'
+    container_name: imobiliaria-db
+    restart: always
+    networks:
+      - imobiliaria-network
+    environment:
+      MYSQL_DATABASE: 'imobiliaria'
+      MYSQL_USER: 'imobiliaria'
+      MYSQL_PASSWORD: 'secret'
+      MYSQL_ROOT_PASSWORD: 'secretroot'
+    volumes:
+        - ./:/mysql
+    ports:
+        - "3306:3306"
+  imobiliaria-app:
+    build: .
+    container_name: imobiliaria-app
+    command: mvn clean spring-boot:run -DskipTests -Dspring-boot.run.profiles=docker
+    networks:
+      - imobiliaria-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - imobiliaria-db
+networks:
+  imobiliaria-network:
+    driver: "bridge"
+
