@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/layoutUser.html}">
-<head>
-<title>Imobiliaria Home Page</title>
-</head>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layoutUser.html}">
 <body>
-	<section layout:fragment="conteudo" class="distanciamento">
-		
-	<div class="card col-3 bg-dark">
-		<a th:href="@{/user/imovel/todos}"> <img class="card-img-top" th:src="@{images/imovel_card.jpg}"
-			alt="Card image cap">
-		</a>
-		<div class="card-body text-right">
-			<p class="card-text">
-				<a class="text-white" th:href="@{/user/imovel/todos}"> IMÓVEIS ></a>
-			</p>
-		</div>
-	</div>
-	</section>
+<section layout:fragment="conteudo" class="distanciamento">
+    <div class="card col-3 bg-dark">
+        <a th:href="@{/user/imovel/todos}">
+            <img class="card-img-top" th:src="@{images/imovel_card.jpg}" alt="Card image cap">
+        </a>
+        <div class="card-body text-right">
+            <p class="card-text">
+                <a class="text-white" th:href="@{/user/imovel/todos}"> IMÓVEIS ></a>
+            </p>
+        </div>
+    </div>
+</section>
 </body>
 </html>

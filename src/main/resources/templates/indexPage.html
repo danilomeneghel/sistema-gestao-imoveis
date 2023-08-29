@@ -1,96 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/layout.html}">
-<head>
-<title>Imobiliaria Home Page</title>
-</head>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout.html}">
 <body>
-	<section layout:fragment="content" class="distanciamento">
-		<div class="row">
-			<div class="card col-3 bg-dark">
-				<a th:href="@{/classificador/categorias}"> <img
-					class="card-img-top" th:src="@{images/categoria_card.jpg}">
-				</a>
-				<div class="card-body text-right">
-					<p class="card-text ">
-						<a class="text-white" th:href="@{/classificador/categorias}">CATEGORIAS
-							></a>
-					</p>
-				</div>
-			</div>
-
-			<div class="card col-3 bg-dark">
-				<a th:href="@{/classificador/negocios}"> <img class="card-img-top"
-					th:src="@{images/negocio_card.jpg}" alt="Card image cap">
-				</a>
-				<div class="card-body text-right">
-					<p class="card-text">
-						<a class="text-white" th:href="@{/classificador/negocios}">NEGOCIOS ></a>
-					</p>
-				</div>
-			</div>
-
-			<div class="card col-3 bg-dark">
-				<a th:href="@{/imovel/todos}"> <img class="card-img-top" th:src="@{images/imovel_card.jpg}"
-					alt="Card image cap">
-				</a>
-				<div class="card-body text-right">
-					<p class="card-text">
-						<a class="text-white" th:href="@{/imovel/todos}"> IMÓVEIS ></a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="card col-3 bg-dark">
-			<a th:href="@{/local/estados}">
-				<img class="card-img-top" th:src="@{images/estado_card.jpg}"
-					alt="Card image cap">
-			</a>
-				<div class="card-body text-right">
-					<p class="card-text">
-						<a class="text-white" th:href="@{/local/estados}">ESTADOS ></a>
-					</p>
-				</div>
-			</div>
-
-			<div class="card col-3 bg-dark">
-				<a th:href="@{/local/municipios}"> <img class="card-img-top"
-					th:src="@{images/municipio_card.jpg}" alt="Card image cap">
-				</a>
-				<div class="card-body text-right">
-					<p class="card-text">
-						<a class="text-white" th:href="@{/local/municipios}">MUNICÍPIOS ></a>
-					</p>
-				</div>
-			</div>
-
-			<div class="card col-3 bg-dark">
-			<a th:href="@{/local/bairros}">
-				<img class="card-img-top" th:src="@{images/bairro_card.jpg}"
-					alt="Card image cap">
-			</a>
-				<div class="card-body text-right">
-					<p class="card-text">
-						<a class="text-white" th:href="@{/local/bairros}">BAIRROS ></a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="card col-3 bg-dark">
-				<a th:href="@{/classificador/quartos}"> <img class="card-img-top" th:src="@{images/quarto_card.jpg}"
-					alt="Card image cap">
-				</a>
-				<div class="card-body text-right">
-					<p class="card-text">
-						<a class="text-white" th:href="@{/classificador/quartos}">QUARTOS ></a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
+<section layout:fragment="content" class="distanciamento">
+    <div class="row">
+        <div class="card col-card bg-dark">
+            <a th:href="@{/classificador/categorias}">
+                <img class="card-img-top" th:src="@{images/categoria_card.jpg}">
+            </a>
+            <div class="card-body text-right">
+                <p class="card-text">
+                    <a class="text-white" th:href="@{/classificador/categorias}">CATEGORIAS ></a>
+                </p>
+            </div>
+        </div>
+        <div class="card col-card bg-dark">
+            <a th:href="@{/classificador/negocios}">
+                <img class="card-img-top" th:src="@{images/negocio_card.jpg}" alt="Card image cap">
+            </a>
+            <div class="card-body text-right">
+                <p class="card-text">
+                    <a class="text-white" th:href="@{/classificador/negocios}">NEGOCIOS ></a>
+                </p>
+            </div>
+        </div>
+        <div class="card col-card bg-dark">
+            <a th:href="@{/imovel/todos}">
+                <img class="card-img-top" th:src="@{images/imovel_card.jpg}" alt="Card image cap">
+            </a>
+            <div class="card-body text-right">
+                <p class="card-text">
+                    <a class="text-white" th:href="@{/imovel/todos}"> IMÓVEIS ></a>
+                </p>
+            </div>
+        </div>
+        <div class="card col-card bg-dark">
+            <a th:href="@{/local/estados}">
+                <img class="card-img-top" th:src="@{images/estado_card.jpg}" alt="Card image cap">
+            </a>
+            <div class="card-body text-right">
+                <p class="card-text">
+                    <a class="text-white" th:href="@{/local/estados}">ESTADOS ></a>
+                </p>
+            </div>
+        </div>
+        <div class="card col-card bg-dark">
+            <a th:href="@{/local/municipios}">
+                <img class="card-img-top" th:src="@{images/municipio_card.jpg}" alt="Card image cap">
+            </a>
+            <div class="card-body text-right">
+                <p class="card-text">
+                    <a class="text-white" th:href="@{/local/municipios}">MUNICÍPIOS ></a>
+                </p>
+            </div>
+        </div>
+        <div class="card col-card bg-dark">
+            <a th:href="@{/local/bairros}">
+                <img class="card-img-top" th:src="@{images/bairro_card.jpg}" alt="Card image cap">
+            </a>
+            <div class="card-body text-right">
+                <p class="card-text">
+                    <a class="text-white" th:href="@{/local/bairros}">BAIRROS ></a>
+                </p>
+            </div>
+        </div>
+        <div class="card col-card bg-dark">
+            <a th:href="@{/classificador/quartos}">
+                <img class="card-img-top" th:src="@{images/quarto_card.jpg}" alt="Card image cap">
+            </a>
+            <div class="card-body text-right">
+                <p class="card-text">
+                    <a class="text-white" th:href="@{/classificador/quartos}">QUARTOS ></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
