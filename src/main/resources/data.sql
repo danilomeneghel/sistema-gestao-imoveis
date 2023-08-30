@@ -68,5 +68,5 @@ INSERT INTO imovel (categoria_imovel,negocio_imovel,quarto_imovel,valor,bairro_i
 (4,2,1,500,35),
 (4,3,1,15000,36);
 
-INSERT INTO `user` (user_name,email,password,roles,active) VALUES 
+INSERT INTO `user` (user_name,email,password,roles,active) VALUES
 ("admin","admin@admin.com","$2a$10$1HAxsgoqtXCVASxpXGcnheACN8.SbB8iQZ5o4sktAOPQEE/k2B9Ue","ROLE_ADMIN",true)

@@ -10,8 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
-	
-	
+
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
@@ -25,4 +24,5 @@ public class IndexController {
 		mv.addObject("index",true);
 		return mv;		
 	}
+
 }

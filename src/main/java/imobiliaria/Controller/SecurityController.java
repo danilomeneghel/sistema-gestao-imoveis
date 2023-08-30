@@ -1,6 +1,8 @@
 package imobiliaria.Controller;
 
+import imobiliaria.Configuration.WebSecurityConfiguration;
 import imobiliaria.Entity.User;
+import imobiliaria.Service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -9,14 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import imobiliaria.Service.MyUserDetailsService;
-
 @Controller
 public class SecurityController {
 
 	@Autowired
 	private MyUserDetailsService userServ;
-	
+
 	@GetMapping("/login")
 	public ModelAndView loginPage() {
 		ModelAndView mv = new ModelAndView("security/login");

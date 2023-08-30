@@ -20,7 +20,6 @@ import imobiliaria.Service.ClassificadorService;
 import imobiliaria.Service.ImovelService;
 import imobiliaria.Service.LocalService;
 
-
 @Controller
 @RequestMapping("/imovel")
 public class ImovelController {
