@@ -6,6 +6,7 @@ body {
   margin-bottom: 0px !important;
   font-family: inherit;
   font-weight: 400;
+  padding-right: 22px !important;
 }
 
 #menu-toggle {
@@ -64,11 +65,19 @@ body {
   }
 
   .col-card {
-      -webkit-box-flex: 0;
-      -ms-flex: 0 0 25%;
-      flex: 0 0 25%;
-      max-width: 25%;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
   }
+
+  .input-search {
+    max-width: 50% !important;
+  }
+}
+
+.input-search {
+    max-width: 100%;
 }
 
 .distanciamento{
@@ -99,6 +108,24 @@ body {
 .voltar{
 	display:inline;
 	float:right;
+}
+
+.btn-primary {
+  min-width: 75px !important;
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+
+.btn-success {
+  min-width: 75px !important;
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+
+.btn-danger {
+  min-width: 75px !important;
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
 }
 
 .btn-a{

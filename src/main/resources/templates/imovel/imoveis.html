@@ -9,7 +9,7 @@
 <body>
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Imóveis</h2>
-		<a class="btn btn-success text-white bold voltar" th:href="@{/imovel/cadastro}">Cadastrar Novo Imóvel</a>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/imovel/cadastro}">Novo Imóvel</a>
 		
 		<a class="btn btn-primary voltar" style="margin: 0 5px" th:href="@{/imovel/pesquisar}">Pesquisar Imóvel</a>
 		<div th:replace="fragments/mensagemSucesso"></div>
@@ -37,7 +37,7 @@
 					<td th:inline="text">R$
 						[[${#numbers.formatDecimal(imovel.valor, 0, 'COMMA', 2, 'POINT')}]]</td>
 					<td>
-						<a class="btn btn-primary" th:href="@{/imovel/visualizar/{id}(id=${imovel.id})}">Visualizar</a>
+						<a class="btn btn-primary" th:href="@{/imovel/visualizar/{id}(id=${imovel.id})}">Ver</a>
 						<a class="btn btn-primary" th:href="@{/imovel/editar/{id}(id=${imovel.id})}">Editar</a>
 						<a class="btn btn-danger" th:href="@{/imovel/excluir/{id}(id=${imovel.id})}">Excluir</a>
 					</td>

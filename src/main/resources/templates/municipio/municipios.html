@@ -10,11 +10,11 @@
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Municípios</h2>
 		<h2 class="inline" th:text="${texto_busca}"></h2>
-		<a class="btn btn-success text-white bold voltar" th:href="@{/local/municipio/cadastro}">Cadastrar Novo Município</a>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/local/municipio/cadastro}">Novo Município</a>
 		<div class="pesquisa" style="margin:10px 0">
 			<form class="form-horizontal" th:action="@{/local/municipio/pesquisa}">
 				<div class="input-group">
-					<input class="form-control col-3" name="pesquisa" placeholder="Pesquisar Município">
+					<input class="form-control input-search" name="pesquisa" placeholder="Pesquisar Município">
 					<button class="btn btn-default input-group-append" type="submit">🔍</button>
 				</div>
 			</form>

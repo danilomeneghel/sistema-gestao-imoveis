@@ -28,6 +28,7 @@ Sistema para gestão de imóveis desenvolvido em Java com Spring Boot.
 - Lombok
 - Spring Boot
 - Thymeleaf
+- API REST
 - MySql
 - Docker-Compose
 
@@ -69,7 +70,13 @@ $ mvn clean spring-boot:run -Dspring-boot.run.profiles=dev
 Para acessar o sistema utilize o seguinte endereço:<br>
 http://localhost:8080/
 
-Depois é só criar um usuário e senha para poder logar no sistema.
+Usuário: admin 
+Senha: admin 
+
+## Acesso a API
+
+Para acessar a API utilize o seguinte endereço:<br>
+http://localhost:8080/swagger-ui.html
 
 ## Licença
 
