@@ -1,6 +1,6 @@
 # Gestão de Imóveis
 
-Sistema para gestão de imóveis desenvolvido em Java com Spring Boot.
+Sistema para gestão de imóveis desenvolvido em Java com Spring Boot e API REST.
 
 ## Módulos
 
@@ -29,6 +29,7 @@ Sistema para gestão de imóveis desenvolvido em Java com Spring Boot.
 - Spring Boot
 - Thymeleaf
 - API REST
+- Json
 - MySql
 - Docker-Compose
 
