@@ -70,7 +70,7 @@ $ mvn clean spring-boot:run -Dspring-boot.run.profiles=dev
 Para acessar o sistema utilize o seguinte endereço:<br>
 http://localhost:8080/
 
-Usuário: admin 
+Usuário: admin<br>
 Senha: admin 
 
 ## Acesso a API
