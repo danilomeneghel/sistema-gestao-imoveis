@@ -42,7 +42,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         //Define os acessos para cada usuário, com apenas a tela de login sendo
         //acessível sem utilizar uma conta
         http.authorizeRequests()
-                .antMatchers("/local/**","/classificador/**","/imovel/**","/imagem/**").hasRole("ADMIN")
+                .antMatchers("/local/**","/classificador/**","/imovelEntity/**","/imagem/**").hasRole("ADMIN")
                 .antMatchers("/user/**","/","/ajax").hasAnyRole("USER","ADMIN")
                 .and().formLogin()
                 .loginPage("/login")

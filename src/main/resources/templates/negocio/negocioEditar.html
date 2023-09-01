@@ -11,7 +11,7 @@
 		<h2 class="inline">Editar Negócio</h2>
 		<a class="btn btn-primary voltar" th:href="@{/classificador/negocios}">Voltar</a>
 		
-		<form th:action="@{/classificador/negocio/editar}" method="post" th:object="${negocio}">
+		<form th:action="@{/classificador/negocioEntity/editar}" method="post" th:object="${negocioEntity}">
 			<div th:replace="fragments/mensagemErro"></div>
 			<div th:replace="fragments/mensagemSucesso"></div>
 			

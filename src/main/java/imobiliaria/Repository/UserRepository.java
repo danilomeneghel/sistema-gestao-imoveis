@@ -1,15 +1,14 @@
 package imobiliaria.Repository;
 
-import java.util.Optional;
-
+import imobiliaria.Entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import imobiliaria.Entity.User;
+import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<UserEntity, Long>{
 
-	Optional<User> findByUserName(String userName);
-	Optional<User> findByEmail(String email);
+	Optional<UserEntity> findByUserName(String userName);
+	Optional<UserEntity> findByEmail(String email);
 }

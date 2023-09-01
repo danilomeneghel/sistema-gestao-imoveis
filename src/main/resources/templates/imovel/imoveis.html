@@ -9,9 +9,9 @@
 <body>
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Imóveis</h2>
-		<a class="btn btn-success text-white bold voltar" th:href="@{/imovel/cadastro}">Novo Imóvel</a>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/imovelEntity/cadastro}">Novo Imóvel</a>
 		
-		<a class="btn btn-primary voltar" style="margin: 0 5px" th:href="@{/imovel/pesquisar}">Pesquisar Imóvel</a>
+		<a class="btn btn-primary voltar" style="margin: 0 5px" th:href="@{/imovelEntity/pesquisar}">Pesquisar Imóvel</a>
 		<div th:replace="fragments/mensagemSucesso"></div>
 		<div th:replace="fragments/mensagemErroSemForm"></div>
 		
@@ -28,18 +28,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="imovel:${imobiliaria}">
-					<td th:text="${imovel.id}"/>
-					<td th:text="${imovel.negocio.nome}"/>
-					<td th:text="${imovel.categoria.nome}"/>
-					<td th:text="${imovel.bairro?.municipio?.estado?.nome}"/>
-					<td th:text="${imovel.quartos.quantidade}"/>
+				<tr th:each="imovelEntity:${imobiliaria}">
+					<td th:text="${imovelEntity.id}"/>
+					<td th:text="${imovelEntity.negocioEntity.nome}"/>
+					<td th:text="${imovelEntity.categoriaEntity.nome}"/>
+					<td th:text="${imovelEntity.bairroEntity?.municipioEntity?.estado?.nome}"/>
+					<td th:text="${imovelEntity.quartoEntity.quantidade}"/>
 					<td th:inline="text">R$
-						[[${#numbers.formatDecimal(imovel.valor, 0, 'COMMA', 2, 'POINT')}]]</td>
+						[[${#numbers.formatDecimal(imovelEntity.valor, 0, 'COMMA', 2, 'POINT')}]]</td>
 					<td>
-						<a class="btn btn-primary" th:href="@{/imovel/visualizar/{id}(id=${imovel.id})}">Ver</a>
-						<a class="btn btn-primary" th:href="@{/imovel/editar/{id}(id=${imovel.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/imovel/excluir/{id}(id=${imovel.id})}">Excluir</a>
+						<a class="btn btn-primary" th:href="@{/imovelEntity/visualizar/{id}(id=${imovelEntity.id})}">Ver</a>
+						<a class="btn btn-primary" th:href="@{/imovelEntity/editar/{id}(id=${imovelEntity.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/imovelEntity/excluir/{id}(id=${imovelEntity.id})}">Excluir</a>
 					</td>
 				</tr>
 				<tr class="text-center">

@@ -10,9 +10,9 @@
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Categorias</h2>
 		<h2 class="inline" th:text="${texto_busca}"></h2>
-		<a class="btn btn-success text-white bold voltar" th:href="@{/classificador/categoria/cadastro}">Nova Categoria</a>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/classificador/categoriaEntity/cadastro}">Nova Categoria</a>
 		<div class="pesquisa" style="margin:10px 0">
-			<form class="form-horizontal" th:action="@{/classificador/categoria/pesquisa}">
+			<form class="form-horizontal" th:action="@{/classificador/categoriaEntity/pesquisa}">
 				<div class="input-group">
 					<input class="form-control input-search" name="pesquisa" placeholder="Pesquisar Categoria">
 					<button class="btn btn-default input-group-append" type="submit">🔍</button>
@@ -32,16 +32,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="categoria:${categorias}">
-					<td th:text="${categoria.id}"/>
-					<td th:text="${categoria.nome}"/>
+				<tr th:each="categoriaEntity:${categorias}">
+					<td th:text="${categoriaEntity.id}"/>
+					<td th:text="${categoriaEntity.nome}"/>
 					<td>
-						<a class="btn btn-primary" th:href="@{/classificador/categoria/editar/{id}(id=${categoria.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/classificador/categoria/excluir/{id}(id=${categoria.id})}">Excluir</a>
+						<a class="btn btn-primary" th:href="@{/classificador/categoriaEntity/editar/{id}(id=${categoriaEntity.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/classificador/categoriaEntity/excluir/{id}(id=${categoriaEntity.id})}">Excluir</a>
 					</td>
 				</tr>
 				<tr class="text-center">
-					 <td colspan="4" th:if="${#lists.isEmpty(categorias)}">Nenhuma categoria cadastrada</td>
+					 <td colspan="4" th:if="${#lists.isEmpty(categorias)}">Nenhuma categoriaEntity cadastrada</td>
 				</tr>
 			</tbody>
 		</table>

@@ -1,13 +1,12 @@
 package imobiliaria.Repository;
 
-import java.util.Collection;
-
+import imobiliaria.Entity.BairroEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import imobiliaria.Entity.Bairro;
+import java.util.List;
 @Repository
-public interface BairroRepository extends JpaRepository<Bairro, Long>{
+public interface BairroRepository extends JpaRepository<BairroEntity, Long>{
 
-	public Collection<Bairro> findByNomeContainingIgnoreCase(String nome);
+	public List<BairroEntity> findByNomeContainingIgnoreCase(String nome);
 }

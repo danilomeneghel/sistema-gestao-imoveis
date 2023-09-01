@@ -9,9 +9,9 @@
 <body>
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Editar Município</h2>
-		<a class="btn btn-primary voltar" th:href="@{/local/municipios}">Voltar</a>
+		<a class="btn btn-primary voltar" th:href="@{/local/municipioEntities}">Voltar</a>
 		
-		<form th:action="@{/local/municipio/editar}" method="post" th:object="${municipio}">
+		<form th:action="@{/local/municipioEntity/editar}" method="post" th:object="${municipioEntity}">
 			<div th:replace="fragments/mensagemErro"></div>
 			<div th:replace="fragments/mensagemSucesso"></div>
 
@@ -23,7 +23,7 @@
 				</select>
 			</div>
 
-			<div id="municipio-div" class="form-item" th:classappend="${#fields.hasErrors('nome')}? is-invalid">
+			<div id="municipioEntity-div" class="form-item" th:classappend="${#fields.hasErrors('nome')}? is-invalid">
 				<label for="nome">Nome do Município</label>
 				<input class="form-control" id="nome" th:field="*{nome}" 
 					placeholder="Digite o nome do município">

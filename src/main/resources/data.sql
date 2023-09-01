@@ -1,7 +1,7 @@
 INSERT INTO categoria (nome) VALUES ('Casa'),('Apartamento'),('Condomínio'),('Chacára');
 INSERT INTO negocio (nome) VALUES('Venda'),('Aluguel'),('Financiamento');
 
-INSERT INTO quartos (descricao,quantidade) VALUES
+INSERT INTO quarto (descricao,quantidade) VALUES
 ('Um quarto de solteiro',1),('Um quarto de casal',1),
 ('Dois quartos de solteiro',2),('Dois quartos de casal',2),
 ('Um quarto de casal e um quarto de solteiro',2);

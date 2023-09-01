@@ -1,16 +1,20 @@
 package imobiliaria.Service;
 
-import java.util.Collection;
-
-import imobiliaria.Entity.Categoria;
-import imobiliaria.Entity.Quartos;
+import imobiliaria.Entity.CategoriaEntity;
+import imobiliaria.Entity.NegocioEntity;
+import imobiliaria.Entity.QuartoEntity;
+import imobiliaria.Model.Categoria;
+import imobiliaria.Model.Negocio;
+import imobiliaria.Model.Quarto;
 import imobiliaria.Repository.CategoriaRepository;
 import imobiliaria.Repository.NegocioRepository;
-import imobiliaria.Repository.QuartosRepository;
+import imobiliaria.Repository.QuartoRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import imobiliaria.Entity.Negocio;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClassificadorService {
@@ -22,65 +26,83 @@ public class ClassificadorService {
     private NegocioRepository negRep;
 
     @Autowired
-    private QuartosRepository quaRep;
+    private QuartoRepository quaRep;
 
-    public Collection<Categoria> findAllCategoria() {
-        return catRep.findAll();
+    private ModelMapper modelMapper = new ModelMapper();
+
+    public List<Categoria> findAllCategoria() {
+        List<CategoriaEntity> categorias = catRep.findAll();
+        return categorias.stream().map(entity -> modelMapper.map(entity, Categoria.class)).collect(Collectors.toList());
     }
 
     public Categoria findCategoriaById(Long id) {
-        return catRep.findById(id).get();
+        CategoriaEntity categoria = catRep.findById(id).get();
+        return modelMapper.map(categoria, Categoria.class);
     }
 
     public Categoria saveCategoria(Categoria categoria) {
-        return catRep.save(categoria);
+        CategoriaEntity cat = modelMapper.map(categoria, CategoriaEntity.class);
+        CategoriaEntity saveCategoria = catRep.save(cat);
+        return modelMapper.map(saveCategoria, Categoria.class);
     }
 
     public void excluirCategoriaById(Long id) {
         catRep.deleteById(id);
     }
 
-    public Collection<Categoria> findCategoriaByNome(String nome) {
-        return catRep.findByNomeContainingIgnoreCase(nome);
+    public List<Categoria> findCategoriaByNome(String nome) {
+        List<CategoriaEntity> categorias = catRep.findByNomeContainingIgnoreCase(nome);
+        return categorias.stream().map(entity -> modelMapper.map(entity, Categoria.class)).collect(Collectors.toList());
     }
 
-    public Collection<Negocio> findAllNegocio() {
-        return negRep.findAll();
+    public List<Negocio> findAllNegocio() {
+        List<NegocioEntity> negocios = negRep.findAll();
+        return negocios.stream().map(entity -> modelMapper.map(entity, Negocio.class)).collect(Collectors.toList());
     }
 
     public Negocio findNegocioById(Long id) {
-        return negRep.findById(id).get();
+        NegocioEntity negocio = negRep.findById(id).get();
+        return modelMapper.map(negocio, Negocio.class);
     }
 
     public Negocio saveNegocio(Negocio negocio) {
-        return negRep.save(negocio);
+        NegocioEntity cat = modelMapper.map(negocio, NegocioEntity.class);
+        NegocioEntity saveNegocio = negRep.save(cat);
+        return modelMapper.map(saveNegocio, Negocio.class);
     }
 
     public void excluirNegocioById(Long id) {
         negRep.deleteById(id);
     }
 
-    public Collection<Negocio> findNegocioByNome(String nome) {
-        return negRep.findByNomeContainingIgnoreCase(nome);
+    public List<Negocio> findNegocioByNome(String nome) {
+        List<NegocioEntity> negocios = negRep.findByNomeContainingIgnoreCase(nome);
+        return negocios.stream().map(entity -> modelMapper.map(entity, Negocio.class)).collect(Collectors.toList());
     }
 
-    public Collection<Quartos> findAllQuartos() {
-        return quaRep.findAll();
+    public List<Quarto> findAllQuarto() {
+        List<QuartoEntity> quartos = quaRep.findAll();
+        return quartos.stream().map(entity -> modelMapper.map(entity, Quarto.class)).collect(Collectors.toList());
     }
 
-    public Quartos findQuartosById(Long id) {
-        return quaRep.findById(id).get();
+    public Quarto findQuartoById(Long id) {
+        QuartoEntity quarto = quaRep.findById(id).get();
+        return modelMapper.map(quarto, Quarto.class);
     }
 
-    public Quartos saveQuartos(Quartos quarto) {
-        return quaRep.save(quarto);
+    public Quarto saveQuarto(Quarto quarto) {
+        QuartoEntity cat = modelMapper.map(quarto, QuartoEntity.class);
+        QuartoEntity saveQuarto = quaRep.save(cat);
+        return modelMapper.map(saveQuarto, Quarto.class);
     }
 
     public void excluirQuartoById(Long id) {
         quaRep.deleteById(id);
     }
 
-    public Collection<Quartos> findQuartoByQuantidade(Integer quantidade) {
-        return quaRep.findByQuantidade(quantidade);
+    public List<Quarto> findQuartoByQuantidade(Integer quantidade) {
+        List<QuartoEntity> quartos = quaRep.findByQuantidade(quantidade);
+        return quartos.stream().map(entity -> modelMapper.map(entity, Quarto.class)).collect(Collectors.toList());
     }
+
 }

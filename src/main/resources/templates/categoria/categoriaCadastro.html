@@ -12,7 +12,7 @@
 		<a class="btn btn-primary voltar" th:href="@{/classificador/categorias}">Voltar</a>
 		
 		
-		<form th:action="@{/classificador/categoria/cadastroPreenchido}" method="post" th:object="${categoria}">
+		<form th:action="@{/classificador/categoriaEntity/cadastroPreenchido}" method="post" th:object="${categoriaEntity}">
 			<div th:replace="fragments/mensagemErro"></div>
 			<div th:replace="fragments/mensagemSucesso"></div>
 			

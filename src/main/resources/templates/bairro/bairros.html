@@ -10,9 +10,9 @@
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Bairros</h2>
 		<h2 class="inline" th:text="${texto_busca}"></h2>
-		<a class="btn btn-success text-white bold voltar" th:href="@{/local/bairro/cadastro}">Novo Bairro</a>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/local/bairroEntity/cadastro}">Novo Bairro</a>
 		<div class="pesquisa" style="margin:10px 0">
-			<form class="form-horizontal" th:action="@{/local/bairro/pesquisa}">
+			<form class="form-horizontal" th:action="@{/local/bairroEntity/pesquisa}">
 				<div class="input-group">
 					<input class="form-control input-search" name="pesquisa" placeholder="Pesquisar Bairro">
 					<button class="btn btn-default input-group-append" type="submit">🔍</button>
@@ -34,18 +34,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="bairro:${bairros}">
-					<td th:text="${bairro.id}"/>
-					<td th:text="${bairro.nome}"/>
-					<td th:text="${bairro.municipio?.nome}"/>
-					<td th:text="${bairro.municipio?.estado?.nome}"/>
+				<tr th:each="bairroEntity:${bairroEntities}">
+					<td th:text="${bairroEntity.id}"/>
+					<td th:text="${bairroEntity.nome}"/>
+					<td th:text="${bairroEntity.municipioEntity?.nome}"/>
+					<td th:text="${bairroEntity.municipioEntity?.estado?.nome}"/>
 					<td>
-						<a class="btn btn-primary" th:href="@{/local/bairro/editar/{id}(id=${bairro.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/local/bairro/excluir/{id}(id=${bairro.id})}">Excluir</a>
+						<a class="btn btn-primary" th:href="@{/local/bairroEntity/editar/{id}(id=${bairroEntity.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/local/bairroEntity/excluir/{id}(id=${bairroEntity.id})}">Excluir</a>
 					</td>
 				</tr>
 				<tr class="text-center">
-					 <td colspan="5" th:if="${#lists.isEmpty(bairros)}">Nenhum bairro cadastrado</td>
+					 <td colspan="5" th:if="${#lists.isEmpty(bairroEntities)}">Nenhum bairroEntity cadastrado</td>
 				</tr>
 			</tbody>
 		</table>

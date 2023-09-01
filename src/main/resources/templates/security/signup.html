@@ -10,7 +10,7 @@
 <section layout:fragment="content" class="container-login">
     <h3>Cadastro</h3><br>
 
-    <form th:action="@{/signup}" method="post" th:object="${user}">
+    <form th:action="@{/signup}" method="post" th:object="${userEntity}">
         <div th:replace="fragments/mensagemErro"></div>
         <div class="form-item" th:classappend="${#fields.hasErrors('userName')}? is-invalid">
             <label>Usuário:</label>

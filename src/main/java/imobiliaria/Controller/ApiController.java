@@ -1,114 +1,116 @@
 package imobiliaria.Controller;
 
-import imobiliaria.Entity.Categoria;
-import imobiliaria.Entity.Negocio;
-import imobiliaria.Entity.Quartos;
+import imobiliaria.Model.Categoria;
+import imobiliaria.Model.Negocio;
+import imobiliaria.Model.Quarto;
 import imobiliaria.Service.ClassificadorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class ApiController {
-	
-	@Autowired
-	private ClassificadorService serv;
-	
-	@GetMapping("/categorias")
-	public Collection<Categoria> mostrarCategorias() {
-		return serv.findAllCategoria();
-	}
 
-	@PostMapping("/categoria/cadastro")
-	public Categoria cadastroCategoria(@Validated Categoria categoria) {
-		return serv.saveCategoria(categoria);
-	}
+    @Autowired
+    private ClassificadorService serv;
 
-	@PutMapping("/categoria/editar/{id}")
-	public Categoria editarCategoria(@PathVariable Long id, @Validated Categoria categoria) {
-		Categoria cat = serv.findCategoriaById(id);
-		if(cat == null) {
-			return new Categoria();
-		}
-		cat.setNome(categoria.getNome());
-		cat.setImoveis(categoria.getImoveis());
-		return serv.saveCategoria(cat);
-	}
-
-	@DeleteMapping("/categoria/excluir/{id}")
-	public void excluirCategoria(@PathVariable Long id) {
-		serv.excluirCategoriaById(id);
-	}
-	
-	@GetMapping("/categoria/pesquisa")
-    public Collection<Categoria> pesquisar(String pesquisa) {
-        return serv.findCategoriaByNome(pesquisa);
+    @GetMapping("/categorias")
+    public ResponseEntity<List<Categoria>> mostrarCategorias() {
+        return new ResponseEntity<>(serv.findAllCategoria(), HttpStatus.OK);
     }
-	
-	@GetMapping("/negocios")
-	public Collection<Negocio> mostrarNegocios() {
-		return serv.findAllNegocio();
-	}
 
-	@PostMapping("/negocio/cadastro")
-	public Negocio cadastroNegocio(@Validated Negocio negocio) {
-		return serv.saveNegocio(negocio);
-	}
-
-	@PutMapping("/negocio/editar/{id}")
-	public Negocio editarNegocio(@PathVariable Long id, @Validated Negocio negocio) {
-		Negocio neg = serv.findNegocioById(id);
-		if(neg == null) {
-			return new Negocio();
-		}
-		neg.setNome(negocio.getNome());
-		neg.setImoveis(negocio.getImoveis());
-		return serv.saveNegocio(neg);
-	}
-
-	@DeleteMapping("/negocio/excluir/{id}")
-	public void excluirNegocio(@PathVariable Long id) {
-		serv.excluirNegocioById(id);
-	}
-	
-	@GetMapping("/negocio/pesquisa")
-    public Collection<Negocio> pesquisarNegocio(String pesquisa) {
-        return serv.findNegocioByNome(pesquisa);
+    @PostMapping("/categoria/cadastro")
+    public ResponseEntity<Categoria> cadastroCategoria(@Validated Categoria categoria) {
+        return new ResponseEntity<>(serv.saveCategoria(categoria), HttpStatus.CREATED);
     }
-	
-	@GetMapping("/quartos")
-	public Collection<Quartos> mostrarQuartos() {
-		return serv.findAllQuartos();
-	}
 
-	@PostMapping("/quarto/cadastro")
-	public Quartos cadastroQuarto(@Validated Quartos quartos) {
-		return serv.saveQuartos(quartos);
-	}
+    @PutMapping("/categoria/editar/{id}")
+    public ResponseEntity<Categoria> editarCategoria(@PathVariable Long id, @Validated Categoria categoria) {
+        Categoria cat = serv.findCategoriaById(id);
+        if (cat == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        cat.setNome(categoria.getNome());
+        cat.setImoveis(categoria.getImoveis());
+        return new ResponseEntity<>(serv.saveCategoria(cat), HttpStatus.OK);
+    }
 
-	@PutMapping("/quarto/editar/{id}")
-	public Quartos editarNegocio(@PathVariable Long id, @Validated Quartos quartos) {
-		Quartos qua = serv.findQuartosById(id);
-		if(qua == null) {
-			return new Quartos();
-		}
-		qua.setQuantidade(quartos.getQuantidade());
-		qua.setDescricao(quartos.getDescricao());
-		qua.setImoveis(quartos.getImoveis());
-		return serv.saveQuartos(qua);
-	}
+    @DeleteMapping("/categoria/excluir/{id}")
+    public void excluirCategoria(@PathVariable Long id) {
+        serv.excluirCategoriaById(id);
+    }
 
-	@DeleteMapping("/quarto/excluir/{id}")
-	public void excluirQuarto(@PathVariable Long id) {
-		serv.excluirQuartoById(id);
-	}
+    @GetMapping("/categoria/pesquisa")
+    public ResponseEntity<List<Categoria>> pesquisarCategoria(String pesquisa) {
+        return new ResponseEntity<>(serv.findCategoriaByNome(pesquisa), HttpStatus.OK);
+    }
 
-	@GetMapping("/quarto/pesquisa")
-    public Collection<Quartos> pesquisarQuarto(Integer pesquisa) {
-        return serv.findQuartoByQuantidade(pesquisa);
+    @GetMapping("/negocios")
+    public ResponseEntity<List<Negocio>> mostrarNegocios() {
+        return new ResponseEntity<>(serv.findAllNegocio(), HttpStatus.OK);
+    }
+
+    @PostMapping("/negocio/cadastro")
+    public ResponseEntity<Negocio> cadastroNegocio(@Validated Negocio negocio) {
+        return new ResponseEntity<>(serv.saveNegocio(negocio), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/negocio/editar/{id}")
+    public ResponseEntity<Negocio> editarNegocio(@PathVariable Long id, @Validated Negocio negocio) {
+        Negocio neg = serv.findNegocioById(id);
+        if (neg == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        neg.setNome(negocio.getNome());
+        neg.setImoveis(negocio.getImoveis());
+        return new ResponseEntity<>(serv.saveNegocio(neg), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/negocio/excluir/{id}")
+    public void excluirNegocio(@PathVariable Long id) {
+        serv.excluirNegocioById(id);
+    }
+
+    @GetMapping("/negocio/pesquisa")
+    public ResponseEntity<List<Negocio>> pesquisarNegocio(String pesquisa) {
+        return new ResponseEntity<>(serv.findNegocioByNome(pesquisa), HttpStatus.OK);
+    }
+
+    @GetMapping("/quartos")
+    public ResponseEntity<List<Quarto>> mostrarQuartos() {
+        return new ResponseEntity<>(serv.findAllQuarto(), HttpStatus.OK);
+    }
+
+    @PostMapping("/quarto/cadastro")
+    public ResponseEntity<Quarto> cadastroQuarto(@Validated Quarto quarto) {
+        return new ResponseEntity<>(serv.saveQuarto(quarto), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/quarto/editar/{id}")
+    public ResponseEntity<Quarto> editarQuarto(@PathVariable Long id, @Validated Quarto quarto) {
+        Quarto qua = serv.findQuartoById(id);
+        if (qua == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        qua.setQuantidade(quarto.getQuantidade());
+        qua.setDescricao(quarto.getDescricao());
+        qua.setImoveis(quarto.getImoveis());
+        return new ResponseEntity<>(serv.saveQuarto(qua), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/quarto/excluir/{id}")
+    public void excluirQuarto(@PathVariable Long id) {
+        serv.excluirQuartoById(id);
+    }
+
+    @GetMapping("/quarto/pesquisa")
+    public ResponseEntity<List<Quarto>> pesquisarQuarto(Integer pesquisa) {
+        return new ResponseEntity<>(serv.findQuartoByQuantidade(pesquisa), HttpStatus.OK);
     }
 
 }

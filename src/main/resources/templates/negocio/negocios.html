@@ -10,9 +10,9 @@
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Negócios</h2>
 		<h2 class="inline" th:text="${texto_busca}"></h2>
-		<a class="btn btn-success text-white bold voltar" th:href="@{/classificador/negocio/cadastro}">Novo Negócio</a>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/classificador/negocioEntity/cadastro}">Novo Negócio</a>
 		<div class="pesquisa" style="margin:10px 0">
-			<form class="form-horizontal" th:action="@{/classificador/negocio/pesquisa}">
+			<form class="form-horizontal" th:action="@{/classificador/negocioEntity/pesquisa}">
 				<div class="input-group">
 					<input class="form-control input-search" name="pesquisa" placeholder="Pesquisar Negócio">
 					<button class="btn btn-default input-group-append" type="submit">🔍</button>
@@ -32,12 +32,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="negocio:${negocios}">
-					<td th:text="${negocio.id}"/>
-					<td th:text="${negocio.nome}"/>
+				<tr th:each="negocioEntity:${negocios}">
+					<td th:text="${negocioEntity.id}"/>
+					<td th:text="${negocioEntity.nome}"/>
 					<td>
-						<a class="btn btn-primary" th:href="@{/classificador/negocio/editar/{id}(id=${negocio.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/classificador/negocio/excluir/{id}(id=${negocio.id})}">Excluir</a>
+						<a class="btn btn-primary" th:href="@{/classificador/negocioEntity/editar/{id}(id=${negocioEntity.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/classificador/negocioEntity/excluir/{id}(id=${negocioEntity.id})}">Excluir</a>
 					</td>
 				</tr>
 				<tr class="text-center">

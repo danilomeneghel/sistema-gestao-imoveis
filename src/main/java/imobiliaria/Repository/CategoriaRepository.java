@@ -1,12 +1,12 @@
 package imobiliaria.Repository;
 
-import java.util.Collection;
-
+import imobiliaria.Entity.CategoriaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import imobiliaria.Entity.Categoria;
+import java.util.List;
 
-public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
+public interface CategoriaRepository extends JpaRepository<CategoriaEntity, Long>{
 	
-	public Collection<Categoria> findByNomeContainingIgnoreCase(String nome);
+	List<CategoriaEntity> findByNomeContainingIgnoreCase(String nome);
+
 }

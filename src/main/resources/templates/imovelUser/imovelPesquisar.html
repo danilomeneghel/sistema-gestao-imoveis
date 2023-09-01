@@ -9,25 +9,25 @@
 <body>
 	<section layout:fragment="conteudo" class="distanciamento">
 		<h2 class="inline">Pesquisar Imóvel</h2>
-		<a class="btn btn-primary voltar" th:href="@{/user/imovel/todos}">Voltar</a>
+		<a class="btn btn-primary voltar" th:href="@{/userEntity/imovelEntity/todos}">Voltar</a>
 		
 		<div>
-			<form th:action="@{/user/imovel/pesquisarResultado}" method="get" th:object="${imovel}">
+			<form th:action="@{/userEntity/imovelEntity/pesquisarResultado}" method="get" th:object="${imovelEntity}">
 				<div th:replace="fragments/mensagemErro"></div>
 				<div th:replace="fragments/mensagemSucesso"></div>
 				
 				<div class="row">
 					<div class="form-item col-5" th:classappend="${erroNegocio}? is-invalid">
-						<label for="negocio">Negócio</label>
-						<select th:field="*{negocio.id}" class="form-control">
+						<label for="negocioEntity">Negócio</label>
+						<select th:field="*{negocioEntity.id}" class="form-control">
 							<option value="" selected>Escolha o tipo de Negócio</option>
 							<option th:each="neg:${negocios}" th:value="${neg.id}" th:text="${neg.nome}">
 						</select>		
 					</div>		
 						
 					<div class="form-item col-5" th:classappend="${erroCategoria}? is-invalid">
-						<label for="categoria">Categoria</label>
-						<select th:field="*{categoria.id}" class="form-control">
+						<label for="categoriaEntity">Categoria</label>
+						<select th:field="*{categoriaEntity.id}" class="form-control">
 							<option value="" selected>Escolha o tipo de Categoria</option>
 							<option th:each="cat:${categorias}" th:value="${cat.id}" th:text="${cat.nome}">
 						</select>		
@@ -36,10 +36,10 @@
 					
 				<div class="row">
 					<div class="form-item col-5" th:classappend="${erroQuarto}? is-invalid">
-						<label for="quarto">Quartos</label>
-						<select th:field="*{quartos.id}" class="form-control">
+						<label for="quartos">Quartos</label>
+						<select th:field="*{quartoEntity.id}" class="form-control">
 							<option value="" selected>Escolha a quantidade de Quartos</option>
-							<option th:each="q:${quartos}" th:value="${q.id}" th:text="${q.descricao}">
+							<option th:each="q:${quartoEntity}" th:value="${q.id}" th:text="${q.descricao}">
 						</select>		
 					</div>		
 				</div>
@@ -65,19 +65,19 @@
 						</select>		
 					</div>	
 					
-					<div class="form-item col-4" id="municipio-div" th:styleappend="${idEstado}?'': 'display:none'" th:classappend="${erroMunicipio}? is-invalid">
-						<label for="municipio-select">Município</label>
-						<select id="municipio-select" name="idMunicipio" class="form-control">
+					<div class="form-item col-4" id="municipioEntity-div" th:styleappend="${idEstado}?'': 'display:none'" th:classappend="${erroMunicipio}? is-invalid">
+						<label for="municipioEntity-select">Município</label>
+						<select id="municipioEntity-select" name="idMunicipio" class="form-control">
 							<option value="" selected>Escolha o Município</option>
-							<option th:selected="${m.id==idMunicipio}" th:each="m:${municipios}" th:value="${m.id}" th:text="${m.nome}">
+							<option th:selected="${m.id==idMunicipio}" th:each="m:${municipioEntities}" th:value="${m.id}" th:text="${m.nome}">
 						</select>		
 					</div>	
 					
-					<div class="form-item col-3" id="bairro-div" th:styleappend="${idMunicipio} and ${idEstado}?'': 'display:none'" th:classappend="${erroBairro}? is-invalid">
-						<label for="bairro-select">Bairro</label>
-						<select id="bairro-select" th:field="*{bairro.id}" class="form-control">
+					<div class="form-item col-3" id="bairroEntity-div" th:styleappend="${idMunicipio} and ${idEstado}?'': 'display:none'" th:classappend="${erroBairro}? is-invalid">
+						<label for="bairroEntity-select">Bairro</label>
+						<select id="bairroEntity-select" th:field="*{bairroEntity.id}" class="form-control">
 							<option value="" selected>Escolha o Bairro</option>
-							<option th:each="b:${bairros}" th:value="${b.id}" th:text="${b.nome}">
+							<option th:each="b:${bairroEntities}" th:value="${b.id}" th:text="${b.nome}">
 						</select>		
 					</div>	
 				</div>
@@ -98,14 +98,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="imovel:${imobiliaria}">
-					<td th:text="${imovel.id}"/>
-					<td th:text="${imovel.negocio.nome}"/>
-					<td th:text="${imovel.categoria.nome}"/>
-					<td th:text="${imovel.bairro?.municipio?.estado?.nome}"/>
-					<td th:text="${imovel.quartos.quantidade}"/>
+				<tr th:each="imovelEntity:${imobiliaria}">
+					<td th:text="${imovelEntity.id}"/>
+					<td th:text="${imovelEntity.negocioEntity.nome}"/>
+					<td th:text="${imovelEntity.categoriaEntity.nome}"/>
+					<td th:text="${imovelEntity.bairroEntity?.municipioEntity?.estado?.nome}"/>
+					<td th:text="${imovelEntity.quartoEntity.quantidade}"/>
 					<td th:inline="text">R$
-						[[${#numbers.formatDecimal(imovel.valor, 0, 'COMMA', 2, 'POINT')}]]</td>
+						[[${#numbers.formatDecimal(imovelEntity.valor, 0, 'COMMA', 2, 'POINT')}]]</td>
 				</tr>
 				<tr class="text-center">
 					 <td colspan="6" th:if="${#lists.isEmpty(imobiliaria)}">Nenhum imóvel encontrado</td>

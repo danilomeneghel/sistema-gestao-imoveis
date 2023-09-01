@@ -1,8 +1,8 @@
 package imobiliaria.Service;
 
 import imobiliaria.Configuration.WebSecurityConfiguration;
-import imobiliaria.Entity.MyUserDetails;
-import imobiliaria.Entity.User;
+import imobiliaria.Entity.UserEntity;
+import imobiliaria.Model.MyUserDetails;
 import imobiliaria.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,18 +23,18 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = rep.findByUserName(username);
+        Optional<UserEntity> user = rep.findByUserName(username);
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
         return user.map(MyUserDetails::new).get();
     }
 
-    public void saveNewUser(User user) {
-        user.setPassword(WebSec.setEncoder(user.getPassword()));
-        rep.save(user);
+    public void saveNewUser(UserEntity userEntity) {
+        userEntity.setPassword(WebSec.setEncoder(userEntity.getPassword()));
+        rep.save(userEntity);
     }
 
     public boolean emailExistente(String email) {
-        Optional<User> user = rep.findByEmail(email);
+        Optional<UserEntity> user = rep.findByEmail(email);
         return !user.isEmpty();
     }
 
