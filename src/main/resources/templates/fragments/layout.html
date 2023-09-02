@@ -30,22 +30,24 @@
                th:href="@{/classificador/categorias}">Categorias</a>
             <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
                th:href="@{/classificador/negocios}">Negócios</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/imovelEntity/todos}">Imóveis</a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/imovel/todos}">Imóveis</a>
             <div class="dropright show">
                 <a class="list-group-item list-group-item-action bg-dark text-white dropdown-toggle"
                    href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
                     Localização</a>
                 <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item text-white bg-dark" th:href="@{/local/estados}">Estados</a>
-                    <a class="dropdown-item text-white bg-dark" th:href="@{/local/municipioEntities}">Municípios</a>
-                    <a class="dropdown-item text-white bg-dark" th:href="@{/local/bairroEntities}">Bairros</a>
+                    <a class="dropdown-item text-white bg-dark" th:href="@{/localidade/estados}">Estados</a>
+                    <a class="dropdown-item text-white bg-dark" th:href="@{/localidade/municipios}">Municípios</a>
+                    <a class="dropdown-item text-white bg-dark" th:href="@{/localidade/bairros}">Bairros</a>
                 </div>
             </div>
             <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
-               th:href="@{/classificador/quartoEntity}">Quartos</a>
+               th:href="@{/classificador/quartos}">Quartos</a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
+               th:href="@{/swagger-ui.html}" target="_blank">Acessar API</a>
             <div class="list-group-item bg-dark">
-                <form th:action="@{/logout}" method="post"><input class="btn-a  " type="submit" value="Logout"/></form>
+                <form th:action="@{/logout}" method="post"><input class="btn-a" type="submit" value="Sair"/></form>
             </div>
         </div>
     </div>

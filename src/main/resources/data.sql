@@ -10,13 +10,13 @@ INSERT INTO estado (nome,uf) VALUES
 ('São Paulo','SP'),('Rio de Janeiro','RJ'),
 ('Rio Grande do Norte','RN'),('Minas Gerais','MG');
 
-INSERT INTO municipio (nome,estado) VALUES
+INSERT INTO municipio (nome,id_estado) VALUES
 ('Sorocaba',1),('Campinas',1),('São Paulo',1),
 ('Rio de Janeiro',2),('São Gonçalo',2),('Duque de Caxias',2),
 ('Natal',3),('Alexandria',3),('Angicos',3),
 ('Belo Horizonte',4),('Mariana',4),('Betim',4);
 
-INSERT INTO bairro (nome,municipio) VALUES
+INSERT INTO bairro (nome,id_municipio) VALUES
 ('Campolim',1),('Mangal',1),('Além-Ponte',1),
 ('Botafogo',2),('Cambuí',2),('Guanabara',2),
 ('Sumaré',3),('Lapa',3),('Bela Vista',3),
@@ -30,7 +30,7 @@ INSERT INTO bairro (nome,municipio) VALUES
 ('Catete',11),('Barro Preto',11),('Galego',11),
 ('Alterosas',12),('Imbiruçu',12),('Petrovale',12);
 
-INSERT INTO imovel (categoria_imovel,negocio_imovel,quarto_imovel,valor,bairro_imovel) VALUES
+INSERT INTO imovel (id_categoria,id_negocio,id_quarto,valor,id_bairro) VALUES
 (1,1,5,500000,1),
 (1,2,2,2000,2),
 (1,3,3,20000,3),

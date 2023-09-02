@@ -9,10 +9,10 @@
 <body>
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Novo Estado</h2>
-		<a class="btn btn-primary voltar" th:href="@{/local/estados}">Voltar</a>
+		<a class="btn btn-primary voltar" th:href="@{/localidade/estados}">Voltar</a>
 		
 		
-		<form th:action="@{/local/estado/cadastroPreenchido}" method="post" th:object="${estado}">
+		<form th:action="@{/localidade/estado/cadastroPreenchido}" method="post" th:object="${estado}">
 			<div th:replace="fragments/mensagemErro"></div>
 			<div th:replace="fragments/mensagemSucesso"></div>
 			

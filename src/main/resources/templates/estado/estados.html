@@ -10,9 +10,9 @@
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Estados</h2>
 		<h2 class="inline" th:text="${texto_busca}"></h2>
-		<a class="btn btn-success text-white bold voltar" th:href="@{/local/estado/cadastro}">Novo Estado</a>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/localidade/estado/cadastro}">Novo Estado</a>
 		<div class="pesquisa" style="margin:10px 0">
-			<form class="form-horizontal" th:action="@{/local/estado/pesquisa}">
+			<form class="form-horizontal" th:action="@{/localidade/estado/pesquisa}">
 				<div class="input-group">
 					<input class="form-control input-search" name="pesquisa" placeholder="Pesquisar Estado">
 					<button class="btn btn-default input-group-append" type="submit">🔍</button>
@@ -38,8 +38,8 @@
 					<td th:text="${estado.uf}"/>
 					<td th:text="${estado.nome}"/>
 					<td>
-						<a class="btn btn-primary" th:href="@{/local/estado/editar/{id}(id=${estado.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/local/estado/excluir/{id}(id=${estado.id})}">Excluir</a>
+						<a class="btn btn-primary" th:href="@{/localidade/estado/editar/{id}(id=${estado.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/localidade/estado/excluir/{id}(id=${estado.id})}">Excluir</a>
 					</td>
 				</tr>
 				<tr class="text-center">

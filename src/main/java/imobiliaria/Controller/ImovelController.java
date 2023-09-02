@@ -3,7 +3,7 @@ package imobiliaria.Controller;
 import imobiliaria.Model.Imovel;
 import imobiliaria.Service.ClassificadorService;
 import imobiliaria.Service.ImovelService;
-import imobiliaria.Service.LocalService;
+import imobiliaria.Service.LocalidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -27,7 +27,7 @@ public class ImovelController {
     private ImovelService iServ;
 
     @Autowired
-    private LocalService lServ;
+    private LocalidadeService lServ;
 
     @Autowired
     private ClassificadorService cServ;
@@ -90,7 +90,7 @@ public class ImovelController {
             mv.addObject("erroEstado", true);
             erro = true;
         } else {
-            mv.addObject("municipioEntities", lServ.findEstadoById(idEstado).getMunicipios());
+            mv.addObject("municipios", lServ.findEstadoById(idEstado).getMunicipios());
             if (lServ.findEstadoById(idEstado).getMunicipios().size() == 0) {
                 mv.addObject("semMunicipios", true);
             }
@@ -100,7 +100,7 @@ public class ImovelController {
             mv.addObject("erroMunicipio", true);
             erro = true;
         } else {
-            mv.addObject("bairroEntities", lServ.findMunicipioById(idMunicipio).getBairros());
+            mv.addObject("bairros", lServ.findMunicipioById(idMunicipio).getBairros());
             if (lServ.findMunicipioById(idMunicipio).getBairros().size() == 0) {
                 mv.addObject("semBairros", true);
             }
@@ -123,8 +123,8 @@ public class ImovelController {
         Imovel imovel = iServ.findImovelById(id);
         mv.addObject("imovel", imovel);
         addObj(mv);
-        mv.addObject("municipioEntities", imovel.getBairro().getMunicipio().getEstado().getMunicipios());
-        mv.addObject("bairroEntities", imovel.getBairro().getMunicipio().getBairros());
+        mv.addObject("municipios", imovel.getBairro().getMunicipio().getEstado().getMunicipios());
+        mv.addObject("bairros", imovel.getBairro().getMunicipio().getBairros());
         mv.addObject("idEstado", imovel.getBairro().getMunicipio().getEstado().getId());
         mv.addObject("idMunicipio", imovel.getBairro().getMunicipio().getId());
         return mv;
@@ -146,7 +146,7 @@ public class ImovelController {
             mv.addObject("erroEstado", true);
             erro = true;
         } else {
-            mv.addObject("municipioEntities", lServ.findEstadoById(idEstado).getMunicipios());
+            mv.addObject("municipios", lServ.findEstadoById(idEstado).getMunicipios());
             mv.addObject("idEstado", idEstado);
         }
         if (idMunicipio == null) {
@@ -154,7 +154,7 @@ public class ImovelController {
             mv.addObject("erroMunicipio", true);
             erro = true;
         } else {
-            mv.addObject("bairroEntities", lServ.findMunicipioById(idMunicipio).getBairros());
+            mv.addObject("bairros", lServ.findMunicipioById(idMunicipio).getBairros());
             mv.addObject("idMunicipio", idMunicipio);
         }
         if (idNeg == null) {
@@ -213,10 +213,10 @@ public class ImovelController {
         mv.addObject("valorMaximo", valorMaximo);
 
         if (idEstado != null) {
-            mv.addObject("municipioEntities", lServ.findEstadoById(idEstado).getMunicipios());
+            mv.addObject("municipios", lServ.findEstadoById(idEstado).getMunicipios());
         }
         if (idMunicipio != null) {
-            mv.addObject("bairroEntities", lServ.findMunicipioById(idMunicipio).getBairros());
+            mv.addObject("bairros", lServ.findMunicipioById(idMunicipio).getBairros());
         }
         mv.addObject("imovel", imovel);
         mv.addObject("imobiliaria", iServ.findImovelByExample(imovel, idMunicipio, idEstado, valorMinimo, valorMaximo));
@@ -231,12 +231,12 @@ public class ImovelController {
     }
 
     private void addObj(ModelAndView mv) {
-        mv.addObject("negocios", cServ.findAllNegocio());
-        mv.addObject("categorias", cServ.findAllCategoria());
-        mv.addObject("quartos", cServ.findAllQuarto());
+        mv.addObject("negocios", cServ.findAllNegocios());
+        mv.addObject("categorias", cServ.findAllCategorias());
+        mv.addObject("quartos", cServ.findAllQuartos());
         mv.addObject("estados", lServ.findAllEstados());
-        mv.addObject("municipioEntities", lServ.findAllMunicipios());
-        mv.addObject("bairroEntities", lServ.findAllBairros());
+        mv.addObject("municipios", lServ.findAllMunicipios());
+        mv.addObject("bairros", lServ.findAllBairros());
     }
 
 }

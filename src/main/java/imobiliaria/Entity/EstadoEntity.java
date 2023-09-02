@@ -30,8 +30,7 @@ public class EstadoEntity implements Serializable {
     @NotBlank(message = "A sigla da UF não pode estar em branco.")
     private String uf;
 
-    @OneToMany
-    @JoinColumn(name = "estado_municipio")
+    @OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
     private List<MunicipioEntity> municipios;
 
 }

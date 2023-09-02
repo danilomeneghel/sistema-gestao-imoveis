@@ -32,26 +32,21 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
         auth.authenticationProvider(authProvider());
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        //Define os acessos para cada usuário, com apenas a tela de login sendo
-        //acessível sem utilizar uma conta
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/local/**","/classificador/**","/imovelEntity/**","/imagem/**").hasRole("ADMIN")
-                .antMatchers("/user/**","/","/ajax").hasAnyRole("USER","ADMIN")
+                .antMatchers("/localidade/**", "/classificador/**", "/imovel/**", "/imagem/**",
+                        "/api/**", "/swagger-ui/**").hasRole("ADMIN")
+                .antMatchers("/user/**", "/", "/ajax").hasAnyRole("USER", "ADMIN")
                 .and().formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .and().logout().permitAll();
-        //Desativa o csrf para ser possível enviar imagens em forms multpart
-        //Tentei seguir o exemplo de como utilizá-lo porém não consegui fazer
-        //a configuração csrf funcionar, fazendo que todos os uploads ficassem como
-        //'403 - forbidden'
         http.csrf().disable();
     }
 

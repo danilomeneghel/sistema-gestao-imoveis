@@ -24,7 +24,7 @@ public class ImagemEntity {
     private String path;
 
     @ManyToOne
-    @JoinColumn(name = "imovel")
+    @JoinColumn(name = "id_imovel")
     private ImovelEntity imovel;
 
 }

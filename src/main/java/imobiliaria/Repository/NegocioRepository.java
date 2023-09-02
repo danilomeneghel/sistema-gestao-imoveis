@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface NegocioRepository extends JpaRepository<NegocioEntity, Long>{
+public interface NegocioRepository extends JpaRepository<NegocioEntity, Long> {
 
-	List<NegocioEntity> findByNomeContainingIgnoreCase(String nome);
+    List<NegocioEntity> findByNomeContainingIgnoreCase(String nome);
 
 }

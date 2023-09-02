@@ -1,8 +1,9 @@
 package imobiliaria.Controller;
 
-import imobiliaria.Service.LocalService;
+import imobiliaria.Service.LocalidadeService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,22 +12,22 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/ajax")
+@Tag(name = "Ajax Lista")
 public class AjaxController {
 
     @Autowired
-    private LocalService localService;
+    private LocalidadeService localidadeService;
 
-    @RequestMapping(value = "/municipioEstado", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/municipioEstado")
     @ResponseBody
     public Map<Long, String> retornaMunicipios(Long idEstado) {
-        //mapear id municipio e nomes
-        return localService.findMunicipioAsMapPerEstado(idEstado);
+        return localidadeService.findMunicipioAsMapPerEstado(idEstado);
     }
 
-    @RequestMapping(value = "/bairroMunicipio", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/bairroMunicipio")
     @ResponseBody
     public Map<Long, String> retornaBairros(Long idMunicipio) {
-        //mapear id municipio e nomes
-        return localService.findBairroAsMapPerMunicipio(idMunicipio);
+        return localidadeService.findBairroAsMapPerMunicipio(idMunicipio);
     }
+
 }

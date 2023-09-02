@@ -32,11 +32,10 @@ public class QuartoEntity implements Serializable {
     @DecimalMax(value = "10", message = "O valor não pode ser maior que 10")
     private Integer quantidade;
 
-    @NotBlank(message = "A Descrição dos quartos não pode estar em branco.")
+    @NotBlank(message = "A descrição dos quartos não pode estar em branco.")
     private String descricao;
 
-    @OneToMany
-    @JoinColumn(name = "QuartoImovel")
+    @OneToMany(mappedBy = "quarto", cascade = CascadeType.REMOVE)
     private List<ImovelEntity> imoveis;
 
 }

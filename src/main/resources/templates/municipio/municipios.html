@@ -10,9 +10,9 @@
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Municípios</h2>
 		<h2 class="inline" th:text="${texto_busca}"></h2>
-		<a class="btn btn-success text-white bold voltar" th:href="@{/local/municipioEntity/cadastro}">Novo Município</a>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/localidade/municipio/cadastro}">Novo Município</a>
 		<div class="pesquisa" style="margin:10px 0">
-			<form class="form-horizontal" th:action="@{/local/municipioEntity/pesquisa}">
+			<form class="form-horizontal" th:action="@{/localidade/municipio/pesquisa}">
 				<div class="input-group">
 					<input class="form-control input-search" name="pesquisa" placeholder="Pesquisar Município">
 					<button class="btn btn-default input-group-append" type="submit">🔍</button>
@@ -33,17 +33,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="municipioEntity:${municipioEntities}">
-					<td th:text="${municipioEntity.id}"/>
-					<td th:text="${municipioEntity.nome}"/>
-					<td th:text="${municipioEntity.estado?.nome}"/>
+				<tr th:each="municipio:${municipios}">
+					<td th:text="${municipio.id}"/>
+					<td th:text="${municipio.nome}"/>
+					<td th:text="${municipio.estado?.nome}"/>
 					<td>
-						<a class="btn btn-primary" th:href="@{/local/municipioEntity/editar/{id}(id=${municipioEntity.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/local/municipioEntity/excluir/{id}(id=${municipioEntity.id})}">Excluir</a>
+						<a class="btn btn-primary" th:href="@{/localidade/municipio/editar/{id}(id=${municipio.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/localidade/municipio/excluir/{id}(id=${municipio.id})}">Excluir</a>
 					</td>
 				</tr>
 				<tr class="text-center">
-					 <td colspan="4" th:if="${#lists.isEmpty(municipioEntities)}">Nenhum município cadastrado</td>
+					 <td colspan="4" th:if="${#lists.isEmpty(municipios)}">Nenhum município cadastrado</td>
 				</tr>
 			</tbody>
 		</table>

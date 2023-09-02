@@ -3,7 +3,7 @@ package imobiliaria.Controller;
 import imobiliaria.Model.Imovel;
 import imobiliaria.Service.ClassificadorService;
 import imobiliaria.Service.ImovelService;
-import imobiliaria.Service.LocalService;
+import imobiliaria.Service.LocalidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class ImovelUserController {
     private ImovelService iServ;
 
     @Autowired
-    private LocalService lServ;
+    private LocalidadeService lServ;
 
     @Autowired
     private ClassificadorService cServ;
@@ -52,10 +52,10 @@ public class ImovelUserController {
         mv.addObject("valorMaximo", valorMaximo);
 
         if (idEstado != null) {
-            mv.addObject("municipioEntities", lServ.findEstadoById(idEstado).getMunicipios());
+            mv.addObject("municipios", lServ.findEstadoById(idEstado).getMunicipios());
         }
         if (idMunicipio != null) {
-            mv.addObject("bairroEntities", lServ.findMunicipioById(idMunicipio).getBairros());
+            mv.addObject("bairros", lServ.findMunicipioById(idMunicipio).getBairros());
         }
         mv.addObject("imovel", imovel);
         mv.addObject("imobiliaria", iServ.findImovelByExample(imovel, idMunicipio, idEstado, valorMinimo, valorMaximo));
@@ -70,12 +70,12 @@ public class ImovelUserController {
     }
 
     private void addObj(ModelAndView mv) {
-        mv.addObject("negocios", cServ.findAllNegocio());
-        mv.addObject("categorias", cServ.findAllCategoria());
-        mv.addObject("quartos", cServ.findAllQuarto());
+        mv.addObject("negocios", cServ.findAllNegocios());
+        mv.addObject("categorias", cServ.findAllCategorias());
+        mv.addObject("quartos", cServ.findAllQuartos());
         mv.addObject("estados", lServ.findAllEstados());
-        mv.addObject("municipioEntities", lServ.findAllMunicipios());
-        mv.addObject("bairroEntities", lServ.findAllBairros());
+        mv.addObject("municipios", lServ.findAllMunicipios());
+        mv.addObject("bairros", lServ.findAllBairros());
     }
 
 }

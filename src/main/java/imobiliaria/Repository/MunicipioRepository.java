@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MunicipioRepository extends JpaRepository<MunicipioEntity, Long>{
+public interface MunicipioRepository extends JpaRepository<MunicipioEntity, Long> {
 
-	public List<MunicipioEntity> findByNomeContainingIgnoreCase(String nome);
+    List<MunicipioEntity> findByNomeContainingIgnoreCase(String nome);
+
 }

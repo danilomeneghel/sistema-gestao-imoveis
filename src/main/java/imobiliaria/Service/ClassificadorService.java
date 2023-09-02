@@ -30,7 +30,7 @@ public class ClassificadorService {
 
     private ModelMapper modelMapper = new ModelMapper();
 
-    public List<Categoria> findAllCategoria() {
+    public List<Categoria> findAllCategorias() {
         List<CategoriaEntity> categorias = catRep.findAll();
         return categorias.stream().map(entity -> modelMapper.map(entity, Categoria.class)).collect(Collectors.toList());
     }
@@ -41,8 +41,8 @@ public class ClassificadorService {
     }
 
     public Categoria saveCategoria(Categoria categoria) {
-        CategoriaEntity cat = modelMapper.map(categoria, CategoriaEntity.class);
-        CategoriaEntity saveCategoria = catRep.save(cat);
+        CategoriaEntity categoriaEntity = modelMapper.map(categoria, CategoriaEntity.class);
+        CategoriaEntity saveCategoria = catRep.save(categoriaEntity);
         return modelMapper.map(saveCategoria, Categoria.class);
     }
 
@@ -55,7 +55,7 @@ public class ClassificadorService {
         return categorias.stream().map(entity -> modelMapper.map(entity, Categoria.class)).collect(Collectors.toList());
     }
 
-    public List<Negocio> findAllNegocio() {
+    public List<Negocio> findAllNegocios() {
         List<NegocioEntity> negocios = negRep.findAll();
         return negocios.stream().map(entity -> modelMapper.map(entity, Negocio.class)).collect(Collectors.toList());
     }
@@ -66,8 +66,8 @@ public class ClassificadorService {
     }
 
     public Negocio saveNegocio(Negocio negocio) {
-        NegocioEntity cat = modelMapper.map(negocio, NegocioEntity.class);
-        NegocioEntity saveNegocio = negRep.save(cat);
+        NegocioEntity negocioEntity = modelMapper.map(negocio, NegocioEntity.class);
+        NegocioEntity saveNegocio = negRep.save(negocioEntity);
         return modelMapper.map(saveNegocio, Negocio.class);
     }
 
@@ -80,7 +80,7 @@ public class ClassificadorService {
         return negocios.stream().map(entity -> modelMapper.map(entity, Negocio.class)).collect(Collectors.toList());
     }
 
-    public List<Quarto> findAllQuarto() {
+    public List<Quarto> findAllQuartos() {
         List<QuartoEntity> quartos = quaRep.findAll();
         return quartos.stream().map(entity -> modelMapper.map(entity, Quarto.class)).collect(Collectors.toList());
     }
@@ -91,8 +91,8 @@ public class ClassificadorService {
     }
 
     public Quarto saveQuarto(Quarto quarto) {
-        QuartoEntity cat = modelMapper.map(quarto, QuartoEntity.class);
-        QuartoEntity saveQuarto = quaRep.save(cat);
+        QuartoEntity quartoEntity = modelMapper.map(quarto, QuartoEntity.class);
+        QuartoEntity saveQuarto = quaRep.save(quartoEntity);
         return modelMapper.map(saveQuarto, Quarto.class);
     }
 

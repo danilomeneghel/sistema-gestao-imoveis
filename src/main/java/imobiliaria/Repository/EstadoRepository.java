@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EstadoRepository extends JpaRepository<EstadoEntity, Long>{
+public interface EstadoRepository extends JpaRepository<EstadoEntity, Long> {
 
-	public List<EstadoEntity> findByNomeContainingIgnoreCase(String nome);
+    List<EstadoEntity> findByNomeContainingIgnoreCase(String nome);
+
 }

@@ -10,9 +10,9 @@
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Quartos</h2>
 		<h2 class="inline" th:text="${texto_busca}"></h2>
-		<a class="btn btn-success text-white bold voltar" th:href="@{/classificador/quartoEntity/cadastro}">Novo Quarto</a>
+		<a class="btn btn-success text-white bold voltar" th:href="@{/classificador/quarto/cadastro}">Novo Quarto</a>
 		<div class="pesquisa" style="margin:10px 0">
-			<form class="form-horizontal" th:action="@{/classificador/quartoEntity/pesquisa}">
+			<form class="form-horizontal" th:action="@{/classificador/quarto/pesquisa}">
 				<div class="input-group">
 					<input class="form-control input-search" name="pesquisa" placeholder="Pesquisar por Quantidade de Quartos">
 					<button class="btn btn-default input-group-append" type="submit">🔍</button>
@@ -33,17 +33,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="quartoEntity:${quartoEntity}">
-					<td th:text="${quartoEntity.id}"/>
-					<td th:text="${quartoEntity.quantidade}"/>
-					<td th:text="${quartoEntity.descricao}"/>
+				<tr th:each="quarto:${quarto}">
+					<td th:text="${quarto.id}"/>
+					<td th:text="${quarto.quantidade}"/>
+					<td th:text="${quarto.descricao}"/>
 					<td>
-						<a class="btn btn-primary" th:href="@{/classificador/quartoEntity/editar/{id}(id=${quartoEntity.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/classificador/quartoEntity/excluir/{id}(id=${quartoEntity.id})}">Excluir</a>
+						<a class="btn btn-primary" th:href="@{/classificador/quarto/editar/{id}(id=${quarto.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/classificador/quarto/excluir/{id}(id=${quarto.id})}">Excluir</a>
 					</td>
 				</tr>
 				<tr class="text-center">
-					 <td colspan="4" th:if="${#lists.isEmpty(quartoEntity)}">Nenhum quartoEntity cadastrado</td>
+					 <td colspan="4" th:if="${#lists.isEmpty(quarto)}">Nenhum quarto cadastrado</td>
 				</tr>
 			</tbody>
 		</table>

@@ -9,12 +9,12 @@
 <body>
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Novo Município</h2>
-		<a class="btn btn-primary voltar" th:href="@{/local/municipioEntities}">Voltar</a>
+		<a class="btn btn-primary voltar" th:href="@{/localidade/municipios}">Voltar</a>
 		
 		<h1 th:if="${#lists.isEmpty(estados)}" class="is-invalid">Não é possível cadastrar um Município sem um Estado</h1>
 		
 		<div th:unless="${#lists.isEmpty(estados)}">
-			<form th:action="@{/local/municipioEntity/cadastroPreenchido}" method="post" th:object="${municipioEntity}">
+			<form th:action="@{/localidade/municipio/cadastroPreenchido}" method="post" th:object="${municipio}">
 				<div th:replace="fragments/mensagemErro"></div>
 				<div th:replace="fragments/mensagemSucesso"></div>
 				
@@ -25,7 +25,7 @@
 						<option th:each="est:${estados}" th:value="${est.id}" th:text="${est.nome}">
 					</select>		
 				</div>		
-				<div class="form-item" id="municipioEntity-div" th:classappend="${#fields.hasErrors('nome')}? is-invalid" style="display:none">
+				<div class="form-item" id="municipio-div" th:classappend="${#fields.hasErrors('nome')}? is-invalid" style="display:none">
 					<label for="nome">Nome do Município</label>
 					<input class="form-control" id="nome" th:field="*{nome}" 
 						placeholder="Digite o nome do município">

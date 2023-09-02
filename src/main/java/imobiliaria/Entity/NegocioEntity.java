@@ -27,8 +27,7 @@ public class NegocioEntity implements Serializable {
     @NotBlank(message = "O nome do Negócio não pode estar em branco.")
     private String nome;
 
-    @OneToMany
-    @JoinColumn(name = "NegocioImovel")
+    @OneToMany(mappedBy = "negocio", cascade = CascadeType.REMOVE)
     private List<ImovelEntity> imoveis;
 
 }

@@ -3,7 +3,9 @@ package imobiliaria.Service;
 import imobiliaria.Configuration.WebSecurityConfiguration;
 import imobiliaria.Entity.UserEntity;
 import imobiliaria.Model.MyUserDetails;
+import imobiliaria.Model.User;
 import imobiliaria.Repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +21,9 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserRepository rep;
 
     @Autowired
-    private WebSecurityConfiguration WebSec;
+    private WebSecurityConfiguration webSec;
+
+    private ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -28,9 +32,11 @@ public class MyUserDetailsService implements UserDetailsService {
         return user.map(MyUserDetails::new).get();
     }
 
-    public void saveNewUser(UserEntity userEntity) {
-        userEntity.setPassword(WebSec.setEncoder(userEntity.getPassword()));
-        rep.save(userEntity);
+    public User saveNewUser(User user) {
+        user.setPassword(webSec.setEncoder(user.getPassword()));
+        UserEntity userEntity = modelMapper.map(user, UserEntity.class);
+        UserEntity saveUser = rep.save(userEntity);
+        return modelMapper.map(saveUser, User.class);
     }
 
     public boolean emailExistente(String email) {

@@ -27,8 +27,7 @@ public class CategoriaEntity implements Serializable {
     @NotBlank(message = "O nome da CategoriaEntity não pode estar em branco.")
     private String nome;
 
-    @OneToMany
-    @JoinColumn(name = "categoria_imovel")
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
     private List<ImovelEntity> imoveis;
 
 }

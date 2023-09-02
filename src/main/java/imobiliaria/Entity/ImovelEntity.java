@@ -29,27 +29,26 @@ public class ImovelEntity implements Serializable {
 
     @NotNull(message = "O valor do imóvel não pode estar em branco.")
     @DecimalMin(value = "0.01", message = "O valor do imóvel não pode ser R$0.00 ou negativo.")
-    @DecimalMax(value = "999999.99", message = "O valor do imóvel não pode ser maior que R$1000000.00")
+    @DecimalMax(value = "99999999.99", message = "O valor do imóvel não pode ser maior que R$10000000.00")
     private BigDecimal valor;
 
     @ManyToOne
-    @JoinColumn(name = "NegocioImovel")
+    @JoinColumn(name = "id_negocio")
     private NegocioEntity negocio;
 
     @ManyToOne
-    @JoinColumn(name = "categoria_imovel")
+    @JoinColumn(name = "id_categoria")
     private CategoriaEntity categoria;
 
     @ManyToOne
-    @JoinColumn(name = "QuartoImovel")
+    @JoinColumn(name = "id_quarto")
     private QuartoEntity quarto;
 
     @ManyToOne
-    @JoinColumn(name = "bairro_imovel")
+    @JoinColumn(name = "id_bairro")
     private BairroEntity bairro;
 
-    @OneToMany
-    @JoinColumn(name = "imagens")
+    @OneToMany(mappedBy = "imovel", cascade = CascadeType.REMOVE)
     private List<ImagemEntity> imagens;
 
 }

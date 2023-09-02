@@ -9,13 +9,13 @@
 <body>
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Novo Bairro</h2>
-		<a class="btn btn-primary voltar" th:href="@{/local/bairroEntities}">Voltar</a>
+		<a class="btn btn-primary voltar" th:href="@{/localidade/bairros}">Voltar</a>
 		
-		<h1 th:if="${#lists.isEmpty(estados)}" class="is-invalid">Não é possível cadastrar um bairroEntity sem um Estado</h1>
-		<h1 th:if="${#lists.isEmpty(municipioEntities)}" class="is-invalid">Não é possível cadastrar um bairroEntity sem um Municipio</h1>
+		<h1 th:if="${#lists.isEmpty(estados)}" class="is-invalid">Não é possível cadastrar um bairro sem um Estado</h1>
+		<h1 th:if="${#lists.isEmpty(municipios)}" class="is-invalid">Não é possível cadastrar um bairro sem um Municipio</h1>
 		
-		<div th:unless="${#lists.isEmpty(estados)} and ${#lists.isEmpty(municipioEntities)}">
-			<form th:action="@{/local/bairroEntity/cadastroPreenchido}" method="post" th:object="${bairroEntity}">
+		<div th:unless="${#lists.isEmpty(estados)} and ${#lists.isEmpty(municipios)}">
+			<form th:action="@{/localidade/bairro/cadastroPreenchido}" method="post" th:object="${bairro}">
 				<div th:replace="fragments/mensagemErro"></div>
 				<div th:replace="fragments/mensagemSucesso"></div>
 				
@@ -26,15 +26,15 @@
 						<option th:each="est:${estados}" th:value="${est.id}" th:text="${est.nome}">
 					</select>
 				</div>
-				<div class="form-item" id="municipioEntity-div" style="display:none" th:classappend="${municipio_ok}? is-invalid">
-					<label for="municipioEntity-select">Nome do Município</label>
-					<select id="municipioEntity-select" th:field="*{municipioEntity.id}" class="form-control">
+				<div class="form-item" id="municipio-div" style="display:none" th:classappend="${municipio_ok}? is-invalid">
+					<label for="municipio-select">Nome do Município</label>
+					<select id="municipio-select" th:field="*{municipio.id}" class="form-control">
 						<option value="" selected>Escolha o nome do Município</option>
-						<option th:each="mun:${municipioEntities}" th:value="${mun.id}" th:text="${mun.nome}">
+						<option th:each="mun:${municipios}" th:value="${mun.id}" th:text="${mun.nome}">
 					 
 					</select>
 				</div>				
-				<div class="form-item" id="bairroEntity-div" style="display:none" th:classappend="${#fields.hasErrors('nome')}? is-invalid">
+				<div class="form-item" id="bairro-div" style="display:none" th:classappend="${#fields.hasErrors('nome')}? is-invalid">
 					<label for="nome">Nome do Bairro</label>
 					<input class="form-control" id="nome" th:field="*{nome}" 
 						placeholder="Digite o nome do Bairro">

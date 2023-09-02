@@ -28,11 +28,10 @@ public class MunicipioEntity implements Serializable {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "estado_municipio")
+    @JoinColumn(name = "id_estado")
     private EstadoEntity estado;
 
-    @OneToMany
-    @JoinColumn(name = "MunicipioEntity")
+    @OneToMany(mappedBy = "municipio", cascade = CascadeType.REMOVE)
     private List<BairroEntity> bairros;
 
 }

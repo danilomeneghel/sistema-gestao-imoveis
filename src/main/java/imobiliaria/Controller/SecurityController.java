@@ -34,7 +34,7 @@ public class SecurityController {
         ModelAndView mv = new ModelAndView("redirect:/");
         boolean erro = false;
         if (userServ.emailExistente(user.getEmail())) {
-            mv.addObject("customMessage", "O email já foi cadastrado");
+            mv.addObject("customMessage", "O e-mail já foi cadastrado");
             mv.addObject("erroEmail", true);
             erro = true;
         }

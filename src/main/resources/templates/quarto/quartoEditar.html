@@ -9,16 +9,16 @@
 <body>
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Editar Quarto</h2>
-		<a class="btn btn-primary voltar" th:href="@{/classificador/quartoEntity}">Voltar</a>
+		<a class="btn btn-primary voltar" th:href="@{/classificador/quarto}">Voltar</a>
 		
-		<form th:action="@{/classificador/quartoEntity/editar}" method="post" th:object="${quartoEntity}">
+		<form th:action="@{/classificador/quarto/editar}" method="post" th:object="${quarto}">
 			<div th:replace="fragments/mensagemErro"></div>
 			<div th:replace="fragments/mensagemSucesso"></div>
 			
 			<div class="form-item" th:classappend="${#fields.hasErrors('quantidade')}? is-invalid">
 				<label for="quantidade">Quantidade de Quartos</label>
 				<input class="form-control" id="quantidade" th:field="*{quantidade}" 
-					placeholder="Digite a quantidade de quartoEntity">
+					placeholder="Digite a quantidade de quarto">
 			</div>		
 			
 			<div class="form-item" th:classappend="${#fields.hasErrors('descricao')}? is-invalid">

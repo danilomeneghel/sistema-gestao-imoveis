@@ -27,9 +27,11 @@
         <div class="list-group list-group-flush">
             <a href="#" class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/}">Home</a>
             <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
-               th:href="@{/userEntity/imovelEntity/todos}">Imóveis</a>
+               th:href="@{/user/imovel/todos}">Imóveis</a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
+               th:href="@{/swagger-ui.html}" target="_blank">Acessar API</a>
             <div class="list-group-item bg-dark">
-                <form th:action="@{/logout}" method="post"><input class="btn-a" type="submit" value="Logout"/></form>
+                <form th:action="@{/logout}" method="post"><input class="btn-a" type="submit" value="Sair"/></form>
             </div>
         </div>
     </div>

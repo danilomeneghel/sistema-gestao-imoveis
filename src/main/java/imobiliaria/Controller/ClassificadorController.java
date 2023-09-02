@@ -25,7 +25,7 @@ public class ClassificadorController {
     @GetMapping("/categorias")
     public ModelAndView mostrarCategorias() {
         ModelAndView mv = new ModelAndView("categoria/categorias");
-        mv.addObject("categorias", serv.findAllCategoria());
+        mv.addObject("categorias", serv.findAllCategorias());
         return mv;
     }
 
@@ -92,7 +92,7 @@ public class ClassificadorController {
     @GetMapping("/negocios")
     public ModelAndView mostrarNegocios() {
         ModelAndView mv = new ModelAndView("negocio/negocios");
-        mv.addObject("negocios", serv.findAllNegocio());
+        mv.addObject("negocios", serv.findAllNegocios());
         return mv;
     }
 
@@ -159,7 +159,7 @@ public class ClassificadorController {
     @GetMapping("/quartos")
     public ModelAndView mostrarQuartos() {
         ModelAndView mv = new ModelAndView("quarto/quartos");
-        mv.addObject("quartos", serv.findAllQuarto());
+        mv.addObject("quartos", serv.findAllQuartos());
         return mv;
     }
 

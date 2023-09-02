@@ -3,7 +3,7 @@ package imobiliaria.Controller;
 import imobiliaria.Model.Bairro;
 import imobiliaria.Model.Estado;
 import imobiliaria.Model.Municipio;
-import imobiliaria.Service.LocalService;
+import imobiliaria.Service.LocalidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -19,16 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/local")
-public class LocalController {
+@RequestMapping("/localidade")
+public class LocalidadeController {
 
     @Autowired
-    private LocalService localService;
+    private LocalidadeService localidadeService;
 
     @GetMapping("/estados")
     public ModelAndView showEstados() {
         ModelAndView mv = new ModelAndView("estado/estados");
-        mv.addObject("estados", localService.findAllEstados());
+        mv.addObject("estados", localidadeService.findAllEstados());
         return mv;
     }
 
@@ -46,7 +46,7 @@ public class LocalController {
             return mv;
         }
         mv.addObject("sucesso", "O Estado Foi Cadastrado com Sucesso!");
-        localService.saveEstado(estado);
+        localidadeService.saveEstado(estado);
         mv.addObject("estado", new Estado());
         return mv;
     }
@@ -54,7 +54,7 @@ public class LocalController {
     @GetMapping("/estado/editar/{id}")
     public ModelAndView editarEstado(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("estado/estadoEditar");
-        mv.addObject("estado", localService.findEstadoById(id));
+        mv.addObject("estado", localidadeService.findEstadoById(id));
         return mv;
     }
 
@@ -65,26 +65,26 @@ public class LocalController {
             return mv;
         }
         mv.addObject("sucesso", "O Estado foi atualizado com sucesso!");
-        estado.setMunicipios(localService.findEstadoById(estado.getId()).getMunicipios());
-        localService.saveEstado(estado);
+        estado.setMunicipios(localidadeService.findEstadoById(estado.getId()).getMunicipios());
+        localidadeService.saveEstado(estado);
         return mv;
     }
 
     @GetMapping("/estado/excluir/{id}")
     public ModelAndView excluirEstado(@PathVariable Long id, RedirectAttributes ra) {
-        if (localService.findEstadoById(id).getMunicipios().size() > 0) {
+        if (localidadeService.findEstadoById(id).getMunicipios().size() > 0) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir um Estado com municípios vinculados.");
-            return new ModelAndView("redirect:/local/estados");
+            return new ModelAndView("redirect:/localidade/estados");
         }
-        localService.excluirEstadoById(id);
+        localidadeService.excluirEstadoById(id);
         ra.addFlashAttribute("sucesso", "O Estado foi excluído com sucesso");
-        return new ModelAndView("redirect:/local/estados");
+        return new ModelAndView("redirect:/localidade/estados");
     }
 
     @GetMapping("/estado/pesquisa")
     public ModelAndView pesquisarEstado(String pesquisa) {
         ModelAndView mv = new ModelAndView("estado/estados");
-        mv.addObject("estados", localService.findEstadoByNome(pesquisa));
+        mv.addObject("estados", localidadeService.findEstadoByNome(pesquisa));
         if (pesquisa.isBlank()) {
             return mv;
         }
@@ -92,10 +92,10 @@ public class LocalController {
         return mv;
     }
 
-    @GetMapping("/municipioEntities")
+    @GetMapping("/municipios")
     public ModelAndView showMunicipios() {
-        ModelAndView mv = new ModelAndView("municipio/municipioEntities");
-        mv.addObject("municipioEntities", localService.findAllMunicipios());
+        ModelAndView mv = new ModelAndView("municipio/municipios");
+        mv.addObject("municipios", localidadeService.findAllMunicipios());
         return mv;
     }
 
@@ -106,14 +106,14 @@ public class LocalController {
         Estado et = new Estado();
         mp.setEstado(et);
         mv.addObject("municipio", mp);
-        mv.addObject("estados", localService.findAllEstados());
+        mv.addObject("estados", localidadeService.findAllEstados());
         return mv;
     }
 
     @PostMapping("/municipio/cadastroPreenchido")
     public ModelAndView cadastrarMunicipio(@Validated Municipio municipio, Errors errors) {
         ModelAndView mv = new ModelAndView("municipio/municipioCadastro");
-        mv.addObject("estados", localService.findAllEstados());
+        mv.addObject("estados", localidadeService.findAllEstados());
         Long id = municipio.getEstado().getId();
         if (errors.hasErrors() || id == null) {
             if (id == null) {
@@ -123,9 +123,9 @@ public class LocalController {
         }
         mv.addObject("sucesso", "O Município Foi Cadastrado com Sucesso!");
 
-        Estado estado = localService.findEstadoById(id);
+        Estado estado = localidadeService.findEstadoById(id);
         municipio.setEstado(estado);
-        localService.saveMunicipio(municipio);
+        localidadeService.saveMunicipio(municipio);
 
         mv.addObject("municipio", new Municipio());
         return mv;
@@ -134,15 +134,15 @@ public class LocalController {
     @GetMapping("/municipio/editar/{id}")
     public ModelAndView editarMunicipio(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("municipio/municipioEditar");
-        mv.addObject("estados", localService.findAllEstados());
-        mv.addObject("municipio", localService.findMunicipioById(id));
+        mv.addObject("estados", localidadeService.findAllEstados());
+        mv.addObject("municipio", localidadeService.findMunicipioById(id));
         return mv;
     }
 
     @PostMapping("/municipio/editar")
     public ModelAndView editandoMunicipio(@Validated Municipio municipio, Errors errors) {
         ModelAndView mv = new ModelAndView("municipio/municipioEditar");
-        mv.addObject("estados", localService.findAllEstados());
+        mv.addObject("estados", localidadeService.findAllEstados());
         Long id = municipio.getEstado().getId();
 
         if (errors.hasErrors() || id == null) {
@@ -151,28 +151,28 @@ public class LocalController {
             }
             return mv;
         }
-        municipio.setBairros(localService.findMunicipioById(municipio.getId()).getBairros());
-        localService.saveMunicipio(municipio);
+        municipio.setBairros(localidadeService.findMunicipioById(municipio.getId()).getBairros());
+        localidadeService.saveMunicipio(municipio);
         mv.addObject("sucesso", "O município foi atualizado com sucesso!");
         return mv;
     }
 
     @GetMapping("/municipio/excluir/{id}")
     public ModelAndView excluirMunicipio(@PathVariable Long id, RedirectAttributes ra) {
-        if (localService.findMunicipioById(id).getBairros().size() > 0) {
-            ra.addFlashAttribute("customMessage", "Não é possível excluir um Município com bairroEntities vinculados.");
-            return new ModelAndView("redirect:/local/municipioEntities");
+        if (localidadeService.findMunicipioById(id).getBairros().size() > 0) {
+            ra.addFlashAttribute("customMessage", "Não é possível excluir um Município com bairros vinculados.");
+            return new ModelAndView("redirect:/localidade/municipios");
         }
 
-        localService.excluirMunicipioById(id);
+        localidadeService.excluirMunicipioById(id);
         ra.addFlashAttribute("sucesso", "O município foi excluído com sucesso");
-        return new ModelAndView("redirect:/local/municipioEntities");
+        return new ModelAndView("redirect:/localidade/municipios");
     }
 
     @GetMapping("/municipio/pesquisa")
     public ModelAndView pesquisarMunicipio(String pesquisa) {
-        ModelAndView mv = new ModelAndView("municipio/municipioEntities");
-        mv.addObject("municipioEntities", localService.findMunicipioByNome(pesquisa));
+        ModelAndView mv = new ModelAndView("municipio/municipios");
+        mv.addObject("municipios", localidadeService.findMunicipioByNome(pesquisa));
         if (pesquisa.isBlank()) {
             return mv;
         }
@@ -180,10 +180,10 @@ public class LocalController {
         return mv;
     }
 
-    @GetMapping("/bairroEntities")
+    @GetMapping("/bairros")
     public ModelAndView showBairros() {
-        ModelAndView mv = new ModelAndView("bairro/bairroEntities");
-        mv.addObject("bairroEntities", localService.findAllBairros());
+        ModelAndView mv = new ModelAndView("bairro/bairros");
+        mv.addObject("bairros", localidadeService.findAllBairros());
         return mv;
     }
 
@@ -192,16 +192,16 @@ public class LocalController {
         ModelAndView mv = new ModelAndView("bairro/bairroCadastro");
         mv.addObject("bairro", new Bairro());
         mv.addObject("idEstado", null);
-        mv.addObject("estados", localService.findAllEstados());
-        mv.addObject("municipioEntities", localService.findAllMunicipios());
+        mv.addObject("estados", localidadeService.findAllEstados());
+        mv.addObject("municipios", localidadeService.findAllMunicipios());
         return mv;
     }
 
     @PostMapping("/bairro/cadastroPreenchido")
     public ModelAndView cadastrarBairro(@Validated Bairro bairro, Errors errors, Integer idEstado) {
         ModelAndView mv = new ModelAndView("bairro/bairroCadastro");
-        mv.addObject("estados", localService.findAllEstados());
-        mv.addObject("municipioEntities", localService.findAllMunicipios());
+        mv.addObject("estados", localidadeService.findAllEstados());
+        mv.addObject("municipios", localidadeService.findAllMunicipios());
         Long id = bairro.getMunicipio().getId();
         List<String> customMessage = new ArrayList<String>();
         boolean erro = false;
@@ -221,7 +221,7 @@ public class LocalController {
             return mv;
         }
         mv.addObject("sucesso", "O Bairro Foi Cadastrado com Sucesso!");
-        localService.saveBairro(bairro);
+        localidadeService.saveBairro(bairro);
         mv.addObject("bairro", new Bairro());
         return mv;
     }
@@ -229,18 +229,18 @@ public class LocalController {
     @GetMapping("/bairro/editar/{id}")
     public ModelAndView editarBairro(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("bairro/bairroEditar");
-        Bairro bairro = localService.findBairroById(id);
+        Bairro bairro = localidadeService.findBairroById(id);
         mv.addObject("bairro", bairro);
-        mv.addObject("estados", localService.findAllEstados());
-        mv.addObject("municipioEntities", bairro.getMunicipio().getEstado().getMunicipios());
+        mv.addObject("estados", localidadeService.findAllEstados());
+        mv.addObject("municipios", bairro.getMunicipio().getEstado().getMunicipios());
         return mv;
     }
 
     @PostMapping("/bairro/editar")
     public ModelAndView editandoBairro(@Validated Bairro bairro, Errors errors) {
         ModelAndView mv = new ModelAndView("bairro/bairroEditar");
-        mv.addObject("estados", localService.findAllEstados());
-        mv.addObject("municipioEntities", localService.findBairroById(bairro.getId()).getMunicipio().getEstado().getMunicipios());
+        mv.addObject("estados", localidadeService.findAllEstados());
+        mv.addObject("municipios", localidadeService.findBairroById(bairro.getId()).getMunicipio().getEstado().getMunicipios());
 
         Long idMunicipio = bairro.getMunicipio().getId();
         Long idEstado = bairro.getMunicipio().getEstado().getId();
@@ -263,26 +263,26 @@ public class LocalController {
         }
 
         mv.addObject("sucesso", "O bairro foi atualizado com sucesso!");
-        localService.saveBairro(bairro);
-        mv.addObject("municipioEntities", localService.findBairroById(bairro.getId()).getMunicipio().getEstado().getMunicipios());
+        localidadeService.saveBairro(bairro);
+        mv.addObject("municipios", localidadeService.findBairroById(bairro.getId()).getMunicipio().getEstado().getMunicipios());
         return mv;
     }
 
     @GetMapping("/bairro/excluir/{id}")
     public ModelAndView excluirBairro(@PathVariable Long id, RedirectAttributes ra) {
-        if (localService.findBairroById(id).getImoveis().size() > 0) {
+        if (localidadeService.findBairroById(id).getImoveis().size() > 0) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir um bairro com imóveis vinculados.");
-            return new ModelAndView("redirect:/local/bairroEntities");
+            return new ModelAndView("redirect:/localidade/bairros");
         }
-        localService.excluirBairroById(id);
+        localidadeService.excluirBairroById(id);
         ra.addFlashAttribute("sucesso", "O bairro foi excluído com sucesso");
-        return new ModelAndView("redirect:/local/bairroEntities");
+        return new ModelAndView("redirect:/local/bairros");
     }
 
     @GetMapping("/bairro/pesquisa")
     public ModelAndView pesquisarBairro(String pesquisa) {
-        ModelAndView mv = new ModelAndView("bairro/bairroEntities");
-        mv.addObject("bairroEntities", localService.findBairroByNome(pesquisa));
+        ModelAndView mv = new ModelAndView("bairro/bairros");
+        mv.addObject("bairros", localidadeService.findBairroByNome(pesquisa));
         if (pesquisa.isBlank()) {
             return mv;
         }

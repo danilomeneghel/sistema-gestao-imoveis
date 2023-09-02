@@ -9,29 +9,29 @@
 <body>
 	<section layout:fragment="content" class="distanciamento">
 		<h2 class="inline">Editar Bairro</h2>
-		<a class="btn btn-primary voltar" th:href="@{/local/bairroEntities}">Voltar</a>
+		<a class="btn btn-primary voltar" th:href="@{/localidade/bairros}">Voltar</a>
 		
-		<form th:action="@{/local/bairroEntity/editar}" method="post" th:object="${bairroEntity}">
+		<form th:action="@{/localidade/bairro/editar}" method="post" th:object="${bairro}">
 			<div th:replace="fragments/mensagemErro"></div>
 			<div th:replace="fragments/mensagemSucesso"></div>
 
 			<div class="form-item" th:classappend="${estado_ok}? is-invalid">
 				<label for="estado-select">Nome do Estado</label>
-				<select id="estado-select" name="idEstado" th:field="*{municipioEntity.estado.id}"  class="form-control">
+				<select id="estado-select" name="idEstado" th:field="*{municipio.estado.id}"  class="form-control">
 					<option value="" selected>Escolha o nome do Estado</option>
 					<option th:each="est:${estados}" th:value="${est.id}" th:text="${est.nome}">
 				</select>
 			</div>
 			
-			<div class="form-item" id="municipioEntity-div" th:classappend="${municipio_ok}? is-invalid">
+			<div class="form-item" id="municipio-div" th:classappend="${municipio_ok}? is-invalid">
 				<label for="estado">Nome do Município</label>
-				<select id="municipioEntity-select" th:field="*{municipioEntity.id}" class="form-control">
+				<select id="municipio-select" th:field="*{municipio.id}" class="form-control">
 					<option value="" selected>Escolha o nome do Município</option>
-					<option th:each="mun:${municipioEntities}" th:value="${mun.id}" th:text="${mun.nome}">
+					<option th:each="mun:${municipios}" th:value="${mun.id}" th:text="${mun.nome}">
 				</select>
 			</div>
 			
-			<div class="form-item" id="bairroEntity-div" th:classappend="${#fields.hasErrors('nome')}? is-invalid">
+			<div class="form-item" id="bairro-div" th:classappend="${#fields.hasErrors('nome')}? is-invalid">
 				<label for="nome">Nome do Bairro</label>
 				<input class="form-control" id="nome" th:field="*{nome}" 
 					placeholder="Digite o nome do Bairro">

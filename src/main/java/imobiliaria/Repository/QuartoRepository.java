@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface QuartoRepository extends JpaRepository<QuartoEntity, Long>{
+public interface QuartoRepository extends JpaRepository<QuartoEntity, Long> {
 
-	List<QuartoEntity> findByQuantidade(Integer quantidade);
+    List<QuartoEntity> findByQuantidade(Integer quantidade);
 
 }
