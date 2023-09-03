@@ -26,7 +26,6 @@ public class BairroEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_municipio")
-    @JsonIgnore
     private MunicipioEntity municipio;
 
 }

@@ -27,11 +27,6 @@ public class MunicipioEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_estado")
-    @JsonIgnore
     private EstadoEntity estado;
-
-    @OneToMany(mappedBy = "municipio", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<BairroEntity> bairros;
 
 }

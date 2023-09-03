@@ -28,8 +28,4 @@ public class EstadoEntity {
     @NotBlank(message = "A sigla da UF não pode estar em branco.")
     private String uf;
 
-    @OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<MunicipioEntity> municipios;
-
 }

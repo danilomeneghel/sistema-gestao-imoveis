@@ -31,27 +31,22 @@ public class ImovelEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_negocio")
-    @JsonIgnore
     private NegocioEntity negocio;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
-    @JsonIgnore
     private CategoriaEntity categoria;
 
     @ManyToOne
     @JoinColumn(name = "id_quarto")
-    @JsonIgnore
     private QuartoEntity quarto;
 
     @ManyToOne
     @JoinColumn(name = "id_bairro")
-    @JsonIgnore
     private BairroEntity bairro;
 
     @ManyToOne
     @JoinColumn(name = "id_imagem")
-    @JsonIgnore
     private ImagemEntity imagem;
 
 }
