@@ -1,7 +1,9 @@
 package imobiliaria.Service;
 
 import imobiliaria.Configuration.WebSecurityConfiguration;
+import imobiliaria.Entity.CategoriaEntity;
 import imobiliaria.Entity.UserEntity;
+import imobiliaria.Model.Categoria;
 import imobiliaria.Model.MyUserDetails;
 import imobiliaria.Model.User;
 import imobiliaria.Repository.UserRepository;
@@ -12,7 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
@@ -30,6 +34,11 @@ public class MyUserDetailsService implements UserDetailsService {
         Optional<UserEntity> user = rep.findByUserName(username);
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
         return user.map(MyUserDetails::new).get();
+    }
+
+    public List<User> findAllUsers() {
+        List<UserEntity> users = rep.findAll();
+        return users.stream().map(entity -> modelMapper.map(entity, User.class)).collect(Collectors.toList());
     }
 
     public User saveNewUser(User user) {

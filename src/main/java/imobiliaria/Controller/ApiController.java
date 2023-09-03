@@ -267,6 +267,11 @@ public class ApiController {
         return new ResponseEntity<>(localidadeService.findMunicipioByNome(pesquisa), HttpStatus.OK);
     }
 
+    @GetMapping("/usuarios")
+    public ResponseEntity<List<User>> mostrarUsuarios() {
+        return new ResponseEntity<>(myUserDetailsService.findAllUsers(), HttpStatus.OK);
+    }
+
     @PostMapping("/usuario/cadastro")
     public ResponseEntity<User> cadastroUsuario(@Validated User user) {
         return new ResponseEntity<>(myUserDetailsService.saveNewUser(user), HttpStatus.CREATED);
