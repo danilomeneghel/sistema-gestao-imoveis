@@ -10,7 +10,6 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -19,9 +18,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuartoEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class QuartoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +29,7 @@ public class QuartoEntity implements Serializable {
     @DecimalMax(value = "10", message = "O valor não pode ser maior que 10")
     private Integer quantidade;
 
-    @NotBlank(message = "A descrição dos quartos não pode estar em branco.")
+    @NotBlank(message = "A descrição do quarto não pode estar em branco.")
     private String descricao;
 
     @OneToMany(mappedBy = "quarto", cascade = CascadeType.REMOVE)

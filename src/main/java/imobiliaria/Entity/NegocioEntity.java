@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -16,15 +15,13 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class NegocioEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class NegocioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome do Negócio não pode estar em branco.")
+    @NotBlank(message = "O nome do negócio não pode estar em branco.")
     private String nome;
 
     @OneToMany(mappedBy = "negocio", cascade = CascadeType.REMOVE)

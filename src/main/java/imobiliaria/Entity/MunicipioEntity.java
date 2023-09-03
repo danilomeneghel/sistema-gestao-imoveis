@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -16,9 +15,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MunicipioEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class MunicipioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

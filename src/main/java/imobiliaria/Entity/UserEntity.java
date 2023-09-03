@@ -23,7 +23,7 @@ public class UserEntity {
     @NotBlank(message = "O usuário não pode estar em branco.")
     private String userName;
 
-    @NotBlank(message = "O email não pode estar em branco.")
+    @NotBlank(message = "O e-mail não pode estar em branco.")
     private String email;
 
     @NotBlank(message = "A senha não pode estar em branco.")
