@@ -182,7 +182,7 @@ public class ImovelController {
             return mv;
         }
         mv.addObject("sucesso", "O imovel foi atualizado com sucesso!");
-        imovel.setImagens(iServ.findImovelById(imovel.getId()).getImagens());
+        imovel.setImagem(iServ.findImovelById(imovel.getId()).getImagem());
         iServ.saveImovel(imovel);
         return mv;
     }

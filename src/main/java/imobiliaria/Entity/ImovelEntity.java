@@ -11,7 +11,6 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Table(name = "imovel")
@@ -50,7 +49,9 @@ public class ImovelEntity {
     @JsonBackReference
     private BairroEntity bairro;
 
-    @OneToMany(mappedBy = "imovel", cascade = CascadeType.REMOVE)
-    private List<ImagemEntity> imagens;
+    @ManyToOne
+    @JoinColumn(name = "id_imagem")
+    @JsonBackReference
+    private ImagemEntity imagem;
 
 }

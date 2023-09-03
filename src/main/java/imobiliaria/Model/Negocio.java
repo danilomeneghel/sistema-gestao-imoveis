@@ -12,9 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Negocio implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Negocio {
 
     private Long id;
 

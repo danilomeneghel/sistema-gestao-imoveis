@@ -7,15 +7,12 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Imovel implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Imovel {
 
     private Long id;
 
@@ -29,6 +26,6 @@ public class Imovel implements Serializable {
 
     private Bairro bairro;
 
-    private List<Imagem> imagens;
+    private Imagem imagem;
 
 }

@@ -12,9 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Bairro implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Bairro {
 
     private Long id;
 

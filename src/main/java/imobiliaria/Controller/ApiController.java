@@ -155,7 +155,7 @@ public class ApiController {
         imo.setCategoria(imovel.getCategoria());
         imo.setQuarto(imovel.getQuarto());
         imo.setNegocio(imo.getNegocio());
-        imo.setImagens(imovel.getImagens());
+        imo.setImagem(imovel.getImagem());
         imo.setValor(imovel.getValor());
         return new ResponseEntity<>(imovelService.saveImovel(imo), HttpStatus.OK);
     }
