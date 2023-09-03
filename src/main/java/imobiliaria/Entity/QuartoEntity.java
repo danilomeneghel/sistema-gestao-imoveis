@@ -1,5 +1,6 @@
 package imobiliaria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +35,7 @@ public class QuartoEntity {
     private String descricao;
 
     @OneToMany(mappedBy = "quarto", cascade = CascadeType.REMOVE)
-    @JsonManagedReference
+    @JsonIgnore
     private List<ImovelEntity> imoveis;
 
 }

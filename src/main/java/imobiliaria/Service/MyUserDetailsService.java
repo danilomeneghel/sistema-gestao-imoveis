@@ -38,7 +38,8 @@ public class MyUserDetailsService implements UserDetailsService {
 
     public List<User> findAllUsers() {
         List<UserEntity> users = rep.findAll();
-        return users.stream().map(entity -> modelMapper.map(entity, User.class)).collect(Collectors.toList());
+        return users.stream().filter(user -> !users.contains(user.getPassword()))
+                .map(entity -> modelMapper.map(entity, User.class)).collect(Collectors.toList());
     }
 
     public User saveNewUser(User user) {

@@ -1,6 +1,7 @@
 package imobiliaria.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,27 +32,27 @@ public class ImovelEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_negocio")
-    @JsonBackReference
+    @JsonIgnore
     private NegocioEntity negocio;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
-    @JsonBackReference
+    @JsonIgnore
     private CategoriaEntity categoria;
 
     @ManyToOne
     @JoinColumn(name = "id_quarto")
-    @JsonBackReference
+    @JsonIgnore
     private QuartoEntity quarto;
 
     @ManyToOne
     @JoinColumn(name = "id_bairro")
-    @JsonBackReference
+    @JsonIgnore
     private BairroEntity bairro;
 
     @ManyToOne
     @JoinColumn(name = "id_imagem")
-    @JsonBackReference
+    @JsonIgnore
     private ImagemEntity imagem;
 
 }

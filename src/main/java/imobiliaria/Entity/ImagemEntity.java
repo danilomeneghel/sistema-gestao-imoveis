@@ -1,6 +1,7 @@
 package imobiliaria.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +27,7 @@ public class ImagemEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_imovel")
-    @JsonBackReference
+    @JsonIgnore
     private ImovelEntity imovel;
 
 }

@@ -1,5 +1,6 @@
 package imobiliaria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,10 +28,11 @@ public class MunicipioEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_estado")
+    @JsonIgnore
     private EstadoEntity estado;
 
     @OneToMany(mappedBy = "municipio", cascade = CascadeType.REMOVE)
-    @JsonManagedReference
+    @JsonIgnore
     private List<BairroEntity> bairros;
 
 }
