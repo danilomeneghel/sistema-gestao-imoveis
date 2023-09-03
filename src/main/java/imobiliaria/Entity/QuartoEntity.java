@@ -1,7 +1,5 @@
 package imobiliaria.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +10,6 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name = "quarto")
@@ -33,9 +30,5 @@ public class QuartoEntity {
 
     @NotBlank(message = "A descrição do quarto não pode estar em branco.")
     private String descricao;
-
-    @OneToMany(mappedBy = "quarto", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<ImovelEntity> imoveis;
 
 }

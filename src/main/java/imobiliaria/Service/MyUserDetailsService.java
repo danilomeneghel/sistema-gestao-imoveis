@@ -1,9 +1,7 @@
 package imobiliaria.Service;
 
 import imobiliaria.Configuration.WebSecurityConfiguration;
-import imobiliaria.Entity.CategoriaEntity;
 import imobiliaria.Entity.UserEntity;
-import imobiliaria.Model.Categoria;
 import imobiliaria.Model.MyUserDetails;
 import imobiliaria.Model.User;
 import imobiliaria.Repository.UserRepository;

@@ -1,7 +1,5 @@
 package imobiliaria.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,10 +22,5 @@ public class ImagemEntity {
 
     @NotBlank
     private String path;
-
-    @ManyToOne
-    @JoinColumn(name = "id_imovel")
-    @JsonIgnore
-    private ImovelEntity imovel;
 
 }
