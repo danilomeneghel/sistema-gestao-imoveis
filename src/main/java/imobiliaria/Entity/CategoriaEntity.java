@@ -1,5 +1,6 @@
 package imobiliaria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class CategoriaEntity {
     private String nome;
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<ImovelEntity> imoveis;
 
 }

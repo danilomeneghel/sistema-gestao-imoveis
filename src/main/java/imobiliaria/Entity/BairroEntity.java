@@ -1,5 +1,7 @@
 package imobiliaria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,9 +28,11 @@ public class BairroEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_municipio")
+    @JsonBackReference
     private MunicipioEntity municipio;
 
     @OneToMany(mappedBy = "bairro", cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<ImovelEntity> imoveis;
 
 }
