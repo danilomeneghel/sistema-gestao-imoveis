@@ -47,7 +47,7 @@ public class ImovelController {
         return mv;
     }
 
-    @PostMapping("/cadastroPreenchido")
+    @PostMapping("/cadastro-preenchido")
     public ModelAndView cadastrandoImovel(@Validated Imovel imovel, Errors errors, Long idEstado, Long idMunicipio) {
         ModelAndView mv = new ModelAndView("imovel/imovelCadastro");
         System.out.println(imovel);

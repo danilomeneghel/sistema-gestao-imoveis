@@ -14,7 +14,7 @@
 		<h1 th:if="${#lists.isEmpty(estados)}" class="is-invalid">Não é possível cadastrar um Município sem um Estado</h1>
 		
 		<div th:unless="${#lists.isEmpty(estados)}">
-			<form th:action="@{/localidade/municipio/cadastroPreenchido}" method="post" th:object="${municipio}">
+			<form th:action="@{/localidade/municipio/cadastro-preenchido}" method="post" th:object="${municipio}">
 				<div th:replace="fragments/mensagemErro"></div>
 				<div th:replace="fragments/mensagemSucesso"></div>
 				

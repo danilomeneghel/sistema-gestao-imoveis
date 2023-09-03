@@ -12,7 +12,7 @@
 		<a class="btn btn-primary voltar" th:href="@{/localidade/estados}">Voltar</a>
 		
 		
-		<form th:action="@{/localidade/estado/cadastroPreenchido}" method="post" th:object="${estado}">
+		<form th:action="@{/localidade/estado/cadastro-preenchido}" method="post" th:object="${estado}">
 			<div th:replace="fragments/mensagemErro"></div>
 			<div th:replace="fragments/mensagemSucesso"></div>
 			

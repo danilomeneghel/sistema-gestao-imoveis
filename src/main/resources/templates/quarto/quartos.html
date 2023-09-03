@@ -33,7 +33,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="quarto:${quarto}">
+				<tr th:each="quarto:${quartos}">
 					<td th:text="${quarto.id}"/>
 					<td th:text="${quarto.quantidade}"/>
 					<td th:text="${quarto.descricao}"/>
@@ -43,7 +43,7 @@
 					</td>
 				</tr>
 				<tr class="text-center">
-					 <td colspan="4" th:if="${#lists.isEmpty(quarto)}">Nenhum quarto cadastrado</td>
+					 <td colspan="4" th:if="${#lists.isEmpty(quartos)}">Nenhum quarto cadastrado</td>
 				</tr>
 			</tbody>
 		</table>

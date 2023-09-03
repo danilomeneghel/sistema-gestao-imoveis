@@ -36,13 +36,13 @@ public class ClassificadorController {
         return mv;
     }
 
-    @PostMapping("/categoria/cadastroPreenchido")
+    @PostMapping("/categoria/cadastro-preenchido")
     public ModelAndView cadastrarCategoria(@Validated Categoria categoria, Errors errors) {
         ModelAndView mv = new ModelAndView("categoria/categoriaCadastro");
         if (errors.hasErrors()) {
             return mv;
         }
-        mv.addObject("sucesso", "A Categoria Foi Cadastrada com Sucesso!");
+        mv.addObject("sucesso", "A Categoria foi cadastrada com sucesso!");
         serv.saveCategoria(categoria);
         mv.addObject("categoria", new Categoria());
         return mv;
@@ -74,7 +74,7 @@ public class ClassificadorController {
             return new ModelAndView("redirect:/classificador/categorias");
         }
         serv.excluirCategoriaById(id);
-        ra.addFlashAttribute("sucesso", "A Categoria foi excluída com sucesso");
+        ra.addFlashAttribute("sucesso", "A Categoria foi excluída com sucesso.");
         return new ModelAndView("redirect:/classificador/categorias");
     }
 
@@ -103,13 +103,13 @@ public class ClassificadorController {
         return mv;
     }
 
-    @PostMapping("/negocio/cadastroPreenchido")
+    @PostMapping("/negocio/cadastro-preenchido")
     public ModelAndView cadastrarNegocio(@Validated Negocio negocio, Errors errors) {
         ModelAndView mv = new ModelAndView("negocio/negocioCadastro");
         if (errors.hasErrors()) {
             return mv;
         }
-        mv.addObject("sucesso", "O Negócio Foi Cadastrado com Sucesso!");
+        mv.addObject("sucesso", "O Negócio foi cadastrado com sucesso!");
         serv.saveNegocio(negocio);
         mv.addObject("negocio", new Negocio());
         return mv;
@@ -141,7 +141,7 @@ public class ClassificadorController {
             return new ModelAndView("redirect:/classificador/negocios");
         }
         serv.excluirNegocioById(id);
-        ra.addFlashAttribute("sucesso", "O Negócio foi excluído com sucesso");
+        ra.addFlashAttribute("sucesso", "O Negócio foi excluído com sucesso.");
         return new ModelAndView("redirect:/classificador/negocios");
     }
 
@@ -170,13 +170,13 @@ public class ClassificadorController {
         return mv;
     }
 
-    @PostMapping("/quarto/cadastroPreenchido")
+    @PostMapping("/quarto/cadastro-preenchido")
     public ModelAndView cadastrarQuarto(@Validated Quarto quarto, Errors errors) {
         ModelAndView mv = new ModelAndView("quarto/quartoCadastro");
         if (errors.hasErrors()) {
             return mv;
         }
-        mv.addObject("sucesso", "O Quarto Foi Cadastrado com Sucesso!");
+        mv.addObject("sucesso", "O Quarto foi cadastrado com sucesso!");
         serv.saveQuarto(quarto);
         mv.addObject("quarto", new Quarto());
         return mv;
@@ -209,7 +209,7 @@ public class ClassificadorController {
             return new ModelAndView("redirect:/classificador/quartos");
         }
         serv.excluirQuartoById(id);
-        ra.addFlashAttribute("sucesso", "O Quarto foi excluído com sucesso");
+        ra.addFlashAttribute("sucesso", "O Quarto foi excluído com sucesso.");
         return new ModelAndView("redirect:/classificador/quartos");
     }
 
