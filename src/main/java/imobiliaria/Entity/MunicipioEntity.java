@@ -27,7 +27,7 @@ public class MunicipioEntity {
     @OneToMany(mappedBy = "municipio", cascade = CascadeType.REMOVE)
     private List<BairroEntity> bairros;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_estado")
     private EstadoEntity estado;
 

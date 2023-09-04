@@ -25,7 +25,7 @@ public class ImagemEntity {
     @NotBlank
     private String path;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_imovel")
     private ImovelEntity imovel;
 

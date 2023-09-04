@@ -33,23 +33,23 @@ public class ImovelEntity {
     @JoinColumn(name = "id_negocio")
     private NegocioEntity negocio;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_categoria")
     private CategoriaEntity categoria;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_quarto")
     private QuartoEntity quarto;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_bairro")
     private BairroEntity bairro;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_municipio")
     private MunicipioEntity municipio;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_estado")
     private EstadoEntity estado;
 
