@@ -4,6 +4,7 @@ import imobiliaria.Model.Categoria;
 import imobiliaria.Model.Negocio;
 import imobiliaria.Model.Quarto;
 import imobiliaria.Service.ClassificadorService;
+import imobiliaria.Service.ImovelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -20,12 +21,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ClassificadorController {
 
     @Autowired
-    private ClassificadorService serv;
+    private ClassificadorService servCla;
+
+    @Autowired
+    private ImovelService servImo;
 
     @GetMapping("/categorias")
     public ModelAndView mostrarCategorias() {
         ModelAndView mv = new ModelAndView("categoria/categorias");
-        mv.addObject("categorias", serv.findAllCategorias());
+        mv.addObject("categorias", servCla.findAllCategorias());
         return mv;
     }
 
@@ -43,7 +47,7 @@ public class ClassificadorController {
             return mv;
         }
         mv.addObject("sucesso", "A Categoria foi cadastrada com sucesso!");
-        serv.saveCategoria(categoria);
+        servCla.saveCategoria(categoria);
         mv.addObject("categoria", new Categoria());
         return mv;
     }
@@ -51,7 +55,7 @@ public class ClassificadorController {
     @GetMapping("/categoria/editar/{id}")
     public ModelAndView editarCategoria(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("categoria/categoriaEditar");
-        mv.addObject("categoria", serv.findCategoriaById(id));
+        mv.addObject("categoria", servCla.findCategoriaById(id));
         return mv;
     }
 
@@ -62,18 +66,17 @@ public class ClassificadorController {
             return mv;
         }
         mv.addObject("sucesso", "A Categoria foi atualizada com sucesso!");
-        categoria.setImoveis(serv.findCategoriaById(categoria.getId()).getImoveis());
-        serv.saveCategoria(categoria);
+        servCla.saveCategoria(categoria);
         return mv;
     }
 
     @GetMapping("/categoria/excluir/{id}")
     public ModelAndView excluirCategoria(@PathVariable Long id, RedirectAttributes ra) {
-        if (serv.findCategoriaById(id).getImoveis().size() > 0) {
+        if (servImo.findImovelByCategoria(id) != null) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir uma categoria com imóveis vinculados.");
             return new ModelAndView("redirect:/classificador/categorias");
         }
-        serv.excluirCategoriaById(id);
+        servCla.excluirCategoriaById(id);
         ra.addFlashAttribute("sucesso", "A Categoria foi excluída com sucesso.");
         return new ModelAndView("redirect:/classificador/categorias");
     }
@@ -81,7 +84,7 @@ public class ClassificadorController {
     @GetMapping("/categoria/pesquisa")
     public ModelAndView pesquisar(String pesquisa) {
         ModelAndView mv = new ModelAndView("categoria/categorias");
-        mv.addObject("categorias", serv.findCategoriaByNome(pesquisa));
+        mv.addObject("categorias", servCla.findCategoriaByNome(pesquisa));
         if (pesquisa.isBlank()) {
             return mv;
         }
@@ -92,7 +95,7 @@ public class ClassificadorController {
     @GetMapping("/negocios")
     public ModelAndView mostrarNegocios() {
         ModelAndView mv = new ModelAndView("negocio/negocios");
-        mv.addObject("negocios", serv.findAllNegocios());
+        mv.addObject("negocios", servCla.findAllNegocios());
         return mv;
     }
 
@@ -110,7 +113,7 @@ public class ClassificadorController {
             return mv;
         }
         mv.addObject("sucesso", "O Negócio foi cadastrado com sucesso!");
-        serv.saveNegocio(negocio);
+        servCla.saveNegocio(negocio);
         mv.addObject("negocio", new Negocio());
         return mv;
     }
@@ -118,7 +121,7 @@ public class ClassificadorController {
     @GetMapping("/negocio/editar/{id}")
     public ModelAndView editarNegocio(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("negocio/negocioEditar");
-        mv.addObject("negocio", serv.findNegocioById(id));
+        mv.addObject("negocio", servCla.findNegocioById(id));
         return mv;
     }
 
@@ -129,18 +132,17 @@ public class ClassificadorController {
             return mv;
         }
         mv.addObject("sucesso", "O Negócio foi atualizado com sucesso!");
-        negocio.setImoveis(serv.findNegocioById(negocio.getId()).getImoveis());
-        serv.saveNegocio(negocio);
+        servCla.saveNegocio(negocio);
         return mv;
     }
 
     @GetMapping("/negocio/excluir/{id}")
     public ModelAndView excluirNegocio(@PathVariable Long id, RedirectAttributes ra) {
-        if (serv.findNegocioById(id).getImoveis().size() > 0) {
+        if (servImo.findImovelByNegocio(id) != null) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir um negócio com imóveis vinculados.");
             return new ModelAndView("redirect:/classificador/negocios");
         }
-        serv.excluirNegocioById(id);
+        servCla.excluirNegocioById(id);
         ra.addFlashAttribute("sucesso", "O Negócio foi excluído com sucesso.");
         return new ModelAndView("redirect:/classificador/negocios");
     }
@@ -148,7 +150,7 @@ public class ClassificadorController {
     @GetMapping("/negocio/pesquisa")
     public ModelAndView pesquisarNegocio(String pesquisa) {
         ModelAndView mv = new ModelAndView("negocio/negocios");
-        mv.addObject("negocios", serv.findNegocioByNome(pesquisa));
+        mv.addObject("negocios", servCla.findNegocioByNome(pesquisa));
         if (pesquisa.isBlank()) {
             return mv;
         }
@@ -159,7 +161,7 @@ public class ClassificadorController {
     @GetMapping("/quartos")
     public ModelAndView mostrarQuartos() {
         ModelAndView mv = new ModelAndView("quarto/quartos");
-        mv.addObject("quartos", serv.findAllQuartos());
+        mv.addObject("quartos", servCla.findAllQuartos());
         return mv;
     }
 
@@ -177,7 +179,7 @@ public class ClassificadorController {
             return mv;
         }
         mv.addObject("sucesso", "O Quarto foi cadastrado com sucesso!");
-        serv.saveQuarto(quarto);
+        servCla.saveQuarto(quarto);
         mv.addObject("quarto", new Quarto());
         return mv;
     }
@@ -185,7 +187,7 @@ public class ClassificadorController {
     @GetMapping("/quarto/editar/{id}")
     public ModelAndView editarQuarto(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("quarto/quartoEditar");
-        mv.addObject("quarto", serv.findQuartoById(id));
+        mv.addObject("quarto", servCla.findQuartoById(id));
         return mv;
     }
 
@@ -196,19 +198,18 @@ public class ClassificadorController {
             return mv;
         }
         mv.addObject("sucesso", "O Quarto foi atualizado com sucesso!");
-        quarto.setImoveis(serv.findQuartoById(quarto.getId()).getImoveis());
-        serv.saveQuarto(quarto);
+        servCla.saveQuarto(quarto);
         mv.addObject("quarto", quarto);
         return mv;
     }
 
     @GetMapping("/quarto/excluir/{id}")
     public ModelAndView excluirQuarto(@PathVariable Long id, RedirectAttributes ra) {
-        if (serv.findQuartoById(id).getImoveis().size() > 0) {
+        if (servImo.findImovelByQuarto(id) != null) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir um quarto com imóveis vinculados");
             return new ModelAndView("redirect:/classificador/quartos");
         }
-        serv.excluirQuartoById(id);
+        servCla.excluirQuartoById(id);
         ra.addFlashAttribute("sucesso", "O Quarto foi excluído com sucesso.");
         return new ModelAndView("redirect:/classificador/quartos");
     }
@@ -216,7 +217,7 @@ public class ClassificadorController {
     @GetMapping("/quarto/pesquisa")
     public ModelAndView pesquisarQuarto(Integer pesquisa) {
         ModelAndView mv = new ModelAndView("quarto/quartos");
-        mv.addObject("quartos", serv.findQuartoByQuantidade(pesquisa));
+        mv.addObject("quartos", servCla.findQuartoByQuantidade(pesquisa));
         if (pesquisa == null) {
             return mv;
         }

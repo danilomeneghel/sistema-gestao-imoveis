@@ -13,8 +13,8 @@ public class Imagem {
 
     private Long id;
 
-    private String path;
+    private String file;
 
-    private Imovel imovel;
+    private String path;
 
 }

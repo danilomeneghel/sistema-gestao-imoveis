@@ -20,6 +20,8 @@ public class ImagemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String file;
+    
     @NotBlank
     private String path;
 

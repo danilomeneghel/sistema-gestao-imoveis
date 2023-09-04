@@ -6,4 +6,12 @@ import org.springframework.data.repository.query.QueryByExampleExecutor;
 
 public interface ImovelRepository extends JpaRepository<ImovelEntity, Long>, QueryByExampleExecutor<ImovelEntity> {
 
+    ImovelEntity findByCategoria(Long id);
+
+    ImovelEntity findByNegocio(Long id);
+
+    ImovelEntity findByQuarto(Long id);
+
+    ImovelEntity findByBairro(Long id);
+
 }

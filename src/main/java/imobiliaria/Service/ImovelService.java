@@ -25,8 +25,28 @@ public class ImovelService {
     }
 
     public Imovel findImovelById(Long id) {
-        ImovelEntity imovel = rep.findById(id).get();
-        return modelMapper.map(imovel, Imovel.class);
+        ImovelEntity imovelEntity = rep.findById(id).get();
+        return modelMapper.map(imovelEntity, Imovel.class);
+    }
+
+    public Imovel findImovelByCategoria(Long id) {
+        ImovelEntity imovelEntity = rep.findByCategoria(id);
+        return modelMapper.map(imovelEntity, Imovel.class);
+    }
+
+    public Imovel findImovelByNegocio(Long id) {
+        ImovelEntity imovelEntity = rep.findByNegocio(id);
+        return modelMapper.map(imovelEntity, Imovel.class);
+    }
+
+    public Imovel findImovelByQuarto(Long id) {
+        ImovelEntity imovelEntity = rep.findByQuarto(id);
+        return modelMapper.map(imovelEntity, Imovel.class);
+    }
+
+    public Imovel findImovelByBairro(Long id) {
+        ImovelEntity imovelEntity = rep.findByBairro(id);
+        return modelMapper.map(imovelEntity, Imovel.class);
     }
 
     public Imovel saveImovel(Imovel imovel) {

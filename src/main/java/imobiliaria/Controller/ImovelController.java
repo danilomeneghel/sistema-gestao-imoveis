@@ -123,10 +123,10 @@ public class ImovelController {
         Imovel imovel = iServ.findImovelById(id);
         mv.addObject("imovel", imovel);
         addObj(mv);
-        mv.addObject("municipios", imovel.getBairro().getMunicipio().getEstado().getMunicipios());
-        mv.addObject("bairros", imovel.getBairro().getMunicipio().getBairros());
-        mv.addObject("idEstado", imovel.getBairro().getMunicipio().getEstado().getId());
-        mv.addObject("idMunicipio", imovel.getBairro().getMunicipio().getId());
+        mv.addObject("municipios", imovel.getMunicipio());
+        mv.addObject("bairros", imovel.getBairro());
+        mv.addObject("idEstado", imovel.getEstado().getId());
+        mv.addObject("idMunicipio", imovel.getMunicipio().getId());
         return mv;
     }
 
@@ -182,7 +182,7 @@ public class ImovelController {
             return mv;
         }
         mv.addObject("sucesso", "O imovel foi atualizado com sucesso!");
-        imovel.setImagem(iServ.findImovelById(imovel.getId()).getImagem());
+        imovel.setImagens(iServ.findImovelById(imovel.getId()).getImagens());
         iServ.saveImovel(imovel);
         return mv;
     }

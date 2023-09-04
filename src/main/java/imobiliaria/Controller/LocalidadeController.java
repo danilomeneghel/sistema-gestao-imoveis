@@ -3,6 +3,7 @@ package imobiliaria.Controller;
 import imobiliaria.Model.Bairro;
 import imobiliaria.Model.Estado;
 import imobiliaria.Model.Municipio;
+import imobiliaria.Service.ImovelService;
 import imobiliaria.Service.LocalidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class LocalidadeController {
 
     @Autowired
     private LocalidadeService localidadeService;
+
+    @Autowired
+    private ImovelService imovelService;
 
     @GetMapping("/estados")
     public ModelAndView showEstados() {
@@ -104,7 +108,6 @@ public class LocalidadeController {
         ModelAndView mv = new ModelAndView("municipio/municipioCadastro");
         Municipio mp = new Municipio();
         Estado et = new Estado();
-        mp.setEstado(et);
         mv.addObject("municipio", mp);
         mv.addObject("estados", localidadeService.findAllEstados());
         return mv;
@@ -114,19 +117,14 @@ public class LocalidadeController {
     public ModelAndView cadastrarMunicipio(@Validated Municipio municipio, Errors errors) {
         ModelAndView mv = new ModelAndView("municipio/municipioCadastro");
         mv.addObject("estados", localidadeService.findAllEstados());
-        Long id = municipio.getEstado().getId();
-        if (errors.hasErrors() || id == null) {
-            if (id == null) {
-                mv.addObject("customMessage", "O estado escolhido deve ser válido.");
-            }
+        Estado estado = localidadeService.findEstadoByMunicipio(municipio);
+        if (errors.hasErrors() || estado == null) {
+            mv.addObject("customMessage", "O Estado escolhido deve ser válido.");
             return mv;
         }
-        mv.addObject("sucesso", "O Município Foi Cadastrado com Sucesso!");
+        mv.addObject("sucesso", "O Município foi cadastrado com sucesso!");
 
-        Estado estado = localidadeService.findEstadoById(id);
-        municipio.setEstado(estado);
         localidadeService.saveMunicipio(municipio);
-
         mv.addObject("municipio", new Municipio());
         return mv;
     }
@@ -143,17 +141,15 @@ public class LocalidadeController {
     public ModelAndView editandoMunicipio(@Validated Municipio municipio, Errors errors) {
         ModelAndView mv = new ModelAndView("municipio/municipioEditar");
         mv.addObject("estados", localidadeService.findAllEstados());
-        Long id = municipio.getEstado().getId();
-
-        if (errors.hasErrors() || id == null) {
-            if (id == null) {
-                mv.addObject("customMessage", "O estado escolhido deve ser válido.");
-            }
+        Estado estado = localidadeService.findEstadoByMunicipio(municipio);
+        if (errors.hasErrors() || estado == null) {
+            mv.addObject("customMessage", "O Estado escolhido deve ser válido.");
             return mv;
         }
         municipio.setBairros(localidadeService.findMunicipioById(municipio.getId()).getBairros());
+
         localidadeService.saveMunicipio(municipio);
-        mv.addObject("sucesso", "O município foi atualizado com sucesso!");
+        mv.addObject("sucesso", "O Município foi atualizado com sucesso!");
         return mv;
     }
 
@@ -202,11 +198,12 @@ public class LocalidadeController {
         ModelAndView mv = new ModelAndView("bairro/bairroCadastro");
         mv.addObject("estados", localidadeService.findAllEstados());
         mv.addObject("municipios", localidadeService.findAllMunicipios());
-        Long id = bairro.getMunicipio().getId();
+
+        Municipio municipio = localidadeService.findMunicipioByBairro(bairro);
         List<String> customMessage = new ArrayList<String>();
         boolean erro = false;
 
-        if (id == null) {
+        if (municipio == null) {
             customMessage.add("O Municipio escolhido deve ser válido.");
             mv.addObject("municipio_ok", true);
             erro = true;
@@ -220,7 +217,7 @@ public class LocalidadeController {
             mv.addObject("customMessage", customMessage);
             return mv;
         }
-        mv.addObject("sucesso", "O Bairro Foi Cadastrado com Sucesso!");
+        mv.addObject("sucesso", "O Bairro foi cadastrado com sucesso!");
         localidadeService.saveBairro(bairro);
         mv.addObject("bairro", new Bairro());
         return mv;
@@ -232,7 +229,7 @@ public class LocalidadeController {
         Bairro bairro = localidadeService.findBairroById(id);
         mv.addObject("bairro", bairro);
         mv.addObject("estados", localidadeService.findAllEstados());
-        mv.addObject("municipios", bairro.getMunicipio().getEstado().getMunicipios());
+        mv.addObject("municipios", localidadeService.findMunicipioByBairro(bairro));
         return mv;
     }
 
@@ -240,37 +237,33 @@ public class LocalidadeController {
     public ModelAndView editandoBairro(@Validated Bairro bairro, Errors errors) {
         ModelAndView mv = new ModelAndView("bairro/bairroEditar");
         mv.addObject("estados", localidadeService.findAllEstados());
-        mv.addObject("municipios", localidadeService.findBairroById(bairro.getId()).getMunicipio().getEstado().getMunicipios());
+        mv.addObject("municipios", localidadeService.findMunicipioByBairro(bairro));
 
-        Long idMunicipio = bairro.getMunicipio().getId();
-        Long idEstado = bairro.getMunicipio().getEstado().getId();
+        Municipio municipio = localidadeService.findMunicipioByBairro(bairro);
+
         List<String> customMessage = new ArrayList<String>();
         boolean erro = false;
 
-        if (idMunicipio == null) {
+        if (municipio == null) {
             customMessage.add("O Municipio escolhido deve ser válido.");
             mv.addObject("municipio_ok", true);
             erro = true;
         }
-        if (idEstado == null) {
-            customMessage.add("O Estado escolhido deve ser válido.");
-            mv.addObject("estado_ok", true);
-            erro = true;
-        }
+
         if (errors.hasErrors() || erro) {
             mv.addObject("customMessage", customMessage);
             return mv;
         }
+        mv.addObject("sucesso", "O Bairro foi atualizado com sucesso!");
 
-        mv.addObject("sucesso", "O bairro foi atualizado com sucesso!");
         localidadeService.saveBairro(bairro);
-        mv.addObject("municipios", localidadeService.findBairroById(bairro.getId()).getMunicipio().getEstado().getMunicipios());
+        mv.addObject("municipios", localidadeService.findMunicipioByBairro(bairro));
         return mv;
     }
 
     @GetMapping("/bairro/excluir/{id}")
     public ModelAndView excluirBairro(@PathVariable Long id, RedirectAttributes ra) {
-        if (localidadeService.findBairroById(id).getImoveis().size() > 0) {
+        if (imovelService.findImovelByBairro(id) == null) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir um bairro com imóveis vinculados.");
             return new ModelAndView("redirect:/localidade/bairros");
         }
@@ -289,4 +282,5 @@ public class LocalidadeController {
         mv.addObject("texto_busca", " contendo " + pesquisa);
         return mv;
     }
+
 }

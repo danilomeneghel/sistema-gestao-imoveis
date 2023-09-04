@@ -1,6 +1,5 @@
 package imobiliaria.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,8 +24,7 @@ public class MunicipioEntity {
     @NotBlank(message = "O nome do município não pode estar em branco.")
     private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "id_estado")
-    private EstadoEntity estado;
+    @OneToMany(mappedBy = "municipio", cascade = CascadeType.REMOVE)
+    private List<BairroEntity> bairros;
 
 }

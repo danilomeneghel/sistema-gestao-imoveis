@@ -52,9 +52,8 @@ public class ApiController {
         if (cat == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        cat.setNome(categoria.getNome());
-        cat.setImoveis(categoria.getImoveis());
-        return new ResponseEntity<>(classficadorService.saveCategoria(cat), HttpStatus.OK);
+        categoria.setId(cat.getId());
+        return new ResponseEntity<>(classficadorService.saveCategoria(categoria), HttpStatus.OK);
     }
 
     @DeleteMapping("/categoria/excluir/{id}")
@@ -83,9 +82,8 @@ public class ApiController {
         if (neg == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        neg.setNome(negocio.getNome());
-        neg.setImoveis(negocio.getImoveis());
-        return new ResponseEntity<>(classficadorService.saveNegocio(neg), HttpStatus.OK);
+        negocio.setId(neg.getId());
+        return new ResponseEntity<>(classficadorService.saveNegocio(negocio), HttpStatus.OK);
     }
 
     @DeleteMapping("/negocio/excluir/{id}")
@@ -114,10 +112,8 @@ public class ApiController {
         if (qua == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        qua.setQuantidade(quarto.getQuantidade());
-        qua.setDescricao(quarto.getDescricao());
-        qua.setImoveis(quarto.getImoveis());
-        return new ResponseEntity<>(classficadorService.saveQuarto(qua), HttpStatus.OK);
+        quarto.setId(qua.getId());
+        return new ResponseEntity<>(classficadorService.saveQuarto(quarto), HttpStatus.OK);
     }
 
     @DeleteMapping("/quarto/excluir/{id}")
@@ -151,13 +147,8 @@ public class ApiController {
         if (imo == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        imo.setBairro(imovel.getBairro());
-        imo.setCategoria(imovel.getCategoria());
-        imo.setQuarto(imovel.getQuarto());
-        imo.setNegocio(imo.getNegocio());
-        imo.setImagem(imovel.getImagem());
-        imo.setValor(imovel.getValor());
-        return new ResponseEntity<>(imovelService.saveImovel(imo), HttpStatus.OK);
+        imovel.setId(imo.getId());
+        return new ResponseEntity<>(imovelService.saveImovel(imovel), HttpStatus.OK);
     }
 
     @DeleteMapping("/imovel/excluir/{id}")
@@ -188,10 +179,8 @@ public class ApiController {
         if (bai == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        bai.setNome(bairro.getNome());
-        bai.setMunicipio(bai.getMunicipio());
-        bai.setImoveis(bairro.getImoveis());
-        return new ResponseEntity<>(localidadeService.saveBairro(bai), HttpStatus.OK);
+        bairro.setId(bai.getId());
+        return new ResponseEntity<>(localidadeService.saveBairro(bairro), HttpStatus.OK);
     }
 
     @DeleteMapping("/bairro/excluir/{id}")
@@ -220,10 +209,8 @@ public class ApiController {
         if (est == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        est.setNome(estado.getNome());
-        est.setMunicipios(estado.getMunicipios());
-        est.setUf(estado.getUf());
-        return new ResponseEntity<>(localidadeService.saveEstado(est), HttpStatus.OK);
+        estado.setId(est.getId());
+        return new ResponseEntity<>(localidadeService.saveEstado(estado), HttpStatus.OK);
     }
 
     @DeleteMapping("/estado/excluir/{id}")
@@ -252,10 +239,8 @@ public class ApiController {
         if (mun == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        mun.setNome(municipio.getNome());
-        mun.setBairros(municipio.getBairros());
-        mun.setEstado(municipio.getEstado());
-        return new ResponseEntity<>(localidadeService.saveMunicipio(mun), HttpStatus.OK);
+        municipio.setId(mun.getId());
+        return new ResponseEntity<>(localidadeService.saveMunicipio(municipio), HttpStatus.OK);
     }
 
     @DeleteMapping("/municipio/excluir/{id}")

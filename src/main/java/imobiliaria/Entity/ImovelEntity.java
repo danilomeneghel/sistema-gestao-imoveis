@@ -1,6 +1,5 @@
 package imobiliaria.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +10,7 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "imovel")
@@ -46,7 +46,14 @@ public class ImovelEntity {
     private BairroEntity bairro;
 
     @ManyToOne
-    @JoinColumn(name = "id_imagem")
-    private ImagemEntity imagem;
+    @JoinColumn(name = "id_municipio")
+    private MunicipioEntity municipio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_estado")
+    private EstadoEntity estado;
+
+    @OneToMany(mappedBy = "imovel", cascade = CascadeType.REMOVE)
+    private List<ImagemEntity> imagem;
 
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Builder
@@ -25,6 +26,10 @@ public class Imovel {
 
     private Bairro bairro;
 
-    private Imagem imagem;
+    private Municipio municipio;
+
+    private Estado estado;
+
+    private List<Imagem> imagens;
 
 }

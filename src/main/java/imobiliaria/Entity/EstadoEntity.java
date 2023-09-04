@@ -1,6 +1,5 @@
 package imobiliaria.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,5 +26,8 @@ public class EstadoEntity {
 
     @NotBlank(message = "A sigla da UF não pode estar em branco.")
     private String uf;
+
+    @OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
+    private List<MunicipioEntity> municipios;
 
 }

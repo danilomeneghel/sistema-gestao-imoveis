@@ -16,8 +16,8 @@ public class ImagemService {
     private ModelMapper modelMapper = new ModelMapper();
 
     public Imagem saveImage(Imagem imagem) {
-        ImagemEntity ima = modelMapper.map(imagem, ImagemEntity.class);
-        ImagemEntity saveImagem = rep.save(ima);
+        ImagemEntity imagemEntity = modelMapper.map(imagem, ImagemEntity.class);
+        ImagemEntity saveImagem = rep.save(imagemEntity);
         return modelMapper.map(saveImagem, Imagem.class);
     }
 

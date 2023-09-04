@@ -17,8 +17,6 @@ public class Municipio {
 
     private String nome;
 
-    private Estado estado;
-
     private List<Bairro> bairros;
 
 }

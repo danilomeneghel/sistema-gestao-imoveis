@@ -48,6 +48,11 @@ public class LocalidadeService {
         return estados.stream().map(entity -> modelMapper.map(entity, Estado.class)).collect(Collectors.toList());
     }
 
+    public Estado findEstadoByMunicipio(Municipio municipio) {
+        EstadoEntity estadoEntity = estRep.findByMunicipios(municipio).get(0);
+        return modelMapper.map(estadoEntity, Estado.class);
+    }
+
     public Estado saveEstado(Estado estado) {
         EstadoEntity estadoEntity = modelMapper.map(estado, EstadoEntity.class);
         EstadoEntity saveCategoria = estRep.save(estadoEntity);
@@ -71,6 +76,11 @@ public class LocalidadeService {
     public List<Municipio> findMunicipioByNome(String nome) {
         List<MunicipioEntity> municipios = munRep.findByNomeContainingIgnoreCase(nome);
         return municipios.stream().map(entity -> modelMapper.map(entity, Municipio.class)).collect(Collectors.toList());
+    }
+
+    public Municipio findMunicipioByBairro(Bairro bairro) {
+        MunicipioEntity municipioEntity = munRep.findByBairros(bairro).get(0);
+        return modelMapper.map(municipioEntity, Municipio.class);
     }
 
     public Municipio saveMunicipio(Municipio municipio) {

@@ -40,8 +40,8 @@ public class ImageUploadController {
                 Files.copy(file.getInputStream(), location, StandardCopyOption.REPLACE_EXISTING);
 
                 Imagem imagem = new Imagem();
+                imagem.setFile(file.getOriginalFilename());
                 imagem.setPath(path);
-                imagem.setImovel(imovelServ.findImovelById(id));
                 iServ.saveImage(imagem);
             } catch (Exception e) {
             }
