@@ -23,4 +23,8 @@ public class BairroEntity {
     @NotBlank(message = "O nome do bairro não pode estar em branco.")
     private String nome;
 
+    @ManyToOne
+    @JoinColumn(name = "id_municipio")
+    private MunicipioEntity municipio;
+
 }

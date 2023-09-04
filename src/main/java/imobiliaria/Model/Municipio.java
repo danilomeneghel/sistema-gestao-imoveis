@@ -19,4 +19,6 @@ public class Municipio {
 
     private List<Bairro> bairros;
 
+    private Estado estado;
+
 }

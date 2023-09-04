@@ -16,7 +16,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 @OpenAPIDefinition(info=@Info(title="API Imobiliária"))
 @Tag(name = "Gestão de Imóveis")
 public class ApiController {

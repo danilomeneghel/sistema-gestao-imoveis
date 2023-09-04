@@ -17,4 +17,6 @@ public class Imagem {
 
     private String path;
 
+    private Imovel imovel;
+
 }
