@@ -7,7 +7,6 @@
 <section layout:fragment="content" class="container-login">
     <div class="logo-login text-center">
         <img src="images/logo.png">
-        <h3>Login</h3>
     </div>
 
     <div class="alert alert-danger" th:if="${param.error}">
@@ -19,18 +18,17 @@
 
     <form th:action="@{/login}" method="post">
         <div class="form-item">
-            <label>Usuário:</label>
-            <input class="form-control" placeholder="Insira o Usuário" type="text" name="username"/>
+            <input class="form-control input-login" placeholder="Insira o Usuário" type="text" name="username"/>
         </div>
         <div class="form-item">
-            <label>Senha:</label>
-            <input class="form-control" placeholder="Insira a Senha" type="password" name="password"/>
+            <input class="form-control input-login" placeholder="Insira a Senha" type="password" name="password"/>
         </div>
-        <div class="form-item" style="padding:10px 0">
-            <input class="btn btn-primary" type="submit" value="Entrar"/>
+        <div class="form-item">
+            <input class="btn btn-primary form-control input-login" type="submit" value="Entrar"/>
         </div>
+        <div class="text-center"><a th:href="@{/signup}">Cadastre-se</a></div>
     </form>
-    <a th:href="@{/signup}">Cadastre-se</a>
+    <div class="text-version">Versão 1.0.3</div>
 </section>
 </body>
 </html>

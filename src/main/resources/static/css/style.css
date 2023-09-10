@@ -43,11 +43,15 @@ body {
   margin-left: 0;
 }
 
+.margin-card {
+    margin: 0px 10px !important;
+}
+
 .col-card {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 41.666667%;
     flex: 0 0 41.666667%;
-    max-width: 41.666667%;
+    min-width: 25%;
 }
 
 @media (min-width: 768px) {
@@ -64,11 +68,15 @@ body {
     margin-left: -15rem;
   }
 
+  .margin-card {
+      margin: 10px 90px !important;
+  }
+
   .col-card {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 25%;
     flex: 0 0 25%;
-    max-width: 25%;
+    min-width: 30%;
   }
 
   .input-search {
@@ -85,7 +93,7 @@ body {
 }
 
 .card{
-	padding:0;
+	padding:1px;
 	margin:15px;
 }
 
@@ -147,12 +155,27 @@ body {
 
 .container-login {
   width: 100%;
-  max-width: 400px;
-  padding: 55px 15px;
+  max-width: 380px;
+  padding: 60px 15px 40px 15px;
   margin: auto;
 }
 
 .logo-login {
   margin-top: 0px !important;
   padding-bottom: 15px !important;
+}
+
+.form-item {
+  margin: 0px 0px !important;
+  padding: 8px 0px !important;
+}
+
+.input-login {
+  padding: 12px !important;
+}
+
+.text-version {
+  font-size: 14px !important;
+  text-align: center !important;
+  margin-top: 35px !important;
 }
