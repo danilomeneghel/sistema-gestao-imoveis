@@ -28,9 +28,9 @@ Sistema para gestão de imóveis desenvolvido em Java com Spring Boot e API REST
 - Lombok
 - Spring Boot
 - Thymeleaf
-- API REST
 - Json
 - MySql
+- Swagger
 - Docker-Compose
 
 ## Instalação
