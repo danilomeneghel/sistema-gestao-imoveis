@@ -74,9 +74,9 @@ http://localhost:8080/
 Usuário: admin<br>
 Senha: admin 
 
-## Acesso a API
+## Acesso ao Swagger
 
-Para acessar a API utilize o seguinte endereço:<br>
+Para acessar o Swagger utilize o seguinte endereço:<br>
 http://localhost:8080/swagger-ui.html
 
 ## Licença
