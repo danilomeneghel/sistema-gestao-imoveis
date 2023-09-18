@@ -49,8 +49,14 @@ public class LocalidadeService {
     }
 
     public Estado findEstadoByMunicipio(Municipio municipio) {
-        EstadoEntity estadoEntity = estRep.findByMunicipios(municipio).get(0);
-        return modelMapper.map(estadoEntity, Estado.class);
+        Estado est = null;
+        List<Estado> estados = findAllEstados();
+        for (Estado estado : estados) {
+            if(estado.getId() == municipio.getEstado().getId()) {
+                est = estado;
+            }
+        }
+        return est;
     }
 
     public Estado saveEstado(Estado estado) {
@@ -118,18 +124,24 @@ public class LocalidadeService {
         baiRep.deleteById(id);
     }
 
-    public Map<Long, String> findMunicipioAsMapPerEstado(Long id) {
+    public List<Municipio> findMunicipioPerEstado(Long idEstado) {
+        Estado estado = findEstadoById(idEstado);
+        List<MunicipioEntity> municipios = munRep.findByEstado(estado);
+        return municipios.stream().map(entity -> modelMapper.map(entity, Municipio.class)).collect(Collectors.toList());
+    }
+
+    public Map<Long, String> findMunicipioAsMapPerEstado(Long idEstado) {
         Map<Long, String> response = new HashMap<Long, String>();
-        List<Municipio> municipios = findEstadoById(id).getMunicipios();
+        List<Municipio> municipios = findMunicipioPerEstado(idEstado);
         for (Municipio municipio : municipios) {
             response.put(municipio.getId(), municipio.getNome());
         }
         return response;
     }
 
-    public Map<Long, String> findBairroAsMapPerMunicipio(Long id) {
+    public Map<Long, String> findBairroAsMapPerMunicipio(Long idMunicipio) {
         Map<Long, String> response = new HashMap<Long, String>();
-        List<Bairro> bairros = findMunicipioById(id).getBairros();
+        List<Bairro> bairros = findMunicipioById(idMunicipio).getBairros();
         for (Bairro bairro : bairros) {
             response.put(bairro.getId(), bairro.getNome());
         }

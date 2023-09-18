@@ -1,6 +1,7 @@
 package imobiliaria.Controller;
 
 import imobiliaria.Model.Imovel;
+import imobiliaria.Model.Municipio;
 import imobiliaria.Service.ClassificadorService;
 import imobiliaria.Service.ImovelService;
 import imobiliaria.Service.LocalidadeService;
@@ -90,8 +91,9 @@ public class ImovelController {
             mv.addObject("erroEstado", true);
             erro = true;
         } else {
-            mv.addObject("municipios", lServ.findEstadoById(idEstado).getMunicipios());
-            if (lServ.findEstadoById(idEstado).getMunicipios().size() == 0) {
+            List<Municipio> municipios = lServ.findMunicipioPerEstado(idEstado);
+            mv.addObject("municipios", municipios);
+            if (municipios == null) {
                 mv.addObject("semMunicipios", true);
             }
         }
@@ -146,7 +148,7 @@ public class ImovelController {
             mv.addObject("erroEstado", true);
             erro = true;
         } else {
-            mv.addObject("municipios", lServ.findEstadoById(idEstado).getMunicipios());
+            mv.addObject("municipios", lServ.findMunicipioPerEstado(idEstado));
             mv.addObject("idEstado", idEstado);
         }
         if (idMunicipio == null) {
@@ -213,7 +215,7 @@ public class ImovelController {
         mv.addObject("valorMaximo", valorMaximo);
 
         if (idEstado != null) {
-            mv.addObject("municipios", lServ.findEstadoById(idEstado).getMunicipios());
+            mv.addObject("municipios", lServ.findMunicipioPerEstado(idEstado));
         }
         if (idMunicipio != null) {
             mv.addObject("bairros", lServ.findMunicipioById(idMunicipio).getBairros());

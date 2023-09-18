@@ -52,7 +52,7 @@ public class ImovelUserController {
         mv.addObject("valorMaximo", valorMaximo);
 
         if (idEstado != null) {
-            mv.addObject("municipios", lServ.findEstadoById(idEstado).getMunicipios());
+            mv.addObject("municipios", lServ.findMunicipioPerEstado(idEstado));
         }
         if (idMunicipio != null) {
             mv.addObject("bairros", lServ.findMunicipioById(idMunicipio).getBairros());

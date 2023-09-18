@@ -69,14 +69,14 @@ public class LocalidadeController {
             return mv;
         }
         mv.addObject("sucesso", "O Estado foi atualizado com sucesso!");
-        estado.setMunicipios(localidadeService.findEstadoById(estado.getId()).getMunicipios());
         localidadeService.saveEstado(estado);
         return mv;
     }
 
     @GetMapping("/estado/excluir/{id}")
     public ModelAndView excluirEstado(@PathVariable Long id, RedirectAttributes ra) {
-        if (localidadeService.findEstadoById(id).getMunicipios().size() > 0) {
+        List<Municipio> municipios = localidadeService.findMunicipioPerEstado(id);
+        if (municipios != null) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir um Estado com municípios vinculados.");
             return new ModelAndView("redirect:/localidade/estados");
         }
