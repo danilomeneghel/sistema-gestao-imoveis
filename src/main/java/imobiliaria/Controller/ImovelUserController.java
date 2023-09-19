@@ -55,7 +55,7 @@ public class ImovelUserController {
             mv.addObject("municipios", lServ.findMunicipioPerEstado(idEstado));
         }
         if (idMunicipio != null) {
-            mv.addObject("bairros", lServ.findMunicipioById(idMunicipio).getBairros());
+            mv.addObject("bairros", lServ.findBairroPerMunicipio(idMunicipio));
         }
         mv.addObject("imovel", imovel);
         mv.addObject("imobiliaria", iServ.findImovelByExample(imovel, idMunicipio, idEstado, valorMinimo, valorMaximo));

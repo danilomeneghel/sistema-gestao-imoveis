@@ -49,14 +49,14 @@ public class LocalidadeService {
     }
 
     public Estado findEstadoByMunicipio(Municipio municipio) {
-        Estado est = null;
+        Estado estadoEscolhido = null;
         List<Estado> estados = findAllEstados();
         for (Estado estado : estados) {
             if(estado.getId() == municipio.getEstado().getId()) {
-                est = estado;
+                estadoEscolhido = estado;
             }
         }
-        return est;
+        return estadoEscolhido;
     }
 
     public Estado saveEstado(Estado estado) {
@@ -85,8 +85,14 @@ public class LocalidadeService {
     }
 
     public Municipio findMunicipioByBairro(Bairro bairro) {
-        MunicipioEntity municipioEntity = munRep.findByBairros(bairro).get(0);
-        return modelMapper.map(municipioEntity, Municipio.class);
+        Municipio municipioEscolhido = null;
+        List<Municipio> municipios = findAllMunicipios();
+        for(Municipio municipio : municipios) {
+            if(municipio.getId() == bairro.getMunicipio().getId()) {
+                municipioEscolhido = municipio;
+            }
+        }
+        return municipioEscolhido;
     }
 
     public Municipio saveMunicipio(Municipio municipio) {
@@ -139,9 +145,15 @@ public class LocalidadeService {
         return response;
     }
 
+    public List<Bairro> findBairroPerMunicipio(Long idMunicipio) {
+        Municipio municipio = findMunicipioById(idMunicipio);
+        List<BairroEntity> bairros = baiRep.findByMunicipio(municipio);
+        return bairros.stream().map(entity -> modelMapper.map(entity, Bairro.class)).collect(Collectors.toList());
+    }
+
     public Map<Long, String> findBairroAsMapPerMunicipio(Long idMunicipio) {
         Map<Long, String> response = new HashMap<Long, String>();
-        List<Bairro> bairros = findMunicipioById(idMunicipio).getBairros();
+        List<Bairro> bairros = findBairroPerMunicipio(idMunicipio);
         for (Bairro bairro : bairros) {
             response.put(bairro.getId(), bairro.getNome());
         }

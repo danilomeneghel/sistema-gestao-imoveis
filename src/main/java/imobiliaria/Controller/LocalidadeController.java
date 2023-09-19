@@ -75,8 +75,7 @@ public class LocalidadeController {
 
     @GetMapping("/estado/excluir/{id}")
     public ModelAndView excluirEstado(@PathVariable Long id, RedirectAttributes ra) {
-        List<Municipio> municipios = localidadeService.findMunicipioPerEstado(id);
-        if (municipios != null) {
+        if (localidadeService.findMunicipioPerEstado(id) != null) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir um Estado com municípios vinculados.");
             return new ModelAndView("redirect:/localidade/estados");
         }
@@ -146,7 +145,6 @@ public class LocalidadeController {
             mv.addObject("customMessage", "O Estado escolhido deve ser válido.");
             return mv;
         }
-        municipio.setBairros(localidadeService.findMunicipioById(municipio.getId()).getBairros());
 
         localidadeService.saveMunicipio(municipio);
         mv.addObject("sucesso", "O Município foi atualizado com sucesso!");
@@ -155,7 +153,7 @@ public class LocalidadeController {
 
     @GetMapping("/municipio/excluir/{id}")
     public ModelAndView excluirMunicipio(@PathVariable Long id, RedirectAttributes ra) {
-        if (localidadeService.findMunicipioById(id).getBairros().size() > 0) {
+        if (localidadeService.findBairroPerMunicipio(id) != null) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir um Município com bairros vinculados.");
             return new ModelAndView("redirect:/localidade/municipios");
         }
@@ -237,12 +235,12 @@ public class LocalidadeController {
     public ModelAndView editandoBairro(@Validated Bairro bairro, Errors errors) {
         ModelAndView mv = new ModelAndView("bairro/bairroEditar");
         mv.addObject("estados", localidadeService.findAllEstados());
-        mv.addObject("municipios", localidadeService.findMunicipioByBairro(bairro));
-
-        Municipio municipio = localidadeService.findMunicipioByBairro(bairro);
+        mv.addObject("municipios", localidadeService.findAllMunicipios());
 
         List<String> customMessage = new ArrayList<String>();
         boolean erro = false;
+
+        Municipio municipio = localidadeService.findMunicipioByBairro(bairro);
 
         if (municipio == null) {
             customMessage.add("O Municipio escolhido deve ser válido.");
