@@ -1,4 +1,4 @@
-package imobiliaria.Controller;
+package imobiliaria.Controller.Api;
 
 import imobiliaria.Service.LocalidadeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,7 +13,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/ajax")
 @Tag(name = "Ajax Lista")
-public class AjaxController {
+public class ApiAjaxController {
 
     @Autowired
     private LocalidadeService localidadeService;
