@@ -15,14 +15,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/usuario")
 @Tag(name = "Usuário")
+@Validated
 public class ApiUsuarioController {
 
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
     @GetMapping("/{username}")
-    public ResponseEntity<UserDetails> loadUserByUsername(@PathVariable String username) {
-        return new ResponseEntity<>(myUserDetailsService.loadUserByUsername(username), HttpStatus.OK);
+    public ResponseEntity<User> findUserByUsername(@PathVariable String username) {
+        return new ResponseEntity<>(myUserDetailsService.findUserByUsername(username), HttpStatus.OK);
     }
 
     @GetMapping("/usuarios")
@@ -31,7 +32,7 @@ public class ApiUsuarioController {
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<User> cadastroUsuario(@Validated User user) {
+    public ResponseEntity<User> cadastroUsuario(@RequestBody User user) {
         return new ResponseEntity<>(myUserDetailsService.saveNewUser(user), HttpStatus.CREATED);
     }
 

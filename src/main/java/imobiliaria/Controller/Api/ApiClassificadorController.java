@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/classificador")
 @Tag(name = "Classificador")
+@Validated
 public class ApiClassificadorController {
 
     @Autowired
@@ -27,12 +28,12 @@ public class ApiClassificadorController {
     }
 
     @PostMapping("/categoria/cadastro")
-    public ResponseEntity<Categoria> cadastroCategoria(@Validated Categoria categoria) {
+    public ResponseEntity<Categoria> cadastroCategoria(@RequestBody Categoria categoria) {
         return new ResponseEntity<>(classficadorService.saveCategoria(categoria), HttpStatus.CREATED);
     }
 
     @PutMapping("/categoria/editar/{id}")
-    public ResponseEntity<Categoria> editarCategoria(@PathVariable Long id, @Validated Categoria categoria) {
+    public ResponseEntity<Categoria> editarCategoria(@PathVariable Long id, @RequestBody Categoria categoria) {
         Categoria cat = classficadorService.findCategoriaById(id);
         if (cat == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -57,12 +58,12 @@ public class ApiClassificadorController {
     }
 
     @PostMapping("/negocio/cadastro")
-    public ResponseEntity<Negocio> cadastroNegocio(@Validated Negocio negocio) {
+    public ResponseEntity<Negocio> cadastroNegocio(@RequestBody Negocio negocio) {
         return new ResponseEntity<>(classficadorService.saveNegocio(negocio), HttpStatus.CREATED);
     }
 
     @PutMapping("/negocio/editar/{id}")
-    public ResponseEntity<Negocio> editarNegocio(@PathVariable Long id, @Validated Negocio negocio) {
+    public ResponseEntity<Negocio> editarNegocio(@PathVariable Long id, @RequestBody Negocio negocio) {
         Negocio neg = classficadorService.findNegocioById(id);
         if (neg == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -87,12 +88,12 @@ public class ApiClassificadorController {
     }
 
     @PostMapping("/quarto/cadastro")
-    public ResponseEntity<Quarto> cadastroQuarto(@Validated Quarto quarto) {
+    public ResponseEntity<Quarto> cadastroQuarto(@RequestBody Quarto quarto) {
         return new ResponseEntity<>(classficadorService.saveQuarto(quarto), HttpStatus.CREATED);
     }
 
     @PutMapping("/quarto/editar/{id}")
-    public ResponseEntity<Quarto> editarQuarto(@PathVariable Long id, @Validated Quarto quarto) {
+    public ResponseEntity<Quarto> editarQuarto(@PathVariable Long id, @RequestBody Quarto quarto) {
         Quarto qua = classficadorService.findQuartoById(id);
         if (qua == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

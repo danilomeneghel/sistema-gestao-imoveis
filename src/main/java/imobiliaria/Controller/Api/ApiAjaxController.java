@@ -2,11 +2,11 @@ package imobiliaria.Controller.Api;
 
 import imobiliaria.Service.LocalidadeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -18,16 +18,14 @@ public class ApiAjaxController {
     @Autowired
     private LocalidadeService localidadeService;
 
-    @GetMapping("/municipioEstado")
-    @ResponseBody
-    public Map<Long, String> retornaMunicipios(Long idEstado) {
-        return localidadeService.findMunicipioAsMapPerEstado(idEstado);
+    @GetMapping("/municipioEstado/{idEstado}")
+    public ResponseEntity<Map<Long, String>> retornaMunicipios(@PathVariable Long idEstado) {
+        return new ResponseEntity<>(localidadeService.findMunicipioAsMapPerEstado(idEstado), HttpStatus.OK);
     }
 
-    @GetMapping("/bairroMunicipio")
-    @ResponseBody
-    public Map<Long, String> retornaBairros(Long idMunicipio) {
-        return localidadeService.findBairroAsMapPerMunicipio(idMunicipio);
+    @GetMapping("/bairroMunicipio/{idMunicipio}")
+    public ResponseEntity<Map<Long, String>> retornaBairros(@PathVariable Long idMunicipio) {
+        return new ResponseEntity<>(localidadeService.findBairroAsMapPerMunicipio(idMunicipio), HttpStatus.OK);
     }
 
 }

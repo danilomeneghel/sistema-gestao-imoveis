@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/imovel")
 @Tag(name = "Imóvel")
+@Validated
 public class ApiImovelController {
 
     @Autowired
@@ -26,12 +27,12 @@ public class ApiImovelController {
     }
 
     @PostMapping("/imovel/cadastro")
-    public ResponseEntity<Imovel> cadastroImovel(@Validated Imovel imovel) {
+    public ResponseEntity<Imovel> cadastroImovel(@RequestBody Imovel imovel) {
         return new ResponseEntity<>(imovelService.saveImovel(imovel), HttpStatus.CREATED);
     }
 
     @PutMapping("/imovel/editar/{id}")
-    public ResponseEntity<Imovel> editarImovel(@PathVariable Long id, @Validated Imovel imovel) {
+    public ResponseEntity<Imovel> editarImovel(@PathVariable Long id, @RequestBody Imovel imovel) {
         Imovel imo = imovelService.findImovelById(id);
         if (imo == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

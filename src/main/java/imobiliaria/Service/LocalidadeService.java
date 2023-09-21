@@ -131,7 +131,7 @@ public class LocalidadeService {
     }
 
     public List<Municipio> findMunicipioPerEstado(Long idEstado) {
-        Estado estado = findEstadoById(idEstado);
+        EstadoEntity estado = estRep.findById(idEstado).get();
         List<MunicipioEntity> municipios = munRep.findByEstado(estado);
         return municipios.stream().map(entity -> modelMapper.map(entity, Municipio.class)).collect(Collectors.toList());
     }
@@ -146,7 +146,7 @@ public class LocalidadeService {
     }
 
     public List<Bairro> findBairroPerMunicipio(Long idMunicipio) {
-        Municipio municipio = findMunicipioById(idMunicipio);
+        MunicipioEntity municipio = munRep.findById(idMunicipio).get();
         List<BairroEntity> bairros = baiRep.findByMunicipio(municipio);
         return bairros.stream().map(entity -> modelMapper.map(entity, Bairro.class)).collect(Collectors.toList());
     }

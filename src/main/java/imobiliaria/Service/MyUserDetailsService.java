@@ -40,6 +40,12 @@ public class MyUserDetailsService implements UserDetailsService {
         return users.stream().map(entity -> modelMapper.map(entity, User.class)).collect(Collectors.toList());
     }
 
+    public User findUserByUsername(String username) {
+        UserEntity user = rep.findByUserName(username).get();
+        user.setPassword(null);
+        return modelMapper.map(user, User.class);
+    }
+
     public User saveNewUser(User user) {
         user.setPassword(webSec.setEncoder(user.getPassword()));
         UserEntity userEntity = modelMapper.map(user, UserEntity.class);

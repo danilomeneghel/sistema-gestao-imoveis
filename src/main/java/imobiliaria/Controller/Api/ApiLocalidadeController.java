@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/localidade")
 @Tag(name = "Localidade")
+@Validated
 public class ApiLocalidadeController {
 
     @Autowired
@@ -27,12 +28,12 @@ public class ApiLocalidadeController {
     }
 
     @PostMapping("/bairro/cadastro")
-    public ResponseEntity<Bairro> cadastroBairro(@Validated Bairro bairro) {
+    public ResponseEntity<Bairro> cadastroBairro(@RequestBody Bairro bairro) {
         return new ResponseEntity<>(localidadeService.saveBairro(bairro), HttpStatus.CREATED);
     }
 
     @PutMapping("/bairro/editar/{id}")
-    public ResponseEntity<Bairro> editarBairro(@PathVariable Long id, @Validated Bairro bairro) {
+    public ResponseEntity<Bairro> editarBairro(@PathVariable Long id, @RequestBody Bairro bairro) {
         Bairro bai = localidadeService.findBairroById(id);
         if (bai == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -57,12 +58,12 @@ public class ApiLocalidadeController {
     }
 
     @PostMapping("/estado/cadastro")
-    public ResponseEntity<Estado> cadastroEstado(@Validated Estado estado) {
+    public ResponseEntity<Estado> cadastroEstado(@RequestBody Estado estado) {
         return new ResponseEntity<>(localidadeService.saveEstado(estado), HttpStatus.CREATED);
     }
 
     @PutMapping("/estado/editar/{id}")
-    public ResponseEntity<Estado> editarEstado(@PathVariable Long id, @Validated Estado estado) {
+    public ResponseEntity<Estado> editarEstado(@PathVariable Long id, @RequestBody Estado estado) {
         Estado est = localidadeService.findEstadoById(id);
         if (est == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -87,12 +88,12 @@ public class ApiLocalidadeController {
     }
 
     @PostMapping("/municipio/cadastro")
-    public ResponseEntity<Municipio> cadastroMunicipio(@Validated Municipio municipio) {
+    public ResponseEntity<Municipio> cadastroMunicipio(@RequestBody Municipio municipio) {
         return new ResponseEntity<>(localidadeService.saveMunicipio(municipio), HttpStatus.CREATED);
     }
 
     @PutMapping("/municipio/editar/{id}")
-    public ResponseEntity<Municipio> editarMunicipio(@PathVariable Long id, @Validated Municipio municipio) {
+    public ResponseEntity<Municipio> editarMunicipio(@PathVariable Long id, @RequestBody Municipio municipio) {
         Municipio mun = localidadeService.findMunicipioById(id);
         if (mun == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
