@@ -13,82 +13,7 @@ body {
     margin: 2px 12px !important;
 }
 
-#wrapper {
-    overflow-x: hidden;
-}
-
-#sidebar-wrapper {
-  min-height: 100vh;
-  margin-left: -15rem;
-  -webkit-transition: margin .25s ease-out;
-  -moz-transition: margin .25s ease-out;
-  -o-transition: margin .25s ease-out;
-  transition: margin .25s ease-out;
-}
-
-#sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
-}
-
-#sidebar-wrapper .list-group {
-  width: 15rem;
-}
-
-#page-content-wrapper {
-  min-width: 100vw;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-  margin-left: 0;
-}
-
-.margin-card {
-    margin: 0px 10px !important;
-}
-
-.col-card {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 41.666667%;
-    flex: 0 0 41.666667%;
-    min-width: 25%;
-}
-
-@media (min-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: 0;
-  }
-
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
-  }
-
-  #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
-  }
-
-  .margin-card {
-      margin: 10px 90px !important;
-  }
-
-  .col-card {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 25%;
-    flex: 0 0 25%;
-    min-width: 30%;
-  }
-
-  .input-search {
-    max-width: 50% !important;
-  }
-}
-
-.input-search {
-    max-width: 100%;
-}
-
-.distanciamento{
+.distanciamento {
 	padding:10px;
 }
 
@@ -150,32 +75,154 @@ body {
 }
 
 .text-center {
-  text-align: center !important;
+    text-align: center !important;
+}
+
+.content-login {
+    background-color: #343a40 !important;
+}
+
+.col-login-image {
+    display: block;
+    width: 55%;
+    min-height: 100vh;
+    float: left;
+    background: url("/images/login-image.jpg") no-repeat;
+    background-size: auto 100%;
+    overflow: hidden;
+}
+
+.col-login-image2 {
+    display: block;
+    width: 55%;
+    min-height: 100vh;
+    float: left;
+    background: url("/images/login-image2.jpg") no-repeat;
+    background-size: auto 100%;
+    overflow: hidden;
+}
+
+.col-login-form {
+    display: block;
+    width: 45%;
+    min-height: 100vh;
+    float: left;
+    background-color: #343a40 !important;
+    color: #ffffff;
+    overflow: hidden;
 }
 
 .container-login {
-  width: 100%;
-  max-width: 380px;
-  padding: 60px 15px 40px 15px;
-  margin: auto;
+    width: 100%;
+    max-width: 380px;
+    min-height: 550px;
+    padding: 90px 15px 40px 15px;
+    margin: auto;
 }
 
 .logo-login {
-  margin-top: 0px !important;
-  padding-bottom: 15px !important;
+    margin-top: 0px !important;
+    padding-bottom: 15px !important;
 }
 
 .form-item {
-  margin: 0px 0px !important;
-  padding: 8px 0px !important;
+    margin: 0px 0px !important;
+    padding: 8px 0px !important;
 }
 
-.input-login {
-  padding: 12px !important;
+.input-login, .input-login:focus {
+    padding: 12px !important;
+    background-color: #24282d !important;
+    color: #8c8c8c;
+    border-color: #8c8c8c;
+}
+
+.button-login {
+    padding: 12px !important;
 }
 
 .text-version {
-  font-size: 14px !important;
-  text-align: center !important;
-  margin-top: 60px !important;
+    font-size: 14px !important;
+    text-align: center !important;
+    margin-top: 10px !important;
+    color: #ffffff !important;
+}
+
+.margin-card {
+    margin: 10px 90px !important;
+}
+
+.col-card {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    min-width: 30%;
+}
+
+.input-search {
+    max-width: 50% !important;
+}
+
+#sidebar-wrapper {
+    margin-left: 0;
+    min-height: 100vh;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    width: 100%;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+}
+
+@media (max-width: 768px) {
+    .col-login-left {
+        display: none;
+    }
+
+    #sidebar-wrapper {
+        min-height: 100vh;
+        margin-left: -15rem;
+        -webkit-transition: margin .25s ease-out;
+        -moz-transition: margin .25s ease-out;
+        -o-transition: margin .25s ease-out;
+        transition: margin .25s ease-out;
+    }
+
+    #wrapper {
+        overflow-x: hidden;
+    }
+
+    #page-content-wrapper {
+        min-width: 100vw;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    .margin-card {
+        margin: 0px 10px !important;
+    }
+
+    .col-card {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 41.666667%;
+        flex: 0 0 41.666667%;
+        min-width: 25%;
+    }
+
+    .input-search {
+        max-width: 100%;
+    }
 }

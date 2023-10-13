@@ -7,28 +7,33 @@
     <title>Cadastro</title>
 </head>
 <body>
-<section layout:fragment="content" class="container-login">
-    <h3>Cadastro</h3><br>
+<section layout:fragment="content">
+    <div class="col-login-form">
+        <div class="container-login">
+            <h3>Cadastro</h3><br>
 
-    <form th:action="@{/signup}" method="post" th:object="${user}">
-        <div th:replace="fragments/mensagemErro"></div>
-        <div class="form-item" th:classappend="${#fields.hasErrors('userName')}? is-invalid">
-            <label>Usuário:</label>
-            <input class="form-control" placeholder="Insira o Usuário" type="text" th:field="*{userName}"/>
+            <form th:action="@{/signup}" method="post" th:object="${user}">
+                <div th:replace="fragments/mensagemErro"></div>
+                <div class="form-item" th:classappend="${#fields.hasErrors('name')}? is-invalid">
+                    <input class="form-control input-login" placeholder="Nome Completo" type="text" th:field="*{name}"/>
+                </div>
+                <div class="form-item" th:classappend="${#fields.hasErrors('username')}? is-invalid">
+                    <input class="form-control input-login" placeholder="Usuário" type="text" th:field="*{username}"/>
+                </div>
+                <div class="form-item" th:classappend="${#fields.hasErrors('email')} or ${erroEmail}? is-invalid">
+                    <input class="form-control input-login" placeholder="E-mail" type="email" th:field="*{email}"/>
+                </div>
+                <div class="form-item" th:classappend="${#fields.hasErrors('password')}? is-invalid">
+                    <input class="form-control input-login" placeholder="Senha" type="password" th:field="*{password}"/>
+                </div>
+                <div class="form-item" style="padding:10px 0">
+                    <input class="btn btn-primary button-login" type="submit" value="Criar Conta"/>
+                </div>
+            </form>
+            <a th:href="@{/login}">Já tenho conta</a>
         </div>
-        <div class="form-item" th:classappend="${#fields.hasErrors('email')} or ${erroEmail}? is-invalid">
-            <label>E-mail:</label>
-            <input class="form-control" placeholder="Insira o E-mail" type="email" th:field="*{email}"/>
-        </div>
-        <div class="form-item" th:classappend="${#fields.hasErrors('password')}? is-invalid">
-            <label>Senha:</label>
-            <input class="form-control" placeholder="Insira a Senha" type="password" th:field="*{password}"/>
-        </div>
-        <div class="form-item" style="padding:10px 0">
-            <input class="btn btn-primary" type="submit" value="Criar Conta"/>
-        </div>
-    </form>
-    <a th:href="@{/login}">Já tenho conta</a>
+    </div>
+    <div class="col-login-image2">&nbsp;</div>
 </section>
 </body>
 </html>

@@ -13,14 +13,16 @@ public class MyUserDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private String userName;
+    private String name;
+    private String username;
     private String email;
     private String password;
     private boolean active;
     private List<GrantedAuthority> authorities;
 
     public MyUserDetails(UserEntity userEntity) {
-        this.userName = userEntity.getUserName();
+        this.name = userEntity.getName();
+        this.username = userEntity.getUsername();
         this.email = userEntity.getEmail();
         this.password = userEntity.getPassword();
         this.active = userEntity.isActive();
@@ -41,7 +43,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     public String getEmail() {

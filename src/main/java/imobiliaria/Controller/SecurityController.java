@@ -38,7 +38,8 @@ public class SecurityController {
             mv.addObject("erroEmail", true);
             erro = true;
         }
-        if (errors.hasErrors() || erro) {
+        if (errors.hasErrors() || erro || user.getName().isEmpty() || user.getUsername().isEmpty() || user.getPassword().isEmpty()) {
+            mv.addObject("customMessage", "Revise os campos obrigatórios");
             mv.setViewName("security/signup");
             return mv;
         }

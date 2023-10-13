@@ -29,7 +29,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserEntity> user = rep.findByUserName(username);
+        Optional<UserEntity> user = rep.findByUsername(username);
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
         return user.map(MyUserDetails::new).get();
     }
@@ -41,7 +41,7 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     public User findUserByUsername(String username) {
-        UserEntity user = rep.findByUserName(username).get();
+        UserEntity user = rep.findByUsername(username).get();
         user.setPassword(null);
         return modelMapper.map(user, User.class);
     }

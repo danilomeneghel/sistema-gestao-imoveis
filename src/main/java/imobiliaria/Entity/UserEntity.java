@@ -20,8 +20,11 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O nome não pode estar em branco.")
+    private String name;
+
     @NotBlank(message = "O usuário não pode estar em branco.")
-    private String userName;
+    private String username;
 
     @NotBlank(message = "O e-mail não pode estar em branco.")
     private String email;
