@@ -15,19 +15,23 @@
             <form th:action="@{/signup}" method="post" th:object="${user}">
                 <div th:replace="fragments/mensagemErro"></div>
                 <div class="form-item" th:classappend="${#fields.hasErrors('name')}? is-invalid">
+                    <span><i class="fa fa-user-circle"></i></span>
                     <input class="form-control input-login" placeholder="Nome Completo" type="text" th:field="*{name}"/>
                 </div>
-                <div class="form-item" th:classappend="${#fields.hasErrors('username')}? is-invalid">
-                    <input class="form-control input-login" placeholder="Usuário" type="text" th:field="*{username}"/>
-                </div>
                 <div class="form-item" th:classappend="${#fields.hasErrors('email')} or ${erroEmail}? is-invalid">
+                    <span><i class="fa fa-envelope"></i></span>
                     <input class="form-control input-login" placeholder="E-mail" type="email" th:field="*{email}"/>
                 </div>
+                <div class="form-item" th:classappend="${#fields.hasErrors('username')}? is-invalid">
+                    <span><i class="fa fa-user"></i></span>
+                    <input class="form-control input-login" placeholder="Usuário" type="text" th:field="*{username}"/>
+                </div>
                 <div class="form-item" th:classappend="${#fields.hasErrors('password')}? is-invalid">
+                    <span><i class="fa fa-lock"></i></span>
                     <input class="form-control input-login" placeholder="Senha" type="password" th:field="*{password}"/>
                 </div>
                 <div class="form-item" style="padding:10px 0">
-                    <input class="btn btn-primary button-login" type="submit" value="Criar Conta"/>
+                    <input class="btn btn-primary form-control button-login" type="submit" value="Cadastrar"/>
                 </div>
             </form>
             <a th:href="@{/login}">Já tenho conta</a>
