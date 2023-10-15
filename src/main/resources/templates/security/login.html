@@ -7,7 +7,7 @@
 <section layout:fragment="content">
     <div class="col-login-image">&nbsp;</div>
     <div class="col-login-form">
-        <div class="container-login">
+        <div id="container-login">
             <div class="logo-login text-center">
                 <img src="images/logo.png" height="125px">
             </div>
@@ -21,20 +21,20 @@
 
             <form th:action="@{/login}" method="post">
                 <div class="form-item">
-                    <span><i class="fa fa-user"></i></span>
-                    <input class="form-control input-login" placeholder="Usuário" type="text" name="username"/>
+                    <input class="form-control" placeholder="Usuário" type="text" name="username" autofocus required/>
+                    <i class="fa fa-user"></i>
                 </div>
                 <div class="form-item">
-                    <span><i class="fa fa-lock"></i></span>
-                    <input class="form-control input-login" placeholder="Senha" type="password" name="password"/>
+                    <input class="form-control" placeholder="Senha" type="password" name="password" required/>
+                    <i class="fa fa-lock"></i>
                 </div>
                 <div class="form-item">
-                    <input class="btn btn-primary form-control button-login" type="submit" value="Entrar"/>
+                    <input class="btn btn-primary form-control" type="submit" value="Entrar"/>
                 </div>
                 <div class="text-center"><a th:href="@{/signup}">Criar conta</a></div>
             </form>
         </div>
-        <div class="text-version">Versão 1.0.3</div>
+        <div class="text-version">Versão 1.0.5</div>
     </div>
 </section>
 </body>
