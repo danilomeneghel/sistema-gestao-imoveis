@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>imobiliaria</groupId>
 	<artifactId>imobiliaria</artifactId>
-	<version>1.0.5</version>
+	<version>2.0.1</version>
 	<packaging>jar</packaging>
 	<name>Gestão de Imóveis</name>
 

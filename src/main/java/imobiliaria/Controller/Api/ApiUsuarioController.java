@@ -1,6 +1,6 @@
 package imobiliaria.Controller.Api;
 
-import imobiliaria.Model.User;
+import imobiliaria.Model.Usuario;
 import imobiliaria.Service.MyUserDetailsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +21,18 @@ public class ApiUsuarioController {
     private MyUserDetailsService myUserDetailsService;
 
     @GetMapping("/{username}")
-    public ResponseEntity<User> findUserByUsername(@PathVariable String username) {
+    public ResponseEntity<Usuario> findUserByUsername(@PathVariable String username) {
         return new ResponseEntity<>(myUserDetailsService.findUserByUsername(username), HttpStatus.OK);
     }
 
     @GetMapping("/usuarios")
-    public ResponseEntity<List<User>> mostrarUsuarios() {
+    public ResponseEntity<List<Usuario>> mostrarUsuarios() {
         return new ResponseEntity<>(myUserDetailsService.findAllUsers(), HttpStatus.OK);
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<User> cadastroUsuario(@RequestBody User user) {
-        return new ResponseEntity<>(myUserDetailsService.saveNewUser(user), HttpStatus.CREATED);
+    public ResponseEntity<Usuario> cadastroUsuario(@RequestBody Usuario usuario) {
+        return new ResponseEntity<>(myUserDetailsService.saveNewUser(usuario), HttpStatus.CREATED);
     }
 
 }

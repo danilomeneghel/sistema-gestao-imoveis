@@ -21,8 +21,21 @@ body {
     background-color: #013268 !important;
 }
 
-.list-group a:hover {
+.list-group a {
+    background-color: #013268 !important;
+}
+
+.list-group a:hover, .list-group a:active, .list-group a:focus {
     background-color: #01254d !important;
+}
+
+.dropdown-menu {
+    transform: translate3d(237px, 252px, 0px) !important;
+    padding: .1rem 0 !important;
+}
+
+.dropdown-item {
+    padding: .75rem 1.25rem !important;
 }
 
 .card {

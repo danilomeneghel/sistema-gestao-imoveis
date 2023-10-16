@@ -1,4 +1,5 @@
 INSERT INTO categoria (nome) VALUES ('Casa'),('Apartamento'),('Condomínio'),('Chacára');
+
 INSERT INTO negocio (nome) VALUES('Venda'),('Aluguel'),('Financiamento');
 
 INSERT INTO quarto (descricao,quantidade) VALUES
@@ -68,5 +69,5 @@ INSERT INTO imovel (id_categoria,id_negocio,id_quarto,valor,id_bairro) VALUES
 (4,2,1,500,35),
 (4,3,1,15000,36);
 
-INSERT INTO `user` (name,username,email,password,roles,active) VALUES
-("Admin", "admin","admin@admin.com","$2a$10$1HAxsgoqtXCVASxpXGcnheACN8.SbB8iQZ5o4sktAOPQEE/k2B9Ue","ROLE_ADMIN",true)
+INSERT INTO usuario (name,username,email,password,roles,active) VALUES
+("Admin", "admin","admin@admin.com","$2a$10$1HAxsgoqtXCVASxpXGcnheACN8.SbB8iQZ5o4sktAOPQEE/k2B9Ue","ROLE_ADMIN",true);

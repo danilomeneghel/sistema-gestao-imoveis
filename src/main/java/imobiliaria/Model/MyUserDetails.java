@@ -1,6 +1,6 @@
 package imobiliaria.Model;
 
-import imobiliaria.Entity.UserEntity;
+import imobiliaria.Entity.UsuarioEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,13 +20,13 @@ public class MyUserDetails implements UserDetails {
     private boolean active;
     private List<GrantedAuthority> authorities;
 
-    public MyUserDetails(UserEntity userEntity) {
-        this.name = userEntity.getName();
-        this.username = userEntity.getUsername();
-        this.email = userEntity.getEmail();
-        this.password = userEntity.getPassword();
-        this.active = userEntity.isActive();
-        this.authorities = Arrays.stream(userEntity.getRoles().split(","))
+    public MyUserDetails(UsuarioEntity usuarioEntity) {
+        this.name = usuarioEntity.getName();
+        this.username = usuarioEntity.getUsername();
+        this.email = usuarioEntity.getEmail();
+        this.password = usuarioEntity.getPassword();
+        this.active = usuarioEntity.isActive();
+        this.authorities = Arrays.stream(usuarioEntity.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }

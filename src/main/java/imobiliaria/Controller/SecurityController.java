@@ -1,6 +1,6 @@
 package imobiliaria.Controller;
 
-import imobiliaria.Model.User;
+import imobiliaria.Model.Usuario;
 import imobiliaria.Service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,27 +25,27 @@ public class SecurityController {
     @GetMapping("/signup")
     public ModelAndView cadastrarUsuario() {
         ModelAndView mv = new ModelAndView("security/signup");
-        mv.addObject("user", new User());
+        mv.addObject("user", new Usuario());
         return mv;
     }
 
     @PostMapping("/signup")
-    public ModelAndView cadastrando(@Validated User user, Errors errors) {
+    public ModelAndView cadastrando(@Validated Usuario usuario, Errors errors) {
         ModelAndView mv = new ModelAndView("redirect:/");
         boolean erro = false;
-        if (userServ.emailExistente(user.getEmail())) {
+        if (userServ.emailExistente(usuario.getEmail())) {
             mv.addObject("customMessage", "O e-mail já foi cadastrado");
             mv.addObject("erroEmail", true);
             erro = true;
         }
-        if (errors.hasErrors() || erro || user.getName().isEmpty() || user.getUsername().isEmpty() || user.getPassword().isEmpty()) {
+        if (errors.hasErrors() || erro || usuario.getName().isEmpty() || usuario.getUsername().isEmpty() || usuario.getPassword().isEmpty()) {
             mv.addObject("customMessage", "Revise os campos obrigatórios");
             mv.setViewName("security/signup");
             return mv;
         }
-        user.setActive(true);
-        user.setRoles("ROLE_USER");
-        userServ.saveNewUser(user);
+        usuario.setActive(true);
+        usuario.setRoles("ROLE_USER");
+        userServ.saveNewUser(usuario);
 
         return mv;
     }

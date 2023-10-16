@@ -9,10 +9,10 @@
 <body>
 	<section layout:fragment="conteudo" class="distanciamento">
 		<h2 class="inline">Pesquisar Imóvel</h2>
-		<a class="btn btn-primary voltar" th:href="@{/user/imovel/todos}">Voltar</a>
+		<a class="btn btn-primary voltar" th:href="@{/usuario/imovel/todos}">Voltar</a>
 		
 		<div>
-			<form th:action="@{/user/imovel/pesquisarResultado}" method="get" th:object="${imovel}">
+			<form th:action="@{/usuario/imovel/pesquisarResultado}" method="get" th:object="${imovel}">
 				<div th:replace="fragments/mensagemErro"></div>
 				<div th:replace="fragments/mensagemSucesso"></div>
 				

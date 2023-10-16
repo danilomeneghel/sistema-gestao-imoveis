@@ -1,6 +1,5 @@
 package imobiliaria.Configuration;
 
-import imobiliaria.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,9 +19,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private PasswordEncoder encoder;
-
-    @Autowired
-    private UserRepository rep;
 
     @Autowired
     private UserDetailsService userDetailsService;

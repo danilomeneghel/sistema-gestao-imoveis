@@ -1,10 +1,10 @@
 package imobiliaria.Service;
 
 import imobiliaria.Configuration.WebSecurityConfiguration;
-import imobiliaria.Entity.UserEntity;
+import imobiliaria.Entity.UsuarioEntity;
 import imobiliaria.Model.MyUserDetails;
-import imobiliaria.Model.User;
-import imobiliaria.Repository.UserRepository;
+import imobiliaria.Model.Usuario;
+import imobiliaria.Repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository rep;
+    private UsuarioRepository rep;
 
     @Autowired
     private WebSecurityConfiguration webSec;
@@ -29,32 +29,32 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserEntity> user = rep.findByUsername(username);
+        Optional<UsuarioEntity> user = rep.findByUsername(username);
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
         return user.map(MyUserDetails::new).get();
     }
 
-    public List<User> findAllUsers() {
-        List<UserEntity> users = rep.findAll();
+    public List<Usuario> findAllUsers() {
+        List<UsuarioEntity> users = rep.findAll();
         users.forEach(user -> user.setPassword(null));
-        return users.stream().map(entity -> modelMapper.map(entity, User.class)).collect(Collectors.toList());
+        return users.stream().map(entity -> modelMapper.map(entity, Usuario.class)).collect(Collectors.toList());
     }
 
-    public User findUserByUsername(String username) {
-        UserEntity user = rep.findByUsername(username).get();
+    public Usuario findUserByUsername(String username) {
+        UsuarioEntity user = rep.findByUsername(username).get();
         user.setPassword(null);
-        return modelMapper.map(user, User.class);
+        return modelMapper.map(user, Usuario.class);
     }
 
-    public User saveNewUser(User user) {
-        user.setPassword(webSec.setEncoder(user.getPassword()));
-        UserEntity userEntity = modelMapper.map(user, UserEntity.class);
-        UserEntity saveUser = rep.save(userEntity);
-        return modelMapper.map(saveUser, User.class);
+    public Usuario saveNewUser(Usuario usuario) {
+        usuario.setPassword(webSec.setEncoder(usuario.getPassword()));
+        UsuarioEntity usuarioEntity = modelMapper.map(usuario, UsuarioEntity.class);
+        UsuarioEntity saveUser = rep.save(usuarioEntity);
+        return modelMapper.map(saveUser, Usuario.class);
     }
 
     public boolean emailExistente(String email) {
-        Optional<UserEntity> user = rep.findByEmail(email);
+        Optional<UsuarioEntity> user = rep.findByEmail(email);
         return !user.isEmpty();
     }
 
