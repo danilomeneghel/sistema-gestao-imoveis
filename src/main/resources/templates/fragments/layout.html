@@ -5,8 +5,11 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/fontawesome.min.css" rel="stylesheet"/>
+    <link href="/css/datatables.min.css" rel="stylesheet"/>
+    <link href="/css/layout.css" rel="stylesheet"/>
     <link href="/css/style.css" rel="stylesheet"/>
 
     <script src="/js/jquery.min.js"></script>
@@ -58,7 +61,7 @@
             <button class="btn" id="menu-toggle" onclick="toggle()">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <h2>Gestão de Imóveis</h2>
+            <h3>Gestão de Imóveis</h3>
             <!-- <a class="btn btn-primary voltar" th:unless="${index}" style="position:absolute;right: 5%; " th:href="@{/}">Voltar a tela inicial</a> -->
         </nav>
         <div class="container-fluid">
@@ -69,6 +72,7 @@
     </div>
     <!-- /#page-content-wrapper -->
 </div>
-
+<script src="/js/datatables.min.js"></script>
+<th:block layout:fragment="script"/>
 </body>
 </html>

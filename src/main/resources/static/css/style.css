@@ -10,7 +10,9 @@ body {
 }
 
 #menu-toggle {
-    margin: 2px 12px !important;
+    margin-top: 2px !important;
+    margin-left: 0px !important;
+    margin-right: 10px !important;
 }
 
 .distanciamento {
@@ -101,6 +103,54 @@ body {
 
 .text-center {
     text-align: center !important;
+}
+
+#data-table_wrapper {
+    margin-top: 10px !important;
+}
+
+#data-table_info {
+    display: none !important;
+}
+
+#data-table {
+    width: 100% !important;
+}
+
+#data-table th:last-child {
+    max-width: 138px !important;
+}
+
+.buttons-excel {
+    min-width: 40px !important;
+    margin-right: .5rem !important;
+    border: 0px !important;
+    border-radius: .1rem !important;
+}
+
+.buttons-pdf {
+    min-width: 40px !important;
+    margin-right: .5rem !important;
+    border: 0px !important;
+    border-radius: .1rem !important;
+}
+
+.buttons-print {
+    min-width: 40px !important;
+    color: #fff !important;
+    border: 0px !important;
+    border-radius: .1rem !important;
+    background-color: #007bff !important;
+}
+
+#data-table .btn-primary, #data-table .btn-success, #data-table .btn-danger {
+    min-width: 90px !important;
+    margin: 3px !important;
+}
+
+.btn-primary, .btn-success, .btn-danger, .btn-info {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
 }
 
 .col-login-image {
