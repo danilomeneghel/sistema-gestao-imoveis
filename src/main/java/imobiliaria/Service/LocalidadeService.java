@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -131,8 +132,8 @@ public class LocalidadeService {
     }
 
     public List<Municipio> findMunicipioPerEstado(Long idEstado) {
-        EstadoEntity estado = estRep.findById(idEstado).get();
-        List<MunicipioEntity> municipios = munRep.findByEstado(estado);
+        Optional<EstadoEntity> estado = estRep.findById(idEstado);
+        List<MunicipioEntity> municipios = munRep.findByEstado(estado.get());
         return municipios.stream().map(entity -> modelMapper.map(entity, Municipio.class)).collect(Collectors.toList());
     }
 

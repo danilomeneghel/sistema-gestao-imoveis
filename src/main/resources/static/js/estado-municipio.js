@@ -1,10 +1,8 @@
 $(function(){
-
 	$('#estado-select').on('change',function(event){
 		var idEstado = $('#estado-select').val(); 
 		if(idEstado){
 			$('#municipio-div').show();
-			
 			$.ajax({
 				url:"/ajax/municipioEstado",
 				type:"get",
@@ -35,7 +33,6 @@ $(function(){
 		}
 		$('#bairro-div').hide();
 	});
-	
 	$('#municipio-select').on('change',function(event){
 		var idMunicipio= $('#municipio-select').val(); 
 		if(idMunicipio){
@@ -67,11 +64,7 @@ $(function(){
 		}
 	});
 });
-
 function toggle(){
     $("#wrapper").toggleClass("toggled");
     var elem = document.getElementById("menu-toggle");
-    /*if (elem.innerHTML =="Mostrar Menu")
-        elem.innerHTML  = "Esconder Menu";
-    else elem.innerHTML  = "Mostrar Menu";*/
 }

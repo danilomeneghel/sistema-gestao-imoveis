@@ -38,7 +38,7 @@ $(document).ready(function () {
             }
         ],
         "ajax": {
-            "url": '/api/classificador/categorias',
+            "url": '/api/localidade/bairros',
             "type": "GET",
             "datatype": "json",
             dataSrc:""
@@ -46,12 +46,14 @@ $(document).ready(function () {
         "columns": [
             { "data": "id" },
             { "data": "nome" },
+            { "data": "municipio.nome" },
+            { "data": "municipio.estado.nome" },
             {
                 "data": null, "render": function (data) {
-                    return '<a class="btn btn-primary" href="/classificador/categoria/editar/'+data.id+'">'+
+                    return '<a class="btn btn-primary" href="/localidade/bairro/editar/'+data.id+'">'+
                     '<i class="fas fa-pen"></i> Editar</a><a class="btn btn-danger" '+
                     'onclick="return confirm(\'Tem certeza que deseja excluir esse registro?\');" '+
-                    'href="/classificador/categoria/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
+                    'href="/localidade/bairro/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
                 }
             }
         ],

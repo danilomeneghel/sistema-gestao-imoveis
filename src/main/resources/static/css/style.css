@@ -31,13 +31,19 @@ body {
     background-color: #01254d !important;
 }
 
+.list-group-item {
+    padding: .55rem 1.25rem !important;
+}
+
 .dropdown-menu {
-    transform: translate3d(237px, 252px, 0px) !important;
-    padding: .1rem 0 !important;
+    transform: translate3d(240px, 227px, 0px) !important;
+    top: 0px !important;
+    left: -1px !important;
+    padding: 0px !important;
 }
 
 .dropdown-item {
-    padding: .75rem 1.25rem !important;
+    padding: .58rem 1.25rem !important;
 }
 
 .card {
@@ -109,25 +115,26 @@ body {
     margin-top: 10px !important;
 }
 
-#data-table_info {
-    display: none !important;
-}
-
 #data-table {
     width: 100% !important;
 }
 
 #data-table th:last-child {
-    max-width: 138px !important;
+    width: 20% !important;
+}
+
+#data-table_info {
+    float: left !important;
+}
+
+#data-table_length {
+    display: none !important;
+    float: left !important;
+    margin-top: 10px !important;
 }
 
 #data-table_paginate {
     min-height: 48px !important;
-    margin-top: 10px !important;
-}
-
-#data-table_length {
-    float: left !important;
     margin-top: 10px !important;
 }
 
@@ -165,6 +172,15 @@ body {
 .btn-primary, .btn-success, .btn-danger, .btn-info {
     margin-top: 2px !important;
     margin-bottom: 2px !important;
+}
+
+.alert-danger, .alert-success {
+    margin-top: 15px !important;
+}
+
+.form-item {
+    margin: 0px 0px !important;
+    padding: 8px 0px !important;
 }
 
 .col-login-image {
