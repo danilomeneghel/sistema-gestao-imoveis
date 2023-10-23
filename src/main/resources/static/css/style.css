@@ -121,6 +121,20 @@ body {
     max-width: 138px !important;
 }
 
+#data-table_paginate {
+    min-height: 48px !important;
+    margin-top: 10px !important;
+}
+
+#data-table_length {
+    float: left !important;
+    margin-top: 10px !important;
+}
+
+.pagination {
+    float: right !important;
+}
+
 .buttons-excel {
     min-width: 40px !important;
     margin-right: .5rem !important;

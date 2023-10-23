@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,8 +37,11 @@ public class ClassificadorService {
     }
 
     public Categoria findCategoriaById(Long id) {
-        CategoriaEntity categoria = catRep.findById(id).get();
-        return modelMapper.map(categoria, Categoria.class);
+        Optional<CategoriaEntity> categoria = catRep.findById(id);
+        if(!categoria.isEmpty()) {
+            return modelMapper.map(categoria.get(), Categoria.class);
+        }
+        return null;
     }
 
     public Categoria saveCategoria(Categoria categoria) {

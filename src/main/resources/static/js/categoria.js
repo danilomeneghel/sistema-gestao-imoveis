@@ -49,7 +49,7 @@ $(document).ready(function () {
             {
                 "data": null, "render": function (data) {
                     return '<a class="btn btn-primary" href="/classificador/categoria/editar/'+data.id+'"><i class="fas fa-pen"></i> Editar</a>'+
-                    '<a class="btn btn-danger" href="/classificador/categoria/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
+                    '<a class="btn btn-danger" onclick="return confirm(\'Tem certeza que deseja excluir esse registro?\');" href="/classificador/categoria/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
                 }
             }
         ],

@@ -1,6 +1,8 @@
 package imobiliaria.Service;
 
+import imobiliaria.Entity.CategoriaEntity;
 import imobiliaria.Entity.ImovelEntity;
+import imobiliaria.Model.Categoria;
 import imobiliaria.Model.Imovel;
 import imobiliaria.Repository.ImovelRepository;
 import org.modelmapper.ModelMapper;
@@ -29,9 +31,15 @@ public class ImovelService {
         return modelMapper.map(imovelEntity, Imovel.class);
     }
 
-    public Imovel findImovelByCategoria(Long id) {
-        ImovelEntity imovelEntity = rep.findByCategoria(id);
-        return modelMapper.map(imovelEntity, Imovel.class);
+    public Imovel findImovelByCategoria(Categoria categoria) {
+        if(categoria.getId() != null) {
+            CategoriaEntity categoriaEntity = modelMapper.map(categoria, CategoriaEntity.class);
+            ImovelEntity imovelEntity = rep.findByCategoria(categoriaEntity);
+            if(imovelEntity != null) {
+                return modelMapper.map(imovelEntity, Imovel.class);
+            }
+        }
+        return null;
     }
 
     public Imovel findImovelByNegocio(Long id) {

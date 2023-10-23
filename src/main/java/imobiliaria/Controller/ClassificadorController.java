@@ -72,12 +72,16 @@ public class ClassificadorController {
 
     @GetMapping("/categoria/excluir/{id}")
     public ModelAndView excluirCategoria(@PathVariable Long id, RedirectAttributes ra) {
-        if (servImo.findImovelByCategoria(id) != null) {
-            ra.addFlashAttribute("customMessage", "Não é possível excluir uma categoria com imóveis vinculados.");
-            return new ModelAndView("redirect:/classificador/categorias");
+        Categoria categoria = servCla.findCategoriaById(id);
+        if(categoria != null) {
+            if (servImo.findImovelByCategoria(categoria) != null) {
+                ra.addFlashAttribute("customMessage", "Não é possível excluir uma categoria com imóveis vinculados.");
+            }
+            servCla.excluirCategoriaById(id);
+            ra.addFlashAttribute("sucesso", "A Categoria foi excluída com sucesso.");
+        } else {
+            ra.addFlashAttribute("erro", "A Categoria não foi encontrada.");
         }
-        servCla.excluirCategoriaById(id);
-        ra.addFlashAttribute("sucesso", "A Categoria foi excluída com sucesso.");
         return new ModelAndView("redirect:/classificador/categorias");
     }
 
