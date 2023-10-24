@@ -8,13 +8,14 @@
 </head>
 <body>
 <section layout:fragment="content" class="distanciamento">
-    <h2 class="inline">Editar Categoria</h2>
+    <h3 class="inline">Editar Categoria</h3>
     <a class="btn btn-primary voltar" th:href="@{/classificador/categorias}">
         <i class="fas fa-arrow-left"></i> Voltar</a>
 
     <form th:action="@{/classificador/categoria/editar}" method="post" th:object="${categoria}">
         <div th:replace="fragments/mensagemErro"></div>
         <div th:replace="fragments/mensagemSucesso"></div>
+
         <div class="form-item" th:classappend="${#fields.hasErrors('nome')}? is-invalid">
             <label for="nome">Categoria</label>
             <input class="form-control" id="nome" th:field="*{nome}"

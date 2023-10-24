@@ -8,7 +8,7 @@ $(document).ready(function () {
                 titleAttr: 'Adicionar',
                 className: 'btn btn-success buttons-add',
                 action: function (e, dt, node, config) {
-                    window.location.href = '/imovel/cadastro';
+                    window.location.href = '/classificador/quarto/cadastro';
                 }
             },
             {
@@ -46,26 +46,21 @@ $(document).ready(function () {
             }
         ],
         "ajax": {
-            "url": '/api/imovel/imoveis',
+            "url": '/api/classificador/quartos',
             "type": "GET",
             "datatype": "json",
             dataSrc:""
         },
         "columns": [
             { "data": "id" },
-            { "data": "negocio.nome" },
-            { "data": "categoria.nome" },
-            { "data": "bairro.municipio.estado.nome" },
-            { "data": "quarto.quantidade" },
-            { "data": "valor" },
+            { "data": "quantidade" },
+            { "data": "descricao" },
             {
                 "data": null, "render": function (data) {
-                    return '<a class="btn btn-success" href="/imovel/visualizar/'+data.id+'">'+
-                    '<i class="fas fa-eye"></i> Ver</a>'+
-                    '<a class="btn btn-primary" href="/imovel/editar/'+data.id+'">'+
+                    return '<a class="btn btn-primary" href="/classificador/quarto/editar/'+data.id+'">'+
                     '<i class="fas fa-pen"></i> Editar</a><a class="btn btn-danger" '+
                     'onclick="return confirm(\'Tem certeza que deseja excluir esse registro?\');" '+
-                    'href="/imovel/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
+                    'href="/classificador/quarto/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
                 }
             }
         ],

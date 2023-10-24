@@ -37,9 +37,9 @@ public class ClassificadorService {
     }
 
     public Categoria findCategoriaById(Long id) {
-        Optional<CategoriaEntity> categoria = catRep.findById(id);
-        if(!categoria.isEmpty()) {
-            return modelMapper.map(categoria.get(), Categoria.class);
+        Optional<CategoriaEntity> categoriaEntity = catRep.findById(id);
+        if (!categoriaEntity.isEmpty()) {
+            return modelMapper.map(categoriaEntity.get(), Categoria.class);
         }
         return null;
     }
@@ -65,8 +65,11 @@ public class ClassificadorService {
     }
 
     public Negocio findNegocioById(Long id) {
-        NegocioEntity negocio = negRep.findById(id).get();
-        return modelMapper.map(negocio, Negocio.class);
+        Optional<NegocioEntity> negocioEntity = negRep.findById(id);
+        if (!negocioEntity.isEmpty()) {
+            return modelMapper.map(negocioEntity.get(), Negocio.class);
+        }
+        return null;
     }
 
     public Negocio saveNegocio(Negocio negocio) {
@@ -90,8 +93,11 @@ public class ClassificadorService {
     }
 
     public Quarto findQuartoById(Long id) {
-        QuartoEntity quarto = quaRep.findById(id).get();
-        return modelMapper.map(quarto, Quarto.class);
+        Optional<QuartoEntity> quartoEntity = quaRep.findById(id);
+        if (!quartoEntity.isEmpty()) {
+            return modelMapper.map(quartoEntity.get(), Quarto.class);
+        }
+        return null;
     }
 
     public Quarto saveQuarto(Quarto quarto) {

@@ -2,8 +2,12 @@ package imobiliaria.Service;
 
 import imobiliaria.Entity.CategoriaEntity;
 import imobiliaria.Entity.ImovelEntity;
+import imobiliaria.Entity.NegocioEntity;
+import imobiliaria.Entity.QuartoEntity;
 import imobiliaria.Model.Categoria;
 import imobiliaria.Model.Imovel;
+import imobiliaria.Model.Negocio;
+import imobiliaria.Model.Quarto;
 import imobiliaria.Repository.ImovelRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,14 +46,26 @@ public class ImovelService {
         return null;
     }
 
-    public Imovel findImovelByNegocio(Long id) {
-        ImovelEntity imovelEntity = rep.findByNegocio(id);
-        return modelMapper.map(imovelEntity, Imovel.class);
+    public Imovel findImovelByNegocio(Negocio negocio) {
+        if(negocio.getId() != null) {
+            NegocioEntity negocioEntity = modelMapper.map(negocio, NegocioEntity.class);
+            ImovelEntity imovelEntity = rep.findByNegocio(negocioEntity);
+            if(imovelEntity != null) {
+                return modelMapper.map(imovelEntity, Imovel.class);
+            }
+        }
+        return null;
     }
 
-    public Imovel findImovelByQuarto(Long id) {
-        ImovelEntity imovelEntity = rep.findByQuarto(id);
-        return modelMapper.map(imovelEntity, Imovel.class);
+    public Imovel findImovelByQuarto(Quarto quarto) {
+        if(quarto.getId() != null) {
+            QuartoEntity quartoEntity = modelMapper.map(quarto, QuartoEntity.class);
+            ImovelEntity imovelEntity = rep.findByQuarto(quartoEntity);
+            if(imovelEntity != null) {
+                return modelMapper.map(imovelEntity, Imovel.class);
+            }
+        }
+        return null;
     }
 
     public Imovel findImovelByBairro(Long id) {

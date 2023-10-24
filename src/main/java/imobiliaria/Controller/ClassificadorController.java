@@ -142,12 +142,16 @@ public class ClassificadorController {
 
     @GetMapping("/negocio/excluir/{id}")
     public ModelAndView excluirNegocio(@PathVariable Long id, RedirectAttributes ra) {
-        if (servImo.findImovelByNegocio(id) != null) {
-            ra.addFlashAttribute("customMessage", "Não é possível excluir um negócio com imóveis vinculados.");
-            return new ModelAndView("redirect:/classificador/negocios");
+        Negocio negocio = servCla.findNegocioById(id);
+        if(negocio != null) {
+            if (servImo.findImovelByNegocio(negocio) != null) {
+                ra.addFlashAttribute("customMessage", "Não é possível excluir um negócio com imóveis vinculados.");
+            }
+            servCla.excluirNegocioById(id);
+            ra.addFlashAttribute("sucesso", "O Negócio foi excluído com sucesso.");
+        } else {
+            ra.addFlashAttribute("erro", "O Negócio não foi encontrado.");
         }
-        servCla.excluirNegocioById(id);
-        ra.addFlashAttribute("sucesso", "O Negócio foi excluído com sucesso.");
         return new ModelAndView("redirect:/classificador/negocios");
     }
 
@@ -209,12 +213,16 @@ public class ClassificadorController {
 
     @GetMapping("/quarto/excluir/{id}")
     public ModelAndView excluirQuarto(@PathVariable Long id, RedirectAttributes ra) {
-        if (servImo.findImovelByQuarto(id) != null) {
-            ra.addFlashAttribute("customMessage", "Não é possível excluir um quarto com imóveis vinculados");
-            return new ModelAndView("redirect:/classificador/quartos");
+        Quarto quarto = servCla.findQuartoById(id);
+        if(quarto != null) {
+            if (servImo.findImovelByQuarto(quarto) != null) {
+                ra.addFlashAttribute("customMessage", "Não é possível excluir um quarto com imóveis vinculados.");
+            }
+            servCla.excluirQuartoById(id);
+            ra.addFlashAttribute("sucesso", "O Quarto foi excluído com sucesso.");
+        } else {
+            ra.addFlashAttribute("erro", "O Quarto não foi encontrado.");
         }
-        servCla.excluirQuartoById(id);
-        ra.addFlashAttribute("sucesso", "O Quarto foi excluído com sucesso.");
         return new ModelAndView("redirect:/classificador/quartos");
     }
 

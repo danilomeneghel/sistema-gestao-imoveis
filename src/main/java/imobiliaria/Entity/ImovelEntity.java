@@ -54,6 +54,6 @@ public class ImovelEntity {
     private EstadoEntity estado;
 
     @OneToMany(mappedBy = "imovel", cascade = CascadeType.REMOVE)
-    private List<ImagemEntity> imagem;
+    private List<ImagemEntity> imagens;
 
 }
