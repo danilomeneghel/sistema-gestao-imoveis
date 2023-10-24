@@ -8,7 +8,7 @@ $(document).ready(function () {
                 titleAttr: 'Adicionar',
                 className: 'btn btn-success buttons-add',
                 action: function (e, dt, node, config) {
-                    window.location.href = '/localidade/bairro/cadastro';
+                    window.location.href = '/imovel/cadastro';
                 }
             },
             {
@@ -46,22 +46,24 @@ $(document).ready(function () {
             }
         ],
         "ajax": {
-            "url": '/api/localidade/bairros',
+            "url": '/api/imovel/imoveis',
             "type": "GET",
             "datatype": "json",
             dataSrc:""
         },
         "columns": [
             { "data": "id" },
-            { "data": "nome" },
-            { "data": "municipio.nome" },
-            { "data": "municipio.estado.nome" },
+            { "data": "negocio.nome" },
+            { "data": "categoria.nome" },
+            { "data": "bairro.municipio.estado.nome" },
+            { "data": "quarto.quantidade" },
+            { "data": "valor" },
             {
                 "data": null, "render": function (data) {
-                    return '<a class="btn btn-primary" href="/localidade/bairro/editar/'+data.id+'">'+
+                    return '<a class="btn btn-primary" href="/imovel/editar/'+data.id+'">'+
                     '<i class="fas fa-pen"></i> Editar</a><a class="btn btn-danger" '+
                     'onclick="return confirm(\'Tem certeza que deseja excluir esse registro?\');" '+
-                    'href="/localidade/bairro/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
+                    'href="/imovel/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
                 }
             }
         ],

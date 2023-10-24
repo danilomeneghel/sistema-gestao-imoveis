@@ -8,7 +8,7 @@ $(document).ready(function () {
                 titleAttr: 'Adicionar',
                 className: 'btn btn-success buttons-add',
                 action: function (e, dt, node, config) {
-                    window.location.href = '/localidade/bairro/cadastro';
+                    window.location.href = '/localidade/municipio/cadastro';
                 }
             },
             {
@@ -46,7 +46,7 @@ $(document).ready(function () {
             }
         ],
         "ajax": {
-            "url": '/api/localidade/bairros',
+            "url": '/api/localidade/municipios',
             "type": "GET",
             "datatype": "json",
             dataSrc:""
@@ -54,14 +54,13 @@ $(document).ready(function () {
         "columns": [
             { "data": "id" },
             { "data": "nome" },
-            { "data": "municipio.nome" },
-            { "data": "municipio.estado.nome" },
+            { "data": "estado.nome" },
             {
                 "data": null, "render": function (data) {
-                    return '<a class="btn btn-primary" href="/localidade/bairro/editar/'+data.id+'">'+
+                    return '<a class="btn btn-primary" href="/localidade/municipio/editar/'+data.id+'">'+
                     '<i class="fas fa-pen"></i> Editar</a><a class="btn btn-danger" '+
                     'onclick="return confirm(\'Tem certeza que deseja excluir esse registro?\');" '+
-                    'href="/localidade/bairro/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
+                    'href="/localidade/municipio/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
                 }
             }
         ],

@@ -1,16 +1,14 @@
 $(document).ready(function () {
     dataTable = $('#data-table').DataTable({
         responsive:true,
-        dom: 'frtilpB',
+        dom: 'Bfrtip',
         buttons:[
             {
-                extend:    'excelHtml5',
-                text:      '<i class="fas fa-file-excel"></i> ',
-                titleAttr: 'Exportar para Excel',
-                className: 'btn btn-success',
-                orientation:'landscape',
-                exportOptions: {
-                    columns: ':visible :not(:last-child)'
+                text:      '<i class="fas fa-plus"></i> Adicionar',
+                titleAttr: 'Adicionar',
+                className: 'btn btn-success buttons-add',
+                action: function (e, dt, node, config) {
+                    window.location.href = '/classificador/categoria/cadastro';
                 }
             },
             {
@@ -24,6 +22,16 @@ $(document).ready(function () {
                 },
                 customize: function (doc) {
                     doc.content[1].table.widths = "*";
+                }
+            },
+            {
+                extend:    'excelHtml5',
+                text:      '<i class="fas fa-file-excel"></i> ',
+                titleAttr: 'Exportar para Excel',
+                className: 'btn btn-success',
+                orientation:'landscape',
+                exportOptions: {
+                    columns: ':visible :not(:last-child)'
                 }
             },
             {

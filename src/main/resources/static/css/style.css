@@ -9,14 +9,12 @@ body {
     padding-right: 22px !important;
 }
 
-#menu-toggle {
-    margin-top: 2px !important;
-    margin-left: 0px !important;
-    margin-right: 10px !important;
+.titulo {
+    float: left !important;
 }
 
 .distanciamento {
-	padding:10px;
+	padding: 10px 8px;
 }
 
 .bg-dark {
@@ -104,7 +102,8 @@ body {
 }
 
 .navbar {
-    padding: 10px !important;
+    padding: 8px !important;
+    justify-content: left !important;
 }
 
 .text-center {
@@ -112,15 +111,35 @@ body {
 }
 
 #data-table_wrapper {
-    margin-top: 10px !important;
+    margin-top: 0px !important;
+}
+
+#data-table_wrapper .dt-buttons {
+    display: block !important;
+    text-align: right !important;
+    margin-bottom: 5px !important;
+}
+
+#data-table_filter {
+    text-align: right !important;
 }
 
 #data-table {
     width: 100% !important;
+    margin-top: 10px !important;
+}
+
+#data-table td, #data-table th {
+    padding: 2px 4px !important;
 }
 
 #data-table th:last-child {
     width: 20% !important;
+    text-align: center !important;
+}
+
+#data-table tr td:last-child {
+    text-align: right !important;
 }
 
 #data-table_info {
@@ -135,29 +154,36 @@ body {
 
 #data-table_paginate {
     min-height: 48px !important;
-    margin-top: 10px !important;
+    margin-top: 8px !important;
 }
 
 .pagination {
     float: right !important;
 }
 
-.buttons-excel {
-    min-width: 40px !important;
-    margin-right: .5rem !important;
+.buttons-add {
+    min-width: 50px !important;
+    margin-right: 3px !important;
     border: 0px !important;
     border-radius: .1rem !important;
 }
 
 .buttons-pdf {
-    min-width: 40px !important;
-    margin-right: .5rem !important;
+    min-width: 50px !important;
+    margin-right: 3px !important;
+    border: 0px !important;
+    border-radius: .1rem !important;
+}
+
+.buttons-excel {
+    min-width: 50px !important;
+    margin-right: 3px !important;
     border: 0px !important;
     border-radius: .1rem !important;
 }
 
 .buttons-print {
-    min-width: 40px !important;
+    min-width: 50px !important;
     color: #fff !important;
     border: 0px !important;
     border-radius: .1rem !important;
@@ -166,7 +192,7 @@ body {
 
 #data-table .btn-primary, #data-table .btn-success, #data-table .btn-danger {
     min-width: 90px !important;
-    margin: 3px !important;
+    margin: 2px !important;
 }
 
 .btn-primary, .btn-success, .btn-danger, .btn-info {
