@@ -4,7 +4,6 @@ import imobiliaria.Entity.CategoriaEntity;
 import imobiliaria.Entity.ImovelEntity;
 import imobiliaria.Entity.NegocioEntity;
 import imobiliaria.Entity.QuartoEntity;
-import imobiliaria.Model.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
 

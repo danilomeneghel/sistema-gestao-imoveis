@@ -2,7 +2,6 @@ package imobiliaria.Repository;
 
 import imobiliaria.Entity.EstadoEntity;
 import imobiliaria.Entity.MunicipioEntity;
-import imobiliaria.Model.Estado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

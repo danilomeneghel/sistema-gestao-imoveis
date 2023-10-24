@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,8 +32,11 @@ public class ImovelService {
     }
 
     public Imovel findImovelById(Long id) {
-        ImovelEntity imovelEntity = rep.findById(id).get();
-        return modelMapper.map(imovelEntity, Imovel.class);
+        Optional<ImovelEntity> imovelEntity = rep.findById(id);
+        if(!imovelEntity.isEmpty()) {
+            return modelMapper.map(imovelEntity.get(), Imovel.class);
+        }
+        return null;
     }
 
     public Imovel findImovelByCategoria(Categoria categoria) {

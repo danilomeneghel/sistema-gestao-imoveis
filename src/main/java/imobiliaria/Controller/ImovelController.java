@@ -1,8 +1,6 @@
 package imobiliaria.Controller;
 
-import imobiliaria.Model.Bairro;
-import imobiliaria.Model.Imovel;
-import imobiliaria.Model.Municipio;
+import imobiliaria.Model.*;
 import imobiliaria.Service.ClassificadorService;
 import imobiliaria.Service.ImovelService;
 import imobiliaria.Service.LocalidadeService;
@@ -125,12 +123,21 @@ public class ImovelController {
     public ModelAndView editarBairro(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("imovel/imovelEditar");
         Imovel imovel = iServ.findImovelById(id);
-        mv.addObject("imovel", imovel);
+        List<Quarto> quartos = cServ.findAllQuartos();
+        List<Bairro> bairros = lServ.findAllBairros();
+        List<Municipio> municipios = lServ.findAllMunicipios();
+        List<Estado> estados = lServ.findAllEstados();
+
         addObj(mv);
-        mv.addObject("municipios", imovel.getMunicipio());
-        mv.addObject("bairros", imovel.getBairro());
-        mv.addObject("idEstado", imovel.getEstado().getId());
-        mv.addObject("idMunicipio", imovel.getMunicipio().getId());
+        mv.addObject("imovel", imovel);
+        mv.addObject("quartos", quartos);
+        mv.addObject("bairros", bairros);
+        mv.addObject("municipios", municipios);
+        mv.addObject("estados", estados);
+        mv.addObject("idQuarto", imovel.getQuarto().getId());
+        mv.addObject("idBairro", imovel.getBairro().getId());
+        mv.addObject("idMunicipio", imovel.getBairro().getMunicipio().getId());
+        mv.addObject("idEstado", imovel.getBairro().getMunicipio().getEstado().getId());
         return mv;
     }
 
@@ -193,8 +200,13 @@ public class ImovelController {
 
     @GetMapping("/excluir/{id}")
     public ModelAndView excluirImovel(@PathVariable Long id, RedirectAttributes ra) {
-        iServ.excluirImovelById(id);
-        ra.addFlashAttribute("sucesso", "O Imóvel foi excluido com sucesso.");
+        Imovel imovel = iServ.findImovelById(id);
+        if(imovel != null) {
+            iServ.excluirImovelById(id);
+            ra.addFlashAttribute("sucesso", "O Imóvel foi excluído com sucesso.");
+        } else {
+            ra.addFlashAttribute("erro", "O Imóvel não foi encontrado.");
+        }
         return new ModelAndView("redirect:/imovel/todos");
     }
 
