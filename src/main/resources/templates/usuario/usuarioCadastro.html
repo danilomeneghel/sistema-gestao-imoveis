@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout.html}">
+<head>
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+<section layout:fragment="content" class="distanciamento">
+    <h3 class="inline">Novo Usuário</h3>
+    <a class="btn btn-primary voltar" th:href="@{/usuario/todos}">
+        <i class="fas fa-arrow-left"></i> Voltar</a>
+
+    <form th:action="@{/usuario/cadastro-preenchido}" method="post" th:object="${usuario}">
+        <div th:replace="fragments/mensagemErro"></div>
+        <div th:replace="fragments/mensagemSucesso"></div>
+        <div class="form-item" th:classappend="${#fields.hasErrors('name')}? is-invalid">
+            <label for="name">Nome</label>
+            <input class="form-control" id="name" th:field="*{name}"
+                   placeholder="Digite o nome da Usuario" required>
+        </div>
+        <div class="form-item" th:classappend="${#fields.hasErrors('email')}? is-invalid">
+            <label for="email">E-mail</label>
+            <input class="form-control" id="email" th:field="*{email}"
+                   placeholder="Digite o E-mail" required>
+        </div>
+        <div class="form-item" th:classappend="${#fields.hasErrors('username')}? is-invalid">
+            <label for="username">Usuário</label>
+            <input class="form-control" id="username" th:field="*{username}"
+                   placeholder="Digite o Usuario" required>
+        </div>
+        <div class="form-item" th:classappend="${#fields.hasErrors('password')}? is-invalid">
+            <label for="password">Senha</label>
+            <input class="form-control" id="password" th:field="*{password}"
+                   placeholder="Digite a Senha" required>
+        </div>
+        <div class="form-item col-5" th:classappend="${erroRole}? is-invalid">
+            <label for="role-select">Role</label>
+            <select id="role-select" th:field="*{roles}" class="form-control">
+                <option value="" selected>Escolha a role</option>
+                <option th:selected="${r.tipo==tipoRole}" th:each="r:${roles}" th:value="${r.tipo}" th:text="${r.nome}">
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-save"></i> Salvar
+        </button>
+    </form>
+</section>
+</body>
+</html>

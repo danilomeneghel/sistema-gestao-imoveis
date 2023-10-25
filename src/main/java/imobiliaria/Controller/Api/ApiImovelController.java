@@ -21,13 +21,18 @@ public class ApiImovelController {
     @Autowired
     private ImovelService imovelService;
 
-    @GetMapping("/imoveis")
+    @GetMapping("/todos")
     public ResponseEntity<List<Imovel>> mostrarImoveis() {
         return new ResponseEntity<>(imovelService.findAllImoveis(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Imovel> buscarImovelPorId(@PathVariable Long id) {
+        return new ResponseEntity<>(imovelService.findImovelById(id), HttpStatus.OK);
+    }
+
     @PostMapping("/imovel/cadastro")
-    public ResponseEntity<Imovel> cadastroImovel(@RequestBody Imovel imovel) {
+    public ResponseEntity<Imovel> cadastrarImovel(@RequestBody Imovel imovel) {
         return new ResponseEntity<>(imovelService.saveImovel(imovel), HttpStatus.CREATED);
     }
 

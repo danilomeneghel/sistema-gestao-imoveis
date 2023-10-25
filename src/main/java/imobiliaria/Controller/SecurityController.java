@@ -1,7 +1,7 @@
 package imobiliaria.Controller;
 
 import imobiliaria.Model.Usuario;
-import imobiliaria.Service.MyUserDetailsService;
+import imobiliaria.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class SecurityController {
 
     @Autowired
-    private MyUserDetailsService userServ;
+    private UsuarioService usuarioService;
 
     @GetMapping("/login")
     public ModelAndView loginPage() {
@@ -33,7 +33,7 @@ public class SecurityController {
     public ModelAndView cadastrando(@Validated Usuario usuario, Errors errors) {
         ModelAndView mv = new ModelAndView("redirect:/");
         boolean erro = false;
-        if (userServ.emailExistente(usuario.getEmail())) {
+        if (usuarioService.emailExistente(usuario.getEmail())) {
             mv.addObject("customMessage", "O e-mail já foi cadastrado");
             mv.addObject("erroEmail", true);
             erro = true;
@@ -45,7 +45,7 @@ public class SecurityController {
         }
         usuario.setActive(true);
         usuario.setRoles("ROLE_USER");
-        userServ.saveNewUser(usuario);
+        usuarioService.saveUsuario(usuario);
 
         return mv;
     }

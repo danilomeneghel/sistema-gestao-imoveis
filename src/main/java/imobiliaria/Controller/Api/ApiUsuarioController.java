@@ -1,7 +1,7 @@
 package imobiliaria.Controller.Api;
 
 import imobiliaria.Model.Usuario;
-import imobiliaria.Service.MyUserDetailsService;
+import imobiliaria.Service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,21 +18,41 @@ import java.util.List;
 public class ApiUsuarioController {
 
     @Autowired
-    private MyUserDetailsService myUserDetailsService;
+    private UsuarioService usuarioService;
 
-    @GetMapping("/{username}")
-    public ResponseEntity<Usuario> findUserByUsername(@PathVariable String username) {
-        return new ResponseEntity<>(myUserDetailsService.findUserByUsername(username), HttpStatus.OK);
+    @GetMapping("/todos")
+    public ResponseEntity<List<Usuario>> mostrarUsuarios() {
+        return new ResponseEntity<>(usuarioService.findAllUsuarios(), HttpStatus.OK);
     }
 
-    @GetMapping("/usuarios")
-    public ResponseEntity<List<Usuario>> mostrarUsuarios() {
-        return new ResponseEntity<>(myUserDetailsService.findAllUsers(), HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable Long id) {
+        return new ResponseEntity<>(usuarioService.findUsuarioById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<Usuario> buscarUsuario(@PathVariable String username) {
+        return new ResponseEntity<>(usuarioService.findUsuarioByUsername(username), HttpStatus.OK);
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<Usuario> cadastroUsuario(@RequestBody Usuario usuario) {
-        return new ResponseEntity<>(myUserDetailsService.saveNewUser(usuario), HttpStatus.CREATED);
+    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {
+        return new ResponseEntity<>(usuarioService.saveUsuario(usuario), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/usuario/editar/{id}")
+    public ResponseEntity<Usuario> editarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+        Usuario usu = usuarioService.findUsuarioById(id);
+        if (usu == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        usuario.setId(usu.getId());
+        return new ResponseEntity<>(usuarioService.saveUsuario(usuario), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/usuario/excluir/{id}")
+    public void excluirUsuario(@PathVariable Long id) {
+        usuarioService.excluirUsuarioById(id);
     }
 
 }
