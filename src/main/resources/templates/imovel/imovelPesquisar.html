@@ -86,7 +86,7 @@
 			</form>
 		</div>
 		
-		<table class="table table-striped" th:if="${imobiliaria}">
+		<table class="table table-striped" th:if="${imoveis}">
 			<thead>
 				<tr>
 					<th class="col-1">Id</th>
@@ -99,7 +99,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="imovel:${imobiliaria}">
+				<tr th:each="imovel:${imoveis}">
 					<td th:text="${imovel.id}"/>
 					<td th:text="${imovel.negocio.nome}"/>
 					<td th:text="${imovel.categoria.nome}"/>
@@ -114,7 +114,7 @@
 					</td>
 				</tr>
 				<tr class="text-center">
-					 <td colspan="7" th:if="${#lists.isEmpty(imobiliaria)}">Nenhum imóvel encontrado</td>
+					 <td colspan="7" th:if="${#lists.isEmpty(imoveis)}">Nenhum imóvel encontrado</td>
 				</tr>
 			</tbody>
 		</table>

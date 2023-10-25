@@ -55,7 +55,15 @@ $(document).ready(function () {
             { "data": "id" },
             { "data": "name" },
             { "data": "username" },
-            { "data": "roles" },
+            {
+                "data": "roles", "render": function (data) {
+                    if (data == 'ROLE_ADMIN') {
+                        return '<span class="badge bg-primary">Administrador</span>'
+                    } else {
+                        return '<span class="badge bg-secondary">Usuário</span>'
+                    }
+                }
+            },
             {
                 "data": null, "render": function (data) {
                     return '<a class="btn btn-primary" href="/usuario/editar/'+data.id+'">'+

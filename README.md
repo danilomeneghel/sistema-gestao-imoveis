@@ -46,13 +46,13 @@ OBS: É necessário ter o Docker e docker-compose instalado.
 Caso não tenha instalado o Docker ou dê alguma falha na instalação, tente com os comandos abaixo.
 
 ### MySql
-Crie um banco de dados com o nome "imobiliaria" no seu Mysql.<br>
+Crie um banco de dados com o nome "imoveis" no seu Mysql.<br>
 Abra o arquivo .env e efetue a configuração correta para conexão do seu banco de dados.<br>
 
 ```
 $ mysql -u<seu usuário> -p<sua senha>
 
-mysql> create database `imobiliaria`;
+mysql> create database `imoveis`;
 ```
 
 ### Maven
