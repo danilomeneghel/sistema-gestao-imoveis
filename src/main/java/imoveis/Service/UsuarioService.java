@@ -1,15 +1,11 @@
 package imoveis.Service;
 
-import imoveis.Configuration.UserPasswordEncoder;
 import imoveis.Entity.UsuarioEntity;
-import imoveis.Model.MyUserDetails;
 import imoveis.Model.Usuario;
 import imoveis.Repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,22 +13,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService {
 
     @Autowired
     private UsuarioRepository rep;
 
     @Autowired
-    private UserPasswordEncoder encoder;
+    private PasswordEncoder passwordEncoder;
 
     private ModelMapper modelMapper = new ModelMapper();
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UsuarioEntity> user = rep.findByUsername(username);
-        user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
-        return user.map(MyUserDetails::new).get();
-    }
 
     public List<Usuario> findAllUsuarios() {
         List<UsuarioEntity> usuarios = rep.findAll();
@@ -53,7 +42,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public Usuario saveUsuario(Usuario usuario) {
-        usuario.setPassword(encoder.setEncoder(usuario.getPassword()));
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         UsuarioEntity usuarioEntity = modelMapper.map(usuario, UsuarioEntity.class);
         UsuarioEntity saveUsuario = rep.save(usuarioEntity);
         return modelMapper.map(saveUsuario, Usuario.class);

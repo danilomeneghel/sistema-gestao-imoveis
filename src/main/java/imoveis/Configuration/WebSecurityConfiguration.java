@@ -1,6 +1,6 @@
 package imoveis.Configuration;
 
-import imoveis.Service.UsuarioService;
+import imoveis.Service.MyUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UsuarioService usuarioService;
+    private final MyUserDetailsService myUserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -50,7 +50,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(getPasswordEncoder());
-        provider.setUserDetailsService(usuarioService);
+        provider.setUserDetailsService(myUserService);
         return provider;
     }
 

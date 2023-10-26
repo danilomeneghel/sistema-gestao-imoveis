@@ -36,7 +36,7 @@ body {
 
 .dropdown-menu {
     transform: translate3d(240px, 227px, 0px) !important;
-    top: 0px !important;
+    top: -48px !important;
     left: -1px !important;
     padding: 0px !important;
 }

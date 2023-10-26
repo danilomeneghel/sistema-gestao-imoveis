@@ -36,7 +36,7 @@
                    placeholder="Digite a Senha" required>
         </div>
         <div class="form-item col-5" th:classappend="${erroRole}? is-invalid">
-            <label for="role-select">Role</label>
+            <label for="role-select">Função</label>
             <select id="role-select" th:field="*{roles}" class="form-control">
                 <option value="" selected>Escolha a role</option>
                 <option th:selected="${r.tipo==tipoRole}" th:each="r:${roles}" th:value="${r.tipo}" th:text="${r.nome}">

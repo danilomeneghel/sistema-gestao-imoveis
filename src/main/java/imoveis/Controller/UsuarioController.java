@@ -2,7 +2,7 @@ package imoveis.Controller;
 
 import imoveis.Enums.Role;
 import imoveis.Model.Usuario;
-import imoveis.Service.*;
+import imoveis.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
