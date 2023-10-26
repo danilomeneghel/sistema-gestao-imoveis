@@ -1,19 +1,19 @@
 package imoveis.Enums;
 
-public enum Role {
+public enum Ativo {
 
-    ADMIN("ROLE_ADMIN", "Administrador"),
-    USER("ROLE_USER","Usuário");
+    INATIVO(false, "Inativo"),
+    ATIVO(true, "Ativo");
 
-    private final String valor;
+    private final boolean valor;
     private final String nome;
 
-    private Role(String valor, String nome) {
+    private Ativo(boolean valor, String nome) {
         this.valor = valor;
         this.nome = nome;
     }
 
-    public String getValor() {
+    public boolean getValor() {
         return valor;
     }
 

@@ -39,8 +39,15 @@
         <div class="form-item col-5" th:classappend="${erroRole}? is-invalid">
             <label for="role-select">Função</label>
             <select id="role-select" th:field="*{roles}" class="form-control">
-                <option value="" selected>Escolha a role</option>
-                <option th:selected="${r.tipo==tipoRole}" th:each="r:${roles}" th:value="${r.tipo}" th:text="${r.nome}">
+                <option value="" selected>Escolha a função</option>
+                <option th:selected="${r.valor==valorRole}" th:each="r:${roles}" th:value="${r.valor}" th:text="${r.nome}">
+            </select>
+        </div>
+        <div class="form-item col-5" th:classappend="${erroAtivo}? is-invalid">
+            <label for="ativo-select">Ativo</label>
+            <select id="ativo-select" class="form-control" th:field="*{active}">
+                <option th:value="1" >Ativo</option>
+                <option th:value="0" >Inativo</option>
             </select>
         </div>
         <input type="hidden" th:field="*{id}">

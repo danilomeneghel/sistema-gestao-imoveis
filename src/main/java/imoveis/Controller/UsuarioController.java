@@ -1,5 +1,6 @@
 package imoveis.Controller;
 
+import imoveis.Enums.Ativo;
 import imoveis.Enums.Role;
 import imoveis.Model.Usuario;
 import imoveis.Service.UsuarioService;
@@ -32,6 +33,7 @@ public class UsuarioController {
     public ModelAndView cadastroUsuario() {
         ModelAndView mv = new ModelAndView("usuario/usuarioCadastro");
         mv.addObject("usuario", new Usuario());
+        mv.addObject("active", Ativo.values());
         mv.addObject("roles", Role.values());
         return mv;
     }
@@ -42,7 +44,7 @@ public class UsuarioController {
         if (errors.hasErrors()) {
             return mv;
         }
-        mv.addObject("sucesso", "A Usuario foi cadastrada com sucesso!");
+        mv.addObject("sucesso", "O Usuário foi cadastrado com sucesso!");
         uServ.saveUsuario(usuario);
         mv.addObject("usuario", new Usuario());
         return mv;
@@ -53,7 +55,9 @@ public class UsuarioController {
         ModelAndView mv = new ModelAndView("usuario/usuarioEditar");
         Usuario usuario = uServ.findUsuarioById(id);
         mv.addObject("usuario", usuario);
-        mv.addObject("tipoRole", usuario.getRoles());
+        mv.addObject("valorAtivo", usuario.isActive());
+        mv.addObject("active", Ativo.values());
+        mv.addObject("valorRole", usuario.getRoles());
         mv.addObject("roles", Role.values());
         return mv;
     }
@@ -64,7 +68,7 @@ public class UsuarioController {
         if (errors.hasErrors()) {
             return mv;
         }
-        mv.addObject("sucesso", "A Usuario foi atualizada com sucesso!");
+        mv.addObject("sucesso", "O Usuário foi atualizado com sucesso!");
         uServ.saveUsuario(usuario);
         return mv;
     }
@@ -74,22 +78,11 @@ public class UsuarioController {
         Usuario usuario = uServ.findUsuarioById(id);
         if(usuario != null) {
             uServ.excluirUsuarioById(id);
-            ra.addFlashAttribute("sucesso", "A Usuario foi excluído com sucesso.");
+            ra.addFlashAttribute("sucesso", "O Usuário foi excluído com sucesso.");
         } else {
-            ra.addFlashAttribute("erro", "A Usuario não foi encontrado.");
+            ra.addFlashAttribute("erro", "O Usuário não foi encontrado.");
         }
         return new ModelAndView("redirect:/usuario/todos");
-    }
-
-    @GetMapping("/pesquisa")
-    public ModelAndView pesquisar(String pesquisa) {
-        ModelAndView mv = new ModelAndView("usuario/usuarios");
-        mv.addObject("usuarios", uServ.findUsuarioByUsername(pesquisa));
-        if (pesquisa.isBlank()) {
-            return mv;
-        }
-        mv.addObject("texto_busca", " contendo " + pesquisa);
-        return mv;
     }
 
 }

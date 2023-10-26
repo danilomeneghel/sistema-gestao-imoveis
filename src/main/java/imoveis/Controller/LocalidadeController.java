@@ -84,17 +84,6 @@ public class LocalidadeController {
         return new ModelAndView("redirect:/localidade/estados");
     }
 
-    @GetMapping("/estado/pesquisa")
-    public ModelAndView pesquisarEstado(String pesquisa) {
-        ModelAndView mv = new ModelAndView("estado/estados");
-        mv.addObject("estados", localidadeService.findEstadoByNome(pesquisa));
-        if (pesquisa.isBlank()) {
-            return mv;
-        }
-        mv.addObject("texto_busca", " contendo " + pesquisa);
-        return mv;
-    }
-
     @GetMapping("/municipios")
     public ModelAndView showMunicipios() {
         ModelAndView mv = new ModelAndView("municipio/municipios");
@@ -161,17 +150,6 @@ public class LocalidadeController {
         localidadeService.excluirMunicipioById(id);
         ra.addFlashAttribute("sucesso", "O município foi excluído com sucesso");
         return new ModelAndView("redirect:/localidade/municipios");
-    }
-
-    @GetMapping("/municipio/pesquisa")
-    public ModelAndView pesquisarMunicipio(String pesquisa) {
-        ModelAndView mv = new ModelAndView("municipio/municipios");
-        mv.addObject("municipios", localidadeService.findMunicipioByNome(pesquisa));
-        if (pesquisa.isBlank()) {
-            return mv;
-        }
-        mv.addObject("texto_busca", " contendo " + pesquisa);
-        return mv;
     }
 
     @GetMapping("/bairros")
@@ -268,17 +246,6 @@ public class LocalidadeController {
         localidadeService.excluirBairroById(id);
         ra.addFlashAttribute("sucesso", "O bairro foi excluído com sucesso");
         return new ModelAndView("redirect:/local/bairros");
-    }
-
-    @GetMapping("/bairro/pesquisa")
-    public ModelAndView pesquisarBairro(String pesquisa) {
-        ModelAndView mv = new ModelAndView("bairro/bairros");
-        mv.addObject("bairros", localidadeService.findBairroByNome(pesquisa));
-        if (pesquisa.isBlank()) {
-            return mv;
-        }
-        mv.addObject("texto_busca", " contendo " + pesquisa);
-        return mv;
     }
 
 }

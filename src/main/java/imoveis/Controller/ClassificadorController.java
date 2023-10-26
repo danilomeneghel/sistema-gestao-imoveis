@@ -73,7 +73,7 @@ public class ClassificadorController {
     @GetMapping("/categoria/excluir/{id}")
     public ModelAndView excluirCategoria(@PathVariable Long id, RedirectAttributes ra) {
         Categoria categoria = servCla.findCategoriaById(id);
-        if(categoria != null) {
+        if (categoria != null) {
             if (servImo.findImovelByCategoria(categoria) != null) {
                 ra.addFlashAttribute("customMessage", "Não é possível excluir uma categoria com imóveis vinculados.");
             }
@@ -83,17 +83,6 @@ public class ClassificadorController {
             ra.addFlashAttribute("erro", "A Categoria não foi encontrada.");
         }
         return new ModelAndView("redirect:/classificador/categorias");
-    }
-
-    @GetMapping("/categoria/pesquisa")
-    public ModelAndView pesquisar(String pesquisa) {
-        ModelAndView mv = new ModelAndView("categoria/categorias");
-        mv.addObject("categorias", servCla.findCategoriaByNome(pesquisa));
-        if (pesquisa.isBlank()) {
-            return mv;
-        }
-        mv.addObject("texto_busca", " contendo " + pesquisa);
-        return mv;
     }
 
     @GetMapping("/negocios")
@@ -143,7 +132,7 @@ public class ClassificadorController {
     @GetMapping("/negocio/excluir/{id}")
     public ModelAndView excluirNegocio(@PathVariable Long id, RedirectAttributes ra) {
         Negocio negocio = servCla.findNegocioById(id);
-        if(negocio != null) {
+        if (negocio != null) {
             if (servImo.findImovelByNegocio(negocio) != null) {
                 ra.addFlashAttribute("customMessage", "Não é possível excluir um negócio com imóveis vinculados.");
             }
@@ -153,17 +142,6 @@ public class ClassificadorController {
             ra.addFlashAttribute("erro", "O Negócio não foi encontrado.");
         }
         return new ModelAndView("redirect:/classificador/negocios");
-    }
-
-    @GetMapping("/negocio/pesquisa")
-    public ModelAndView pesquisarNegocio(String pesquisa) {
-        ModelAndView mv = new ModelAndView("negocio/negocios");
-        mv.addObject("negocios", servCla.findNegocioByNome(pesquisa));
-        if (pesquisa.isBlank()) {
-            return mv;
-        }
-        mv.addObject("texto_busca", " contendo " + pesquisa);
-        return mv;
     }
 
     @GetMapping("/quartos")
@@ -214,7 +192,7 @@ public class ClassificadorController {
     @GetMapping("/quarto/excluir/{id}")
     public ModelAndView excluirQuarto(@PathVariable Long id, RedirectAttributes ra) {
         Quarto quarto = servCla.findQuartoById(id);
-        if(quarto != null) {
+        if (quarto != null) {
             if (servImo.findImovelByQuarto(quarto) != null) {
                 ra.addFlashAttribute("customMessage", "Não é possível excluir um quarto com imóveis vinculados.");
             }
@@ -224,17 +202,6 @@ public class ClassificadorController {
             ra.addFlashAttribute("erro", "O Quarto não foi encontrado.");
         }
         return new ModelAndView("redirect:/classificador/quartos");
-    }
-
-    @GetMapping("/quarto/pesquisa")
-    public ModelAndView pesquisarQuarto(Integer pesquisa) {
-        ModelAndView mv = new ModelAndView("quarto/quartos");
-        mv.addObject("quartos", servCla.findQuartoByQuantidade(pesquisa));
-        if (pesquisa == null) {
-            return mv;
-        }
-        mv.addObject("texto_busca", " contendo " + pesquisa);
-        return mv;
     }
 
 }

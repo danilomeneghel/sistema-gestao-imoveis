@@ -65,6 +65,15 @@ $(document).ready(function () {
                 }
             },
             {
+                "data": "active", "render": function (data) {
+                    if (data) {
+                        return '<span class="badge bg-success">Ativo</span>'
+                    } else {
+                        return '<span class="badge bg-danger">Inativo</span>'
+                    }
+                }
+            },
+            {
                 "data": null, "render": function (data) {
                     return '<a class="btn btn-primary" href="/usuario/editar/'+data.id+'">'+
                     '<i class="fas fa-pen"></i> Editar</a><a class="btn btn-danger" '+

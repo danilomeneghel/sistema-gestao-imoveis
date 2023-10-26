@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -201,42 +200,13 @@ public class ImovelController {
     @GetMapping("/excluir/{id}")
     public ModelAndView excluirImovel(@PathVariable Long id, RedirectAttributes ra) {
         Imovel imovel = iServ.findImovelById(id);
-        if(imovel != null) {
+        if (imovel != null) {
             iServ.excluirImovelById(id);
             ra.addFlashAttribute("sucesso", "O Imóvel foi excluído com sucesso.");
         } else {
             ra.addFlashAttribute("erro", "O Imóvel não foi encontrado.");
         }
         return new ModelAndView("redirect:/imovel/todos");
-    }
-
-    @GetMapping("/pesquisar")
-    public ModelAndView pesquisarImovel() {
-        ModelAndView mv = new ModelAndView("imovel/imovelPesquisar");
-        addObj(mv);
-        mv.addObject("imovel", new Imovel());
-        return mv;
-    }
-
-    @GetMapping("/pesquisarResultado")
-    public ModelAndView pesquisaRealizadaImovel(Imovel imovel, Long idEstado, Long idMunicipio,
-                                                BigDecimal valorMinimo, BigDecimal valorMaximo) {
-        ModelAndView mv = new ModelAndView("imovel/imovelPesquisar");
-        addObj(mv);
-        mv.addObject("idEstado", idEstado);
-        mv.addObject("idMunicipio", idMunicipio);
-        mv.addObject("valorMinimo", valorMinimo);
-        mv.addObject("valorMaximo", valorMaximo);
-
-        if (idEstado != null) {
-            mv.addObject("municipios", lServ.findMunicipioPerEstado(idEstado));
-        }
-        if (idMunicipio != null) {
-            mv.addObject("bairros", lServ.findBairroPerMunicipio(idMunicipio));
-        }
-        mv.addObject("imovel", imovel);
-        mv.addObject("imoveis", iServ.findImovelByExample(imovel, idMunicipio, idEstado, valorMinimo, valorMaximo));
-        return mv;
     }
 
     @GetMapping("/visualizar/{id}")
