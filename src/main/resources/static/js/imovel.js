@@ -59,6 +59,15 @@ $(document).ready(function () {
             { "data": "quarto.quantidade" },
             { "data": "valor" },
             {
+                "data": "ativo", "render": function (data) {
+                    if (data) {
+                        return '<span class="badge bg-success">Ativo</span>'
+                    } else {
+                        return '<span class="badge bg-danger">Inativo</span>'
+                    }
+                }
+            },
+            {
                 "data": null, "render": function (data) {
                     return '<a class="btn btn-success" href="/imovel/visualizar/'+data.id+'">'+
                     '<i class="fas fa-eye"></i> Ver</a>'+

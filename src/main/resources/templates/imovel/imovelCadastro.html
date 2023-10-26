@@ -89,6 +89,14 @@
                         <option th:each="b:${bairros}" th:value="${b.id}" th:text="${b.nome}">
                     </select>
                 </div>
+
+                <div class="form-item col-5" th:classappend="${erroAtivo}? is-invalid">
+                    <label for="ativo-select">Ativo</label>
+                    <select id="ativo-select" class="form-control" th:field="*{ativo}">
+                        <option th:value="1" >Ativo</option>
+                        <option th:value="0" >Inativo</option>
+                    </select>
+                </div>
             </div>
             <button type="submit" class="btn btn-success">
                 <i class="fas fa-save"></i> Salvar
