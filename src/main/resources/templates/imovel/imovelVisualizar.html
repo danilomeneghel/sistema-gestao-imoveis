@@ -7,60 +7,67 @@
     <title>Visualização de Imóvel</title>
 </head>
 <body>
-<section layout:fragment="content" class="distanciamento">
+<section layout:fragment="content" class="margem">
     <h3 class="inline">Visualizar Imóvel</h3>
     <a class="btn btn-primary voltar" th:href="@{/imovel/todos}">
         <i class="fas fa-arrow-left"></i> Voltar</a>
 
-    <div class="row">
-        <div class="col-3">
-            <h4>Categoria: </h4>
-            <h5 th:text="${imovel.categoria.nome}"></h5>
+    <div class="margem-visualizar">
+        <div class="row">
+            <div class="col-3">
+                <b>Categoria: </b>
+                <span th:text="${imovel.categoria.nome}"></span>
+            </div>
+            <div class="col-3">
+                <b>Negócio: </b>
+                <span th:text="${imovel.negocio.nome}"></span>
+            </div>
+            <div class="col-6">
+                <b>Quarto: </b>
+                <span th:text="${imovel.quarto.descricao}"></span>
+            </div>
         </div>
-        <div class="col-3">
-            <h4>Negócio: </h4>
-            <h5 th:text="${imovel.negocio.nome}"></h5>
+        <div class="row">
+            <div class="col-3">
+                <b>Estado: </b>
+                <span th:text="${imovel.bairro.municipio.estado.nome}"></span>
+            </div>
+            <div class="col-3">
+                <b>Município: </b>
+                <span th:text="${imovel.bairro.municipio.nome}"></span>
+            </div>
+            <div class="col-6">
+                <b>Bairro: </b>
+                <span th:text="${imovel.bairro.nome}"></span>
+            </div>
         </div>
-        <div class="col-6">
-            <h4>Quarto: </h4>
-            <h5 th:text="${imovel.quarto.descricao}"></h5>
+        <div class="row">
+            <div class="col-12">
+                <b>Ativo: </b>
+                <span th:text="${imovel.ativo} ? 'Sim' : 'Não'"></span>
+            </div>
         </div>
+        <br>
+        <h4>Imagens:</h4>
+        <div th:unless="${imovel.imagens.size>0}">
+            <span>Sem imagens</span>
+        </div>
+        <div class="row" th:if="${imovel.imagens.size>0}">
+            <div class="card col-3 bg-dark" th:each="imagem:${imovel.imagens}">
+                <img class="card-img-top" th:src="@{${imagem.path}}">
+            </div>
+        </div>
+        <br>
+        <form method="post" th:action="@{/imagem/bindImageImovel}" enctype="multipart/form-data">
+            <h4 class="inline" for="file">Adicionar foto:</h4>
+            <br>
+            <input type="hidden" name="id" th:value="${imovel.id}">
+            <input class="form-control input-file" type="file" id="file" name="file"/>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-plus"></i> Adicionar
+            </button>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-3">
-            <h4>Estado: </h4>
-            <h5 th:text="${imovel.bairro.municipio.estado.nome}"></h5>
-        </div>
-        <div class="col-3">
-            <h4>Município: </h4>
-            <h5 th:text="${imovel.bairro.municipio.nome}"></h5>
-        </div>
-        <div class="col-6">
-            <h4>Bairro: </h4>
-            <h5 th:text="${imovel.bairro.nome}"></h5>
-        </div>
-        <div class="col-6">
-            <h4>Ativo: </h4>
-            <h5 th:text="${imovel.ativo}"></h5>
-        </div>
-    </div>
-    <h3>Imagens:</h3>
-    <div th:unless="${imovel.imagens.size>0}">
-        <h5>Sem imagens</h5>
-    </div>
-    <div class="row" th:if="${imovel.imagens.size>0}">
-        <div class="card col-3 bg-dark" th:each="imagem:${imovel.imagens}">
-            <img class="card-img-top" th:src="@{${imagem.path}}">
-        </div>
-    </div>
-    <form method="post" th:action="@{/imagem/bindImageImovel}" enctype="multipart/form-data">
-        <label class="inline" for="file">Adicione uma foto</label>
-        <input class="form-control col-3 inline" type="file" id="file" name="file"/>
-        <input type="hidden" name="id" th:value="${imovel.id}">
-        <button type="submit" class="btn btn-success">
-            <i class="fas fa-plus"></i> Adicionar Foto
-        </button>
-    </form>
 </section>
 </body>
 </html>

@@ -14,8 +14,13 @@ body {
     float: left !important;
 }
 
-.distanciamento {
+.margem {
 	padding: 10px 8px;
+}
+
+.margem-visualizar {
+    padding: 15px 0px;
+    font-size: 18px;
 }
 
 .bg-dark {
@@ -70,6 +75,14 @@ body {
 .voltar {
 	display:inline;
 	float:right;
+}
+
+.row {
+    margin: 5px 0px !important;
+}
+
+.row > * {
+    padding-left: 0px !important;
 }
 
 .btn-primary, .btn-primary:focus {
@@ -335,6 +348,12 @@ body {
 
 .input-search {
     max-width: 50% !important;
+}
+
+.input-file {
+    float: left;
+    width: 50%;
+    margin-right: 5px;
 }
 
 #sidebar-wrapper {

@@ -7,7 +7,7 @@
     <title>Cadastro de Bairro</title>
 </head>
 <body>
-<section layout:fragment="content" class="distanciamento">
+<section layout:fragment="content" class="margem">
     <h1 th:if="${#lists.isEmpty(estados)}" class="is-invalid">Não é possível cadastrar bairro sem um Estado</h1>
     <h1 th:if="${#lists.isEmpty(municipios)}" class="is-invalid">Não é possível cadastrar bairro sem um Municipio</h1>
 
