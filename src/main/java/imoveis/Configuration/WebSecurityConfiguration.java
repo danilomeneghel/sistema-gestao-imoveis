@@ -1,7 +1,7 @@
 package imoveis.Configuration;
 
 import imoveis.Service.MyUserDetailsService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,11 +13,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@AllArgsConstructor
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final MyUserDetailsService myUserService;
+    @Autowired
+    private MyUserDetailsService myUserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
