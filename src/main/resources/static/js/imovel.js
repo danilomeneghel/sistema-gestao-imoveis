@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    dataTable = $('#data-table').DataTable({
+    $('#data-table thead tr').clone(true).addClass('filters').appendTo( '#data-table thead' );
+
+    var dataTable = $('#data-table').DataTable({
         responsive:true,
         dom: 'Bfrtip',
         buttons:[
@@ -51,15 +53,43 @@ $(document).ready(function () {
             "datatype": "json",
             dataSrc:""
         },
+        initComplete: function() {
+            var api = this.api();
+            api.columns().eq(0).each(function(colIdx) {
+                var cell = $('.filters .filter').eq($(api.column(colIdx).header()).index());
+                var title = $(cell).text();
+                $(cell).html( '<input type="text" placeholder="'+title+'" />' );
+                $('input', $('.filters .filter').eq($(api.column(colIdx).header()).index()) )
+                    .off('keyup change')
+                    .on('keyup change', function (e) {
+                        e.stopPropagation();
+                        $(this).attr('title', $(this).val());
+                        var regexr = '({search})';
+                        var cursorPosition = this.selectionStart;
+                        api
+                            .column(colIdx)
+                            .search((this.value != "") ? regexr.replace('{search}', '((('+this.value+')))') : "", this.value != "", this.value == "")
+                            .draw();
+                        $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
+                    });
+            });
+        },
         "columns": [
             { "data": "id" },
             { "data": "negocio.nome" },
             { "data": "categoria.nome" },
-            { "data": "bairro.municipio.estado.nome" },
-            { "data": "quarto.quantidade" },
-            { "data": "valor" },
             {
-                "data": "ativo", "render": function (data) {
+                "data": null, "render": function ( data, type, row ) {
+                    return row.bairro.municipio.nome + "/" + row.bairro.municipio.estado.uf;
+                 }
+            },
+            {
+                "data": "valor", "render": function ( data ) {
+                    return "R$" + data;
+                 }
+            },
+            {
+                "data": "ativo", "render": function ( data ) {
                     if (data) {
                         return '<span class="badge bg-success">Ativo</span>'
                     } else {
@@ -68,7 +98,7 @@ $(document).ready(function () {
                 }
             },
             {
-                "data": null, "render": function (data) {
+                "data": null, "render": function ( data ) {
                     return '<a class="btn btn-success" href="/imovel/visualizar/'+data.id+'">'+
                     '<i class="fas fa-eye"></i> Ver</a>'+
                     '<a class="btn btn-primary" href="/imovel/editar/'+data.id+'">'+
