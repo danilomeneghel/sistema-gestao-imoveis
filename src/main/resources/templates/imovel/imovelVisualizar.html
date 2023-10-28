@@ -48,9 +48,9 @@
             </div>
         </div>
         <br>
-        <h4>Imagens:</h4>
+        <h4>Fotos:</h4>
         <div th:unless="${imovel.imagens.size>0}">
-            <span>Sem imagens</span>
+            <span>Sem fotos</span>
         </div>
         <div class="row" th:if="${imovel.imagens.size>0}">
             <div class="card col-3 bg-dark" th:each="imagem:${imovel.imagens}">
@@ -58,15 +58,17 @@
             </div>
         </div>
         <br>
-        <form method="post" th:action="@{/imagem/bindImageImovel}" enctype="multipart/form-data">
-            <h4 class="inline" for="file">Adicionar foto:</h4>
-            <br>
-            <input type="hidden" name="id" th:value="${imovel.id}">
-            <input class="form-control input-file" type="file" id="file" name="file"/>
-            <button type="submit" class="btn btn-success">
-                <i class="fas fa-plus"></i> Adicionar
-            </button>
-        </form>
+        <div class="add-photo">
+            <form method="post" th:action="@{/imagem/bindImageImovel}" enctype="multipart/form-data">
+                <h4 class="inline" for="file">Adicionar foto:</h4>
+                <br>
+                <input type="hidden" name="id" th:value="${imovel.id}">
+                <input class="form-control input-file" type="file" id="file" name="file"/>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Adicionar
+                </button>
+            </form>
+        </div>
     </div>
 </section>
 </body>
