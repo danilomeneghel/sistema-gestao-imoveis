@@ -140,8 +140,8 @@ body {
 
 #data-table {
     width: 100% !important;
-    margin-top: 5px !important;
-    margin-bottom: 2px !important;
+    margin-top: 6px !important;
+    margin-bottom: 4px !important;
 }
 
 #data-table .btn-primary, #data-table .btn-success, #data-table .btn-danger {
@@ -155,13 +155,13 @@ body {
     padding: 2px 4px !important;
 }
 
-#data-table th:last-child {
-    min-width: 27% !important;
-    text-align: center !important;
+#data-table thead th {
+    color: #777 !important;
 }
 
-#data-table tr td:last-child {
-    text-align: right !important;
+#data-table thead th:last-child {
+    min-width: 27% !important;
+    text-align: center !important;
 }
 
 #data-table thead .col-1 input {
@@ -172,14 +172,16 @@ body {
     max-width: 150px !important;
 }
 
+#data-table tr td .actions {
+    text-align: right !important;
+}
+
 #data-table_info {
     float: left !important;
 }
 
 #data-table_length {
-    display: none !important;
     float: left !important;
-    margin-top: 10px !important;
 }
 
 #data-table_paginate {
@@ -244,6 +246,7 @@ body {
     margin-top: 2px !important;
     margin-bottom: 2px !important;
     font-size: 15px !important;
+    padding: .375rem .80rem !important;
 }
 
 .alert-danger, .alert-success {

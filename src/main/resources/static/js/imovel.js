@@ -1,8 +1,8 @@
 $(document).ready(function () {
     var dataTable = $('#data-table').DataTable({
-        responsive:true,
-        ordering:false,
-        dom: 'Bfrtip',
+        responsive: true,
+        ordering: false,
+        dom: 'Blfrtip',
         buttons:[
             {
                 text:      '<i class="fas fa-plus"></i> Adicionar',
@@ -54,8 +54,8 @@ $(document).ready(function () {
         },
         initComplete: function() {
             var api = this.api();
-            $("#data-table thead .filters th").each( function ( colIdx ) {
-                var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
+            $("#data-table thead .filters .filter").each( function ( colIdx ) {
+                var cell = $('.filters .filter').eq($(api.column(colIdx).header()).index());
                 var title = $(cell).text();
                 var select = null;
                 if(title == 'Status' || title == 'Negócio' || title == 'Categoria' || title == 'Quarto') {
@@ -77,7 +77,7 @@ $(document).ready(function () {
                     } );
                 } else {
                     $(cell).html( '<input type="text" placeholder="'+title+'" />' );
-                    $('input', $('.filters th').eq($(api.column(colIdx).header()).index()) )
+                    $('input', $('.filters .filter').eq($(api.column(colIdx).header()).index()) )
                     .off('keyup change')
                     .on('keyup change', function (e) {
                         e.stopPropagation();
@@ -118,12 +118,12 @@ $(document).ready(function () {
             },
             {
                 "data": null, "render": function ( data ) {
-                    return '<a class="btn btn-success" href="/imovel/visualizar/'+data.id+'">'+
+                    return '<div class="actions"><a class="btn btn-success" href="/imovel/visualizar/'+data.id+'">'+
                     '<i class="fas fa-eye"></i> Ver</a>'+
                     '<a class="btn btn-primary" href="/imovel/editar/'+data.id+'">'+
                     '<i class="fas fa-pen"></i> Editar</a><a class="btn btn-danger" '+
                     'onclick="return confirm(\'Tem certeza que deseja excluir esse registro?\');" '+
-                    'href="/imovel/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
+                    'href="/imovel/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a></div>'
                 }
             }
         ],

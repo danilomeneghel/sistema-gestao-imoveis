@@ -1,7 +1,7 @@
 $(document).ready(function () {
     dataTable = $('#data-table').DataTable({
-        responsive:true,
-        dom: 'Bfrtip',
+        responsive: true,
+        dom: 'Blfrtip',
         buttons:[
             {
                 text:      '<i class="fas fa-plus"></i> Adicionar',
@@ -56,10 +56,10 @@ $(document).ready(function () {
             { "data": "nome" },
             {
                 "data": null, "render": function (data) {
-                    return '<a class="btn btn-primary" href="/classificador/negocio/editar/'+data.id+'">'+
+                    return '<div class="actions"><a class="btn btn-primary" href="/classificador/negocio/editar/'+data.id+'">'+
                     '<i class="fas fa-pen"></i> Editar</a><a class="btn btn-danger" '+
                     'onclick="return confirm(\'Tem certeza que deseja excluir esse registro?\');" '+
-                    'href="/classificador/negocio/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a>'
+                    'href="/classificador/negocio/excluir/'+data.id+'"><i class="fas fa-trash"></i> Excluir</a></div>'
                 }
             }
         ],
