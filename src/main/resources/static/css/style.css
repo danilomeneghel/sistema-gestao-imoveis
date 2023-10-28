@@ -152,7 +152,7 @@ body {
 }
 
 #data-table td, #data-table th {
-    padding: 2px 2px !important;
+    padding: 2px 4px !important;
 }
 
 #data-table th:last-child {
@@ -162,10 +162,6 @@ body {
 
 #data-table tr td:last-child {
     text-align: right !important;
-}
-
-#data-table thead input {
-    font-size: 13px !important;
 }
 
 #data-table thead .col-1 input {
@@ -192,6 +188,27 @@ body {
 
 .pagination {
     float: right !important;
+}
+
+.filters input, .filters input:focus, .filters ::placeholder {
+    border: none !important;
+    font-size: 16px !important;
+    background-color: transparent !important;
+    font-weight: bold;
+}
+
+.filters select {
+    border: none !important;
+    font-size: 16px !important;
+    background-color: transparent !important;
+    font-weight: bold;
+    color: #777 !important;
+}
+
+.filters select:focus {
+    min-width: 100px;
+    border: none !important;
+    color: #000 !important;
 }
 
 .buttons-add {
