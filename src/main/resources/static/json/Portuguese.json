@@ -9,10 +9,10 @@
 	"sInfoFiltered": "(filtrado de _MAX_ registros no total)",
 	"sSearch":       "Procurar",
 	"oPaginate": {
-	    "sFirst":    "Primeiro",
-	    "sPrevious": "Anterior",
-	    "sNext":     "Seguinte",
-	    "sLast":     "Último"
+	    "sFirst":    "<<",
+	    "sPrevious": "<",
+	    "sNext":     ">",
+	    "sLast":     ">>"
 	},
 	"oAria": {
 	    "sSortAscending":  ": Ordenar colunas de forma ascendente",

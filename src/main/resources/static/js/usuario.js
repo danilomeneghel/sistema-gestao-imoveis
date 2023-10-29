@@ -45,13 +45,13 @@ $(document).ready(function () {
                }
             }
         ],
-        "ajax": {
-            "url": '/api/usuario/todos',
-            "type": "GET",
-            "datatype": "json",
-            dataSrc:""
+        ajax: {
+            url: '/api/usuario/todos',
+            type: 'GET',
+            datatype: 'json',
+            dataSrc: ''
         },
-        "columns": [
+        columns: [
             { "data": "id" },
             { "data": "name" },
             { "data": "username" },
@@ -82,7 +82,7 @@ $(document).ready(function () {
                 }
             }
         ],
-        "language": {
+        language: {
             "url": "../json/Portuguese.json"
         }
     });

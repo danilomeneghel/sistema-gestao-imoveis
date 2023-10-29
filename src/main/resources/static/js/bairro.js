@@ -45,13 +45,13 @@ $(document).ready(function () {
                }
             }
         ],
-        "ajax": {
-            "url": '/api/localidade/bairros',
-            "type": "GET",
-            "datatype": "json",
-            dataSrc:""
+        ajax: {
+            url: '/api/localidade/bairros',
+            type: 'GET',
+            datatype: 'json',
+            dataSrc: ''
         },
-        "columns": [
+        columns: [
             { "data": "id" },
             { "data": "nome" },
             { "data": "municipio.nome" },
@@ -65,7 +65,7 @@ $(document).ready(function () {
                 }
             }
         ],
-        "language": {
+        language: {
             "url": "../json/Portuguese.json"
         }
     });

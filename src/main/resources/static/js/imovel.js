@@ -46,12 +46,13 @@ $(document).ready(function () {
                }
             }
         ],
-        "ajax": {
-            "url": '/api/imovel/todos',
-            "type": "GET",
-            "datatype": "json",
-            dataSrc:""
+        ajax: {
+            url: '/api/imovel/todos',
+            type: 'GET',
+            datatype: 'json',
+            dataSrc: ''
         },
+        deferRender: true,
         initComplete: function() {
             var api = this.api();
             $("#data-table thead .filters .filter").each( function ( colIdx ) {
@@ -93,7 +94,7 @@ $(document).ready(function () {
                 }
             });
         },
-        "columns": [
+        columns: [
             { "data": "negocio.nome" },
             { "data": "categoria.nome" },
             { "data": "quarto.quantidade" },
@@ -127,7 +128,7 @@ $(document).ready(function () {
                 }
             }
         ],
-        "language": {
+        language: {
             "url": "../json/Portuguese.json"
         }
     });

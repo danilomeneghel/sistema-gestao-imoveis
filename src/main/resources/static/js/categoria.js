@@ -45,13 +45,13 @@ $(document).ready(function () {
                }
             }
         ],
-        "ajax": {
-            "url": '/api/classificador/categorias',
-            "type": "GET",
-            "datatype": "json",
-            dataSrc:""
+        ajax: {
+            url: '/api/classificador/categorias',
+            type: 'GET',
+            datatype: 'json',
+            dataSrc: ''
         },
-        "columns": [
+        columns: [
             { "data": "id" },
             { "data": "nome" },
             {
@@ -63,7 +63,7 @@ $(document).ready(function () {
                 }
             }
         ],
-        "language": {
+        language: {
             "url": "../json/Portuguese.json"
         }
     });

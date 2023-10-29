@@ -45,13 +45,13 @@ $(document).ready(function () {
                }
             }
         ],
-        "ajax": {
-            "url": '/api/classificador/quartos',
-            "type": "GET",
-            "datatype": "json",
-            dataSrc:""
+        ajax: {
+            url: '/api/classificador/quartos',
+            type: 'GET',
+            datatype: 'json',
+            dataSrc: ''
         },
-        "columns": [
+        columns: [
             { "data": "id" },
             { "data": "quantidade" },
             { "data": "descricao" },
@@ -64,7 +64,7 @@ $(document).ready(function () {
                 }
             }
         ],
-        "language": {
+        language: {
             "url": "../json/Portuguese.json"
         }
     });

@@ -334,6 +334,10 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before {
     padding-bottom: 15px !important;
 }
 
+#container-login form {
+    border: none !important;
+}
+
 #container-login .form-item {
     width: 100% !important;
     margin: 0px 0px !important;
@@ -498,5 +502,10 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before {
 
     table.dataTable > tbody > tr.child ul.dtr-details > li:last-child {
         margin-top: -18px !important;
+    }
+
+    .pagination {
+        width: 100% !important;
+        text-align: center !important;
     }
 }
