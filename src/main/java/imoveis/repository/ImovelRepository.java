@@ -1,20 +1,26 @@
 package imoveis.repository;
 
-import imoveis.entity.CategoriaEntity;
-import imoveis.entity.ImovelEntity;
-import imoveis.entity.NegocioEntity;
-import imoveis.entity.QuartoEntity;
+import imoveis.entity.*;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.QueryByExampleExecutor;
 
-public interface ImovelRepository extends JpaRepository<ImovelEntity, Long>, QueryByExampleExecutor<ImovelEntity> {
+import java.util.List;
 
+public interface ImovelRepository extends JpaRepository<ImovelEntity, Long> {
+
+    @Cacheable("imovel")
+    List<ImovelEntity> findAll();
+
+    @Cacheable("categoria")
     ImovelEntity findByCategoria(CategoriaEntity categoriaEntity);
 
+    @Cacheable("negocio")
     ImovelEntity findByNegocio(NegocioEntity negocioEntity);
 
+    @Cacheable("quarto")
     ImovelEntity findByQuarto(QuartoEntity quartoEntity);
 
-    ImovelEntity findByBairro(Long id);
+    @Cacheable("bairro")
+    ImovelEntity findByBairro(BairroEntity bairroEntity);
 
 }

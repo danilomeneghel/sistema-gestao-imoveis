@@ -239,7 +239,7 @@ public class LocalidadeController {
 
     @GetMapping("/bairro/excluir/{id}")
     public ModelAndView excluirBairro(@PathVariable Long id, RedirectAttributes ra) {
-        if (imovelService.findImovelByBairro(id) == null) {
+        if (localidadeService.findBairroById(id) == null) {
             ra.addFlashAttribute("customMessage", "Não é possível excluir um bairro com imóveis vinculados.");
             return new ModelAndView("redirect:/localidade/bairros");
         }

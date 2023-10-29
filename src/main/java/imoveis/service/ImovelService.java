@@ -1,13 +1,7 @@
 package imoveis.service;
 
-import imoveis.entity.CategoriaEntity;
-import imoveis.entity.ImovelEntity;
-import imoveis.entity.NegocioEntity;
-import imoveis.entity.QuartoEntity;
-import imoveis.model.Categoria;
-import imoveis.model.Imovel;
-import imoveis.model.Negocio;
-import imoveis.model.Quarto;
+import imoveis.entity.*;
+import imoveis.model.*;
 import imoveis.repository.ImovelRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,9 +66,15 @@ public class ImovelService {
         return null;
     }
 
-    public Imovel findImovelByBairro(Long id) {
-        ImovelEntity imovelEntity = rep.findByBairro(id);
-        return modelMapper.map(imovelEntity, Imovel.class);
+    public Imovel findImovelByBairro(Bairro bairro) {
+        if(bairro.getId() != null) {
+            BairroEntity bairroEntity = modelMapper.map(bairro, BairroEntity.class);
+            ImovelEntity imovelEntity = rep.findByBairro(bairroEntity);
+            if(imovelEntity != null) {
+                return modelMapper.map(imovelEntity, Imovel.class);
+            }
+        }
+        return null;
     }
 
     public Imovel saveImovel(Imovel imovel) {

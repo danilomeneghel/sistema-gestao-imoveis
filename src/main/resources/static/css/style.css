@@ -285,8 +285,13 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before {
     padding: .375rem .60rem !important;
 }
 
+.alert {
+    float: none !important;
+    display: inline-block !important;
+    width: 100% !important;
+}
+
 .alert-danger, .alert-success {
-    margin-top: 35px !important;
     padding: 12px !important;
     margin-bottom: 5px !important;
 }
