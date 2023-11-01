@@ -2,16 +2,16 @@
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/layoutUser.html}">
+      layout:decorate="~{fragments/layoutUsuario.html}">
 <body>
 <section layout:fragment="conteudo" class="margin-card">
     <div class="card col-3 bg-dark">
-        <a th:href="@{/usuario/imovel/todos}">
+        <a th:href="@{/imovel/todos/imoveis-usuario}">
             <img class="card-img-home" th:src="@{images/imoveis.png}" alt="Imóveis">
         </a>
         <div class="card-body text-right">
             <p class="card-text">
-                <a class="text-white" th:href="@{/usuario/imovel/todos}"> IMÓVEIS ></a>
+                <a class="text-white" th:href="@{/imovel/todos/imoveis-usuario}"> IMÓVEIS ></a>
             </p>
         </div>
     </div>

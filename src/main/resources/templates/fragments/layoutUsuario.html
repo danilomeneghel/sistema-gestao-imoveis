@@ -27,7 +27,7 @@
         <div class="list-group list-group-flush">
             <a href="#" class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/}">Home</a>
             <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
-               th:href="@{/usuario/imovel/todos}">Imóveis</a>
+               th:href="@{/imovel/todos/imoveis-usuario}">Imóveis</a>
             <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
                th:href="@{/logout}">Sair</a>
         </div>
@@ -51,6 +51,7 @@
     </div>
     <!-- /#page-content-wrapper -->
 </div>
-
+<script src="/js/datatables.min.js"></script>
+<th:block layout:fragment="script"/>
 </body>
 </html>

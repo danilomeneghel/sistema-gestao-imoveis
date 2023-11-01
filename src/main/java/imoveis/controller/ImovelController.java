@@ -5,6 +5,8 @@ import imoveis.service.ClassificadorService;
 import imoveis.service.ImovelService;
 import imoveis.service.LocalidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +32,18 @@ public class ImovelController {
 
     @Autowired
     private ClassificadorService cServ;
+
+    @GetMapping("/listar/imoveis-usuario")
+    public ResponseEntity<List<Imovel>> listarImoveisUsuario() {
+        return new ResponseEntity<>(iServ.findAllImoveis(), HttpStatus.OK);
+    }
+
+    @GetMapping("/todos/imoveis-usuario")
+    public ModelAndView mostrarImoveisUsuario() {
+        ModelAndView mv = new ModelAndView("imovel/imoveisUsuario");
+        mv.addObject("imoveis", iServ.findAllImoveis());
+        return mv;
+    }
 
     @GetMapping("/todos")
     public ModelAndView mostrarImoveis() {
