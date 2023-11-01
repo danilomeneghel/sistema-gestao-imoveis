@@ -1,4 +1,4 @@
-package imoveis.controller.Api;
+package imoveis.controller.api;
 
 import imoveis.model.Categoria;
 import imoveis.model.Negocio;

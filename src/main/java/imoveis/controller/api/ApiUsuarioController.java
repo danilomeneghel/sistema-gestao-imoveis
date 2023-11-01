@@ -1,4 +1,4 @@
-package imoveis.controller.Api;
+package imoveis.controller.api;
 
 import imoveis.model.Usuario;
 import imoveis.service.UsuarioService;

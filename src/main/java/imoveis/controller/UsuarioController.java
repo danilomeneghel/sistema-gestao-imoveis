@@ -38,7 +38,7 @@ public class UsuarioController {
         return mv;
     }
 
-    @PostMapping("/cadastro-preenchido")
+    @PostMapping("/cadastrar")
     public ModelAndView cadastrarUsuario(@Validated Usuario usuario, Errors errors) {
         ModelAndView mv = new ModelAndView("usuario/usuarioCadastro");
         if (errors.hasErrors()) {

@@ -52,13 +52,30 @@ body {
 }
 
 .card {
-	padding:1px;
-	margin:15px;
+	padding: 2px;
+	margin: 15px;
+	border: 0px !important;
 }
 
-.card-img-top {
-	height:auto;
+.card-img-home {
+	height: auto;
 	overflow: hidden;
+	width: 100% !important;
+}
+
+.card-text a {
+   text-decoration: none !important;
+}
+
+.card-text a:hover {
+   text-decoration: underline !important;
+}
+
+.card-img-imovel {
+    height: 220px !important;
+    width: auto !important;
+    margin: 3px 0px !important;
+    border: 2px solid #333 !important;
 }
 
 .inline {
@@ -105,10 +122,6 @@ form {
 
 .row {
     margin: 5px 0px !important;
-}
-
-.row > * {
-    padding-left: 0px !important;
 }
 
 .btn-primary, .btn-primary:focus {

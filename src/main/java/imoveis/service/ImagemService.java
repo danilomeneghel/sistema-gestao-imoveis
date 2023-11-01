@@ -10,10 +10,13 @@ import imoveis.repository.ImovelRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -44,11 +47,11 @@ public class ImagemService {
             try {
                 Files.createDirectories(Paths.get(DIR_IMAGE));
             } catch (Exception ex) {
-                throw new FileStorageException("Não foi possível criar o diretório em que os arquivos enviados serão armazenados.", ex);
+                throw new FileStorageException("Não foi possível criar o diretório para armazenar os arquivos.", ex);
             }
             String nomeArquivo = UUID.randomUUID().toString().replace("-", "");
             if (nomeArquivo.contains("..")) {
-                throw new FileStorageException("Desculpe! Nome do arquivo contém sequência de caminho inválido " + nomeArquivo);
+                throw new FileStorageException("Nome do arquivo contém sequência de caminho inválido " + nomeArquivo);
             }
             String extensaoArquivo = StringUtils.getFilenameExtension(arquivo.getOriginalFilename());
             Path novoNomeArquivo = Paths.get(nomeArquivo + "." + extensaoArquivo);
@@ -76,7 +79,23 @@ public class ImagemService {
             Path targetLocation = Paths.get(dir).resolve(novoNomeArquivo);
             Files.copy(arquivo.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
-            throw new FileStorageException("Não foi possivel armazenar o arquivo " + arquivo.getOriginalFilename() + ". Por favor tente novamente", ex);
+            throw new FileStorageException("Não foi possivel armazenar o arquivo " +
+                    arquivo.getOriginalFilename() + ". Por favor tente novamente", ex);
+        }
+    }
+
+    public Resource getFile(String nomeArquivo) {
+        try {
+            Path caminhoArquivo = Paths.get(DIR_IMAGE).resolve(nomeArquivo).normalize();
+            Resource resource = new UrlResource(caminhoArquivo.toUri());
+            if (resource.exists()) {
+                return resource;
+            } else {
+                throw new FileNotFoundException("Arquivo não encontrado " + nomeArquivo);
+            }
+        } catch (IOException ex) {
+            throw new FileStorageException("Não foi possivel localizar o arquivo " + nomeArquivo +
+                    ". Por favor tente novamente", ex);
         }
     }
 

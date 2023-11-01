@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class SecurityController {
+public class LoginController {
 
     @Autowired
     private UsuarioService usuarioService;

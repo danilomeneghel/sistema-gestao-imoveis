@@ -16,7 +16,7 @@
         <i class="fas fa-arrow-left"></i> Voltar</a>
 
     <div th:unless="${#lists.isEmpty(estados)} and ${#lists.isEmpty(municipios)}">
-        <form th:action="@{/localidade/bairro/cadastro-preenchido}" method="post" th:object="${bairro}">
+        <form th:action="@{/localidade/bairro/cadastrar}" method="post" th:object="${bairro}">
             <div th:replace="fragments/mensagemErro"></div>
             <div th:replace="fragments/mensagemSucesso"></div>
 

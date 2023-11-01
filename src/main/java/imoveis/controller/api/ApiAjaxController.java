@@ -1,4 +1,4 @@
-package imoveis.controller.Api;
+package imoveis.controller.api;
 
 import imoveis.service.LocalidadeService;
 import io.swagger.v3.oas.annotations.tags.Tag;

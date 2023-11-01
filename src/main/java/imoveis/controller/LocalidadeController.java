@@ -101,7 +101,7 @@ public class LocalidadeController {
         return mv;
     }
 
-    @PostMapping("/municipio/cadastro-preenchido")
+    @PostMapping("/municipio/cadastrar")
     public ModelAndView cadastrarMunicipio(@Validated Municipio municipio, Errors errors) {
         ModelAndView mv = new ModelAndView("municipio/municipioCadastro");
         mv.addObject("estados", localidadeService.findAllEstados());
@@ -169,7 +169,7 @@ public class LocalidadeController {
         return mv;
     }
 
-    @PostMapping("/bairro/cadastro-preenchido")
+    @PostMapping("/bairro/cadastrar")
     public ModelAndView cadastrarBairro(@Validated Bairro bairro, Errors errors, Integer idEstado) {
         ModelAndView mv = new ModelAndView("bairro/bairroCadastro");
         mv.addObject("estados", localidadeService.findAllEstados());

@@ -12,7 +12,7 @@
     <a class="btn btn-primary voltar" th:href="@{/usuario/todos}">
         <i class="fas fa-arrow-left"></i> Voltar</a>
 
-    <form th:action="@{/usuario/cadastro-preenchido}" method="post" th:object="${usuario}">
+    <form th:action="@{/usuario/cadastrar}" method="post" th:object="${usuario}">
         <div th:replace="fragments/mensagemErro"></div>
         <div th:replace="fragments/mensagemSucesso"></div>
         <div class="form-item" th:classappend="${#fields.hasErrors('name')}? is-invalid">

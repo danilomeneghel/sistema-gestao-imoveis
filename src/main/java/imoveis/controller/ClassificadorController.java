@@ -40,7 +40,7 @@ public class ClassificadorController {
         return mv;
     }
 
-    @PostMapping("/categoria/cadastro-preenchido")
+    @PostMapping("/categoria/cadastrar")
     public ModelAndView cadastrarCategoria(@Validated Categoria categoria, Errors errors) {
         ModelAndView mv = new ModelAndView("categoria/categoriaCadastro");
         if (errors.hasErrors()) {
@@ -99,7 +99,7 @@ public class ClassificadorController {
         return mv;
     }
 
-    @PostMapping("/negocio/cadastro-preenchido")
+    @PostMapping("/negocio/cadastrar")
     public ModelAndView cadastrarNegocio(@Validated Negocio negocio, Errors errors) {
         ModelAndView mv = new ModelAndView("negocio/negocioCadastro");
         if (errors.hasErrors()) {
@@ -158,7 +158,7 @@ public class ClassificadorController {
         return mv;
     }
 
-    @PostMapping("/quarto/cadastro-preenchido")
+    @PostMapping("/quarto/cadastrar")
     public ModelAndView cadastrarQuarto(@Validated Quarto quarto, Errors errors) {
         ModelAndView mv = new ModelAndView("quarto/quartoCadastro");
         if (errors.hasErrors()) {
