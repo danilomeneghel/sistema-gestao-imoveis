@@ -223,6 +223,13 @@ public class ImovelController {
         return new ModelAndView("redirect:/imovel/todos");
     }
 
+    @GetMapping("/visualizar/imovel-usuario/{id}")
+    public ModelAndView visualizarImovelUsuario(@PathVariable Long id) {
+        ModelAndView mv = new ModelAndView("imovel/imovelVisualizarUsuario");
+        mv.addObject("imovel", iServ.findImovelById(id));
+        return mv;
+    }
+
     @GetMapping("/visualizar/{id}")
     public ModelAndView visualizarImovel(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("imovel/imovelVisualizar");

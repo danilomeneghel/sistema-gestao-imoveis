@@ -76,7 +76,7 @@ $(document).ready(function () {
             },
             {
                 "data": null, "render": function ( data ) {
-                    return '<div class="actions"><a class="btn btn-success" href="/imovel/visualizar/'+data.id+'">'+
+                    return '<div class="actions"><a class="btn btn-success" href="/imovel/visualizar/imovel-usuario/'+data.id+'">'+
                     '<i class="fas fa-eye"></i> Ver</a></div>';
                 }
             }
