@@ -51,6 +51,11 @@ $(document).ready(function () {
             datatype: 'json',
             dataSrc: ''
         },
+        initComplete: function() {
+            $('[type=search]').each(function () {
+                $(this).after('<i class="fa fa-search"></i>');
+            });
+        },
         columns: [
             { "data": "id" },
             { "data": "name" },

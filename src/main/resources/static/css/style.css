@@ -164,8 +164,13 @@ form {
 }
 
 div.dataTables_wrapper div.dataTables_filter input {
-    margin-left: .2em !important;
-    width: 77% !important;
+    margin-left: 0px !important;
+    width: 74% !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter i {
+    margin-left: -22px !important;
+    color: #888 !important;
 }
 
 table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before {

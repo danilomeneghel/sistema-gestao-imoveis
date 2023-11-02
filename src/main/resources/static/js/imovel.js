@@ -93,6 +93,9 @@ $(document).ready(function () {
                     });
                 }
             });
+            $('[type=search]').each(function () {
+                $(this).after('<i class="fa fa-search"></i>');
+            });
         },
         columns: [
             { "data": "negocio.nome" },
