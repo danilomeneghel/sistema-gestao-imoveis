@@ -1,9 +1,6 @@
 package imoveis.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
@@ -14,9 +11,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "quarto")
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class QuartoEntity {
 
     @Id
