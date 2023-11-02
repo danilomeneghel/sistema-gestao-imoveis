@@ -85,7 +85,7 @@ public class ImovelService {
         ImovelEntity imo = modelMapper.map(imovel, ImovelEntity.class);
         ImovelEntity salvarImovel = rep.save(imo);
         if(salvarImovel != null) {
-            imagemService.armazenarImagem(imovel.getId(), imovel.getFiles());
+            imagemService.armazenarImagem(salvarImovel.getId(), imovel.getFiles());
         }
         return modelMapper.map(salvarImovel, Imovel.class);
     }
