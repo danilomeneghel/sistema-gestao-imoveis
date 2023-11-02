@@ -102,7 +102,7 @@ public class ImagemService {
             }
         } catch (IOException ex) {
             throw new FileStorageException("Não foi possivel localizar o arquivo " + nomeArquivo +
-                    ". Por favor tente novamente", ex);
+                    ". Por favor, tente novamente.");
         }
     }
 
