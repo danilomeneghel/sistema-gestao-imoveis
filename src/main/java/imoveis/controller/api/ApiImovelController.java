@@ -33,7 +33,7 @@ public class ApiImovelController {
 
     @PostMapping("/imovel/cadastro")
     public ResponseEntity<Imovel> cadastrarImovel(@RequestBody Imovel imovel) {
-        return new ResponseEntity<>(imovelService.saveImovel(imovel), HttpStatus.CREATED);
+        return new ResponseEntity<>(imovelService.salvarImovel(imovel), HttpStatus.CREATED);
     }
 
     @PutMapping("/imovel/editar/{id}")
@@ -43,7 +43,7 @@ public class ApiImovelController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         imovel.setId(imo.getId());
-        return new ResponseEntity<>(imovelService.saveImovel(imovel), HttpStatus.OK);
+        return new ResponseEntity<>(imovelService.salvarImovel(imovel), HttpStatus.OK);
     }
 
     @DeleteMapping("/imovel/excluir/{id}")

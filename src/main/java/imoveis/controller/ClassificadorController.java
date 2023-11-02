@@ -47,26 +47,26 @@ public class ClassificadorController {
             return mv;
         }
         mv.addObject("sucesso", "A Categoria foi cadastrada com sucesso!");
-        servCla.saveCategoria(categoria);
+        servCla.salvarCategoria(categoria);
         mv.addObject("categoria", new Categoria());
         return mv;
     }
 
     @GetMapping("/categoria/editar/{id}")
-    public ModelAndView editarCategoria(@PathVariable Long id) {
+    public ModelAndView editaCategoria(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("categoria/categoriaEditar");
         mv.addObject("categoria", servCla.findCategoriaById(id));
         return mv;
     }
 
     @PostMapping("/categoria/editar")
-    public ModelAndView editandoCategoria(@Validated Categoria categoria, Errors errors) {
+    public ModelAndView editarCategoria(@Validated Categoria categoria, Errors errors) {
         ModelAndView mv = new ModelAndView("categoria/categoriaEditar");
         if (errors.hasErrors()) {
             return mv;
         }
         mv.addObject("sucesso", "A Categoria foi atualizada com sucesso!");
-        servCla.saveCategoria(categoria);
+        servCla.salvarCategoria(categoria);
         return mv;
     }
 
@@ -77,7 +77,7 @@ public class ClassificadorController {
             if (servImo.findImovelByCategoria(categoria) != null) {
                 ra.addFlashAttribute("customMessage", "Não é possível excluir uma categoria com imóveis vinculados.");
             }
-            servCla.excluirCategoriaById(id);
+            servCla.excluirCategoria(id);
             ra.addFlashAttribute("sucesso", "A Categoria foi excluída com sucesso.");
         } else {
             ra.addFlashAttribute("erro", "A Categoria não foi encontrada.");
@@ -106,26 +106,26 @@ public class ClassificadorController {
             return mv;
         }
         mv.addObject("sucesso", "O Negócio foi cadastrado com sucesso!");
-        servCla.saveNegocio(negocio);
+        servCla.salvarNegocio(negocio);
         mv.addObject("negocio", new Negocio());
         return mv;
     }
 
     @GetMapping("/negocio/editar/{id}")
-    public ModelAndView editarNegocio(@PathVariable Long id) {
+    public ModelAndView editaNegocio(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("negocio/negocioEditar");
         mv.addObject("negocio", servCla.findNegocioById(id));
         return mv;
     }
 
     @PostMapping("/negocio/editar")
-    public ModelAndView editandoNegocio(@Validated Negocio negocio, Errors errors) {
+    public ModelAndView editarNegocio(@Validated Negocio negocio, Errors errors) {
         ModelAndView mv = new ModelAndView("negocio/negocioEditar");
         if (errors.hasErrors()) {
             return mv;
         }
         mv.addObject("sucesso", "O Negócio foi atualizado com sucesso!");
-        servCla.saveNegocio(negocio);
+        servCla.salvarNegocio(negocio);
         return mv;
     }
 
@@ -136,7 +136,7 @@ public class ClassificadorController {
             if (servImo.findImovelByNegocio(negocio) != null) {
                 ra.addFlashAttribute("customMessage", "Não é possível excluir um negócio com imóveis vinculados.");
             }
-            servCla.excluirNegocioById(id);
+            servCla.excluirNegocio(id);
             ra.addFlashAttribute("sucesso", "O Negócio foi excluído com sucesso.");
         } else {
             ra.addFlashAttribute("erro", "O Negócio não foi encontrado.");
@@ -165,26 +165,26 @@ public class ClassificadorController {
             return mv;
         }
         mv.addObject("sucesso", "O Quarto foi cadastrado com sucesso!");
-        servCla.saveQuarto(quarto);
+        servCla.salvarQuarto(quarto);
         mv.addObject("quarto", new Quarto());
         return mv;
     }
 
     @GetMapping("/quarto/editar/{id}")
-    public ModelAndView editarQuarto(@PathVariable Long id) {
+    public ModelAndView editaQuarto(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("quarto/quartoEditar");
         mv.addObject("quarto", servCla.findQuartoById(id));
         return mv;
     }
 
     @PostMapping("/quarto/editar")
-    public ModelAndView editandoQuarto(@Validated Quarto quarto, Errors errors) {
+    public ModelAndView editarQuarto(@Validated Quarto quarto, Errors errors) {
         ModelAndView mv = new ModelAndView("quarto/quartoEditar");
         if (errors.hasErrors()) {
             return mv;
         }
         mv.addObject("sucesso", "O Quarto foi atualizado com sucesso!");
-        servCla.saveQuarto(quarto);
+        servCla.salvarQuarto(quarto);
         mv.addObject("quarto", quarto);
         return mv;
     }
@@ -196,7 +196,7 @@ public class ClassificadorController {
             if (servImo.findImovelByQuarto(quarto) != null) {
                 ra.addFlashAttribute("customMessage", "Não é possível excluir um quarto com imóveis vinculados.");
             }
-            servCla.excluirQuartoById(id);
+            servCla.excluirQuarto(id);
             ra.addFlashAttribute("sucesso", "O Quarto foi excluído com sucesso.");
         } else {
             ra.addFlashAttribute("erro", "O Quarto não foi encontrado.");

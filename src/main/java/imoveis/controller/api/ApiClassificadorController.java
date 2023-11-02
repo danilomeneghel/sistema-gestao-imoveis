@@ -29,7 +29,7 @@ public class ApiClassificadorController {
 
     @PostMapping("/categoria/cadastro")
     public ResponseEntity<Categoria> cadastroCategoria(@RequestBody Categoria categoria) {
-        return new ResponseEntity<>(classficadorService.saveCategoria(categoria), HttpStatus.CREATED);
+        return new ResponseEntity<>(classficadorService.salvarCategoria(categoria), HttpStatus.CREATED);
     }
 
     @PutMapping("/categoria/editar/{id}")
@@ -39,12 +39,12 @@ public class ApiClassificadorController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         categoria.setId(cat.getId());
-        return new ResponseEntity<>(classficadorService.saveCategoria(categoria), HttpStatus.OK);
+        return new ResponseEntity<>(classficadorService.salvarCategoria(categoria), HttpStatus.OK);
     }
 
     @DeleteMapping("/categoria/excluir/{id}")
     public void excluirCategoria(@PathVariable Long id) {
-        classficadorService.excluirCategoriaById(id);
+        classficadorService.excluirCategoria(id);
     }
 
     @GetMapping("/categoria/pesquisa")
@@ -59,7 +59,7 @@ public class ApiClassificadorController {
 
     @PostMapping("/negocio/cadastro")
     public ResponseEntity<Negocio> cadastroNegocio(@RequestBody Negocio negocio) {
-        return new ResponseEntity<>(classficadorService.saveNegocio(negocio), HttpStatus.CREATED);
+        return new ResponseEntity<>(classficadorService.salvarNegocio(negocio), HttpStatus.CREATED);
     }
 
     @PutMapping("/negocio/editar/{id}")
@@ -69,12 +69,12 @@ public class ApiClassificadorController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         negocio.setId(neg.getId());
-        return new ResponseEntity<>(classficadorService.saveNegocio(negocio), HttpStatus.OK);
+        return new ResponseEntity<>(classficadorService.salvarNegocio(negocio), HttpStatus.OK);
     }
 
     @DeleteMapping("/negocio/excluir/{id}")
     public void excluirNegocio(@PathVariable Long id) {
-        classficadorService.excluirNegocioById(id);
+        classficadorService.excluirNegocio(id);
     }
 
     @GetMapping("/negocio/pesquisa")
@@ -89,7 +89,7 @@ public class ApiClassificadorController {
 
     @PostMapping("/quarto/cadastro")
     public ResponseEntity<Quarto> cadastroQuarto(@RequestBody Quarto quarto) {
-        return new ResponseEntity<>(classficadorService.saveQuarto(quarto), HttpStatus.CREATED);
+        return new ResponseEntity<>(classficadorService.salvarQuarto(quarto), HttpStatus.CREATED);
     }
 
     @PutMapping("/quarto/editar/{id}")
@@ -99,12 +99,12 @@ public class ApiClassificadorController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         quarto.setId(qua.getId());
-        return new ResponseEntity<>(classficadorService.saveQuarto(quarto), HttpStatus.OK);
+        return new ResponseEntity<>(classficadorService.salvarQuarto(quarto), HttpStatus.OK);
     }
 
     @DeleteMapping("/quarto/excluir/{id}")
     public void excluirQuarto(@PathVariable Long id) {
-        classficadorService.excluirQuartoById(id);
+        classficadorService.excluirQuarto(id);
     }
 
     @GetMapping("/quarto/pesquisa")

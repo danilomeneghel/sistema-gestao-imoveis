@@ -22,7 +22,7 @@
 
     <div th:if="${!#lists.isEmpty(estados)} and ${!#lists.isEmpty(municipios)} or ${semMunicipios}
 		and ${!#lists.isEmpty(bairros) or ${semBairros}}">
-        <form th:action="@{/imovel/cadastrar}" method="post" th:object="${imovel}">
+        <form th:action="@{/imovel/cadastrar}" method="post" th:object="${imovel}" enctype="multipart/form-data">
             <div th:replace="fragments/mensagemErro"></div>
             <div th:replace="fragments/mensagemSucesso"></div>
 
@@ -49,7 +49,7 @@
                     <label for="quarto-select">Quartos</label>
                     <select id="quarto-select" th:field="*{quarto.id}" class="form-control">
                         <option value="" selected>Escolha a quantidade de Quartos</option>
-                        <option th:each="q:${quarto}" th:value="${q.id}" th:text="${q.descricao}">
+                        <option th:each="q:${quartos}" th:value="${q.id}" th:text="${q.descricao}">
                     </select>
                 </div>
 
@@ -97,6 +97,11 @@
                         <option th:value="0" >Inativo</option>
                     </select>
                 </div>
+            </div>
+            <br>
+            <div class="add-photo">
+                <label for="file">Foto:</label>
+                <input class="form-control input-file" type="file" multiple="multiple" id="file" name="files[]"/>
             </div>
             <button type="submit" class="btn btn-success">
                 <i class="fas fa-save"></i> Salvar

@@ -6,6 +6,7 @@ import imoveis.repository.ImovelRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,6 +18,9 @@ public class ImovelService {
 
     @Autowired
     private ImovelRepository rep;
+
+    @Autowired
+    private ImagemService imagemService;
 
     private ModelMapper modelMapper = new ModelMapper();
 
@@ -77,10 +81,13 @@ public class ImovelService {
         return null;
     }
 
-    public Imovel saveImovel(Imovel imovel) {
+    public Imovel salvarImovel(Imovel imovel) {
         ImovelEntity imo = modelMapper.map(imovel, ImovelEntity.class);
-        ImovelEntity saveImovel = rep.save(imo);
-        return modelMapper.map(saveImovel, Imovel.class);
+        ImovelEntity salvarImovel = rep.save(imo);
+        if(salvarImovel != null) {
+            imagemService.armazenarImagem(imovel.getId(), imovel.getFiles());
+        }
+        return modelMapper.map(salvarImovel, Imovel.class);
     }
 
     public void excluirImovelById(Long id) {

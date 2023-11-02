@@ -44,13 +44,13 @@ public class ClassificadorService {
         return null;
     }
 
-    public Categoria saveCategoria(Categoria categoria) {
+    public Categoria salvarCategoria(Categoria categoria) {
         CategoriaEntity categoriaEntity = modelMapper.map(categoria, CategoriaEntity.class);
-        CategoriaEntity saveCategoria = catRep.save(categoriaEntity);
-        return modelMapper.map(saveCategoria, Categoria.class);
+        CategoriaEntity salvarCategoria = catRep.save(categoriaEntity);
+        return modelMapper.map(salvarCategoria, Categoria.class);
     }
 
-    public void excluirCategoriaById(Long id) {
+    public void excluirCategoria(Long id) {
         catRep.deleteById(id);
     }
 
@@ -72,13 +72,13 @@ public class ClassificadorService {
         return null;
     }
 
-    public Negocio saveNegocio(Negocio negocio) {
+    public Negocio salvarNegocio(Negocio negocio) {
         NegocioEntity negocioEntity = modelMapper.map(negocio, NegocioEntity.class);
-        NegocioEntity saveNegocio = negRep.save(negocioEntity);
-        return modelMapper.map(saveNegocio, Negocio.class);
+        NegocioEntity salvarNegocio = negRep.save(negocioEntity);
+        return modelMapper.map(salvarNegocio, Negocio.class);
     }
 
-    public void excluirNegocioById(Long id) {
+    public void excluirNegocio(Long id) {
         negRep.deleteById(id);
     }
 
@@ -100,13 +100,13 @@ public class ClassificadorService {
         return null;
     }
 
-    public Quarto saveQuarto(Quarto quarto) {
+    public Quarto salvarQuarto(Quarto quarto) {
         QuartoEntity quartoEntity = modelMapper.map(quarto, QuartoEntity.class);
-        QuartoEntity saveQuarto = quaRep.save(quartoEntity);
-        return modelMapper.map(saveQuarto, Quarto.class);
+        QuartoEntity salvarQuarto = quaRep.save(quartoEntity);
+        return modelMapper.map(salvarQuarto, Quarto.class);
     }
 
-    public void excluirQuartoById(Long id) {
+    public void excluirQuarto(Long id) {
         quaRep.deleteById(id);
     }
 

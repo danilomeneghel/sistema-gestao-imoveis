@@ -42,49 +42,56 @@ public class ImagemService {
 
     private ModelMapper modelMapper = new ModelMapper();
 
-    public String armazenarImagem(Long id, MultipartFile arquivo) {
-        if (!arquivo.isEmpty()) {
+    public String armazenarImagem(Long idImovel, MultipartFile[] arquivos) {
+        String mensagem = null;
+        if (!arquivos[0].isEmpty()) {
             try {
                 Files.createDirectories(Paths.get(DIR_IMAGE));
             } catch (Exception ex) {
                 throw new FileStorageException("Não foi possível criar o diretório para armazenar os arquivos.", ex);
             }
-            String nomeArquivo = UUID.randomUUID().toString().replace("-", "");
-            if (nomeArquivo.contains("..")) {
-                throw new FileStorageException("Nome do arquivo contém sequência de caminho inválido " + nomeArquivo);
+            for (MultipartFile arquivo : arquivos) {
+                String nomeArquivo = UUID.randomUUID().toString().replace("-", "");
+                if (nomeArquivo.contains("..")) {
+                    throw new FileStorageException("Nome do arquivo contém sequência de caminho inválido " + nomeArquivo);
+                }
+                String extensaoArquivo = StringUtils.getFilenameExtension(arquivo.getOriginalFilename());
+                Path novoNomeArquivo = Paths.get(nomeArquivo + "." + extensaoArquivo);
+                if (EXTENSIONS_IMAGE.contains(extensaoArquivo)) {
+                    this.copiarArquivo(DIR_IMAGE, novoNomeArquivo, arquivo);
+                    Imagem imagem = new Imagem();
+                    imagem.setFile(novoNomeArquivo.toString());
+                    imagem.setPath(DIR_IMAGE);
+                    Optional<ImovelEntity> imovelEntity = imovelRepository.findById(idImovel);
+                    Imovel imovel = modelMapper.map(imovelEntity.get(), Imovel.class);
+                    imagem.setImovel(imovel);
+                    Imagem imagemSalva = this.salvarImagem(imagem);
+                    if (imagemSalva == null) {
+                        throw new FileStorageException("Erro ao salvar imagem " + nomeArquivo + ". Por favor, tente novamente.");
+                    } else {
+                        mensagem = "Imagem(ns) salva(s) com sucesso";
+                    }
+                } else {
+                    throw new FileStorageException("Arquivo com extensão inválida. Por favor, tente novamente.");
+                }
             }
-            String extensaoArquivo = StringUtils.getFilenameExtension(arquivo.getOriginalFilename());
-            Path novoNomeArquivo = Paths.get(nomeArquivo + "." + extensaoArquivo);
-            if (EXTENSIONS_IMAGE.contains(extensaoArquivo)) {
-                this.copyFile(DIR_IMAGE, novoNomeArquivo, arquivo);
-            }
-            Imagem imagem = new Imagem();
-            imagem.setFile(novoNomeArquivo.toString());
-            imagem.setPath(DIR_IMAGE);
-            Optional<ImovelEntity> imovelEntity = imovelRepository.findById(id);
-            Imovel imovel = modelMapper.map(imovelEntity.get(), Imovel.class);
-            imagem.setImovel(imovel);
-            Imagem imagemSalva = this.saveImage(imagem);
-            if (imagemSalva != null) {
-                return "Imagem salva com sucesso";
-            } else {
-                return "Erro ao salvar imagem";
-            }
+        } else {
+            mensagem = "Nenhum arquivo enviado. Por favor, tente novamente.";
         }
-        return "Erro ao salvar imagem";
+        return mensagem;
     }
 
-    public void copyFile(String dir, Path novoNomeArquivo, MultipartFile arquivo) {
+    public void copiarArquivo(String dir, Path novoNomeArquivo, MultipartFile arquivo) {
         try {
             Path targetLocation = Paths.get(dir).resolve(novoNomeArquivo);
             Files.copy(arquivo.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
             throw new FileStorageException("Não foi possivel armazenar o arquivo " +
-                    arquivo.getOriginalFilename() + ". Por favor tente novamente", ex);
+                    arquivo.getOriginalFilename() + ". Por favor, tente novamente.", ex);
         }
     }
 
-    public Resource getFile(String nomeArquivo) {
+    public Resource buscarArquivo(String nomeArquivo) {
         try {
             Path caminhoArquivo = Paths.get(DIR_IMAGE).resolve(nomeArquivo).normalize();
             Resource resource = new UrlResource(caminhoArquivo.toUri());
@@ -99,10 +106,10 @@ public class ImagemService {
         }
     }
 
-    public Imagem saveImage(Imagem imagem) {
+    public Imagem salvarImagem(Imagem imagem) {
         ImagemEntity imagemEntity = modelMapper.map(imagem, ImagemEntity.class);
-        ImagemEntity saveImagem = imagemRepository.save(imagemEntity);
-        return modelMapper.map(saveImagem, Imagem.class);
+        ImagemEntity salvarImagem = imagemRepository.save(imagemEntity);
+        return modelMapper.map(salvarImagem, Imagem.class);
     }
 
 }

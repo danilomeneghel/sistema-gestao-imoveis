@@ -37,7 +37,7 @@ public class ApiUsuarioController {
 
     @PostMapping("/cadastro")
     public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {
-        return new ResponseEntity<>(usuarioService.saveUsuario(usuario), HttpStatus.CREATED);
+        return new ResponseEntity<>(usuarioService.salvarUsuario(usuario), HttpStatus.CREATED);
     }
 
     @PutMapping("/usuario/editar/{id}")
@@ -47,7 +47,7 @@ public class ApiUsuarioController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         usuario.setId(usu.getId());
-        return new ResponseEntity<>(usuarioService.saveUsuario(usuario), HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.salvarUsuario(usuario), HttpStatus.OK);
     }
 
     @DeleteMapping("/usuario/excluir/{id}")

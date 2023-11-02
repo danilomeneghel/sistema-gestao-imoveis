@@ -13,7 +13,7 @@
         <i class="fas fa-arrow-left"></i> Voltar</a>
 
     <div>
-        <form th:action="@{/imovel/editar}" method="post" th:object="${imovel}">
+        <form th:action="@{/imovel/editar}" method="post" th:object="${imovel}" enctype="multipart/form-data">
             <div th:replace="fragments/mensagemErro"></div>
             <div th:replace="fragments/mensagemSucesso"></div>
 
@@ -88,6 +88,11 @@
                         <option th:value="0" >Inativo</option>
                     </select>
                 </div>
+            </div>
+            <br>
+            <div class="add-photo">
+                <label for="file">Foto:</label>
+                <input class="form-control input-file" type="file" multiple="multiple" id="file" name="files[]"/>
             </div>
             <input type="hidden" th:field="*{id}"/>
             <button type="submit" class="btn btn-success">

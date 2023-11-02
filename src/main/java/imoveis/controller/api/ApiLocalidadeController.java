@@ -29,7 +29,7 @@ public class ApiLocalidadeController {
 
     @PostMapping("/bairro/cadastro")
     public ResponseEntity<Bairro> cadastroBairro(@RequestBody Bairro bairro) {
-        return new ResponseEntity<>(localidadeService.saveBairro(bairro), HttpStatus.CREATED);
+        return new ResponseEntity<>(localidadeService.salvarBairro(bairro), HttpStatus.CREATED);
     }
 
     @PutMapping("/bairro/editar/{id}")
@@ -39,7 +39,7 @@ public class ApiLocalidadeController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         bairro.setId(bai.getId());
-        return new ResponseEntity<>(localidadeService.saveBairro(bairro), HttpStatus.OK);
+        return new ResponseEntity<>(localidadeService.salvarBairro(bairro), HttpStatus.OK);
     }
 
     @DeleteMapping("/bairro/excluir/{id}")
@@ -59,7 +59,7 @@ public class ApiLocalidadeController {
 
     @PostMapping("/estado/cadastro")
     public ResponseEntity<Estado> cadastroEstado(@RequestBody Estado estado) {
-        return new ResponseEntity<>(localidadeService.saveEstado(estado), HttpStatus.CREATED);
+        return new ResponseEntity<>(localidadeService.salvarEstado(estado), HttpStatus.CREATED);
     }
 
     @PutMapping("/estado/editar/{id}")
@@ -69,7 +69,7 @@ public class ApiLocalidadeController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         estado.setId(est.getId());
-        return new ResponseEntity<>(localidadeService.saveEstado(estado), HttpStatus.OK);
+        return new ResponseEntity<>(localidadeService.salvarEstado(estado), HttpStatus.OK);
     }
 
     @DeleteMapping("/estado/excluir/{id}")
@@ -89,7 +89,7 @@ public class ApiLocalidadeController {
 
     @PostMapping("/municipio/cadastro")
     public ResponseEntity<Municipio> cadastroMunicipio(@RequestBody Municipio municipio) {
-        return new ResponseEntity<>(localidadeService.saveMunicipio(municipio), HttpStatus.CREATED);
+        return new ResponseEntity<>(localidadeService.salvarMunicipio(municipio), HttpStatus.CREATED);
     }
 
     @PutMapping("/municipio/editar/{id}")
@@ -99,7 +99,7 @@ public class ApiLocalidadeController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         municipio.setId(mun.getId());
-        return new ResponseEntity<>(localidadeService.saveMunicipio(municipio), HttpStatus.OK);
+        return new ResponseEntity<>(localidadeService.salvarMunicipio(municipio), HttpStatus.OK);
     }
 
     @DeleteMapping("/municipio/excluir/{id}")

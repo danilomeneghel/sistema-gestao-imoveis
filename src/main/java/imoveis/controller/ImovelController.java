@@ -5,8 +5,6 @@ import imoveis.service.ClassificadorService;
 import imoveis.service.ImovelService;
 import imoveis.service.LocalidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -33,11 +31,6 @@ public class ImovelController {
     @Autowired
     private ClassificadorService cServ;
 
-    @GetMapping("/listar/imoveis-usuario")
-    public ResponseEntity<List<Imovel>> listarImoveisUsuario() {
-        return new ResponseEntity<>(iServ.findAllImoveis(), HttpStatus.OK);
-    }
-
     @GetMapping("/todos/imoveis-usuario")
     public ModelAndView mostrarImoveisUsuario() {
         ModelAndView mv = new ModelAndView("imovel/imoveisUsuario");
@@ -55,15 +48,28 @@ public class ImovelController {
     @GetMapping("/cadastro")
     public ModelAndView cadastroImovel() {
         ModelAndView mv = new ModelAndView("imovel/imovelCadastro");
+
+        List<Categoria> categorias = cServ.findAllCategorias();
+        List<Negocio> negocios = cServ.findAllNegocios();
+        List<Quarto> quartos = cServ.findAllQuartos();
+        List<Bairro> bairros = lServ.findAllBairros();
+        List<Municipio> municipios = lServ.findAllMunicipios();
+        List<Estado> estados = lServ.findAllEstados();
+
         addObj(mv);
+        mv.addObject("categorias", categorias);
+        mv.addObject("negocios", negocios);
+        mv.addObject("quartos", quartos);
+        mv.addObject("bairros", bairros);
+        mv.addObject("municipios", municipios);
+        mv.addObject("estados", estados);
         mv.addObject("imovel", new Imovel());
         return mv;
     }
 
-    @PostMapping("/cadastrar")
-    public ModelAndView cadastrandoImovel(@Validated Imovel imovel, Errors errors, Long idEstado, Long idMunicipio) {
+    @PostMapping(value = "/cadastrar", consumes = "multipart/form-data")
+    public ModelAndView cadastrarImovel(@Validated Imovel imovel, Errors errors, Long idEstado, Long idMunicipio) {
         ModelAndView mv = new ModelAndView("imovel/imovelCadastro");
-        System.out.println(imovel);
         addObj(mv);
         boolean erro = false;
         List<String> customMessage = new ArrayList<String>();
@@ -124,7 +130,7 @@ public class ImovelController {
             mv.addObject("customMessage", customMessage);
             return mv;
         }
-        iServ.saveImovel(imovel);
+        iServ.salvarImovel(imovel);
 
         mv.addObject("sucesso", "O Imóvel foi cadastrado com sucesso.");
         mv.addObject("imovel", new Imovel());
@@ -133,8 +139,9 @@ public class ImovelController {
     }
 
     @GetMapping("/editar/{id}")
-    public ModelAndView editarBairro(@PathVariable Long id) {
+    public ModelAndView editaImovel(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("imovel/imovelEditar");
+
         Imovel imovel = iServ.findImovelById(id);
         List<Quarto> quartos = cServ.findAllQuartos();
         List<Bairro> bairros = lServ.findAllBairros();
@@ -154,8 +161,8 @@ public class ImovelController {
         return mv;
     }
 
-    @PostMapping("/editar")
-    public ModelAndView editandoImovel(@Validated Imovel imovel, Errors errors, Long idEstado, Long idMunicipio) {
+    @PostMapping(value = "/editar", consumes = "multipart/form-data")
+    public ModelAndView editarImovel(@Validated Imovel imovel, Errors errors, Long idEstado, Long idMunicipio) {
         ModelAndView mv = new ModelAndView("imovel/imovelEditar");
         boolean erro = false;
         addObj(mv);
@@ -207,7 +214,7 @@ public class ImovelController {
         }
         mv.addObject("sucesso", "O imovel foi atualizado com sucesso!");
         imovel.setImagens(iServ.findImovelById(imovel.getId()).getImagens());
-        iServ.saveImovel(imovel);
+        iServ.salvarImovel(imovel);
         return mv;
     }
 

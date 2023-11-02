@@ -2,9 +2,44 @@ $(document).ready(function () {
     var dataTable = $('#data-table').DataTable({
         responsive: true,
         ordering: false,
-        dom: 'lfrtip',
+        dom: 'Blfrtip',
+        buttons:[
+            {
+                extend:    'pdfHtml5',
+                text:      '<i class="fas fa-file-pdf"></i> ',
+                titleAttr: 'Exportar para PDF',
+                className: 'btn btn-danger',
+                orientation:'landscape',
+                exportOptions: {
+                    columns: ':visible :not(:last-child)'
+                },
+                customize: function (doc) {
+                    doc.content[1].table.widths = "*";
+                }
+            },
+            {
+                extend:    'excelHtml5',
+                text:      '<i class="fas fa-file-excel"></i> ',
+                titleAttr: 'Exportar para Excel',
+                className: 'btn btn-success',
+                orientation:'landscape',
+                exportOptions: {
+                    columns: ':visible :not(:last-child)'
+                }
+            },
+            {
+                extend:    'print',
+                text:      '<i class="fa fa-print"></i> ',
+                titleAttr: 'Imprimir',
+                className: 'btn btn-info',
+                orientation:'landscape',
+                exportOptions: {
+                    columns: ':visible :not(:last-child)'
+               }
+            }
+        ],
         ajax: {
-            url: '/imovel/listar/imoveis-usuario',
+            url: '/api/imovel-usuario/todos',
             type: 'GET',
             datatype: 'json',
             dataSrc: ''
@@ -77,7 +112,7 @@ $(document).ready(function () {
             {
                 "data": null, "render": function ( data ) {
                     return '<div class="actions"><a class="btn btn-success" href="/imovel/visualizar/imovel-usuario/'+data.id+'">'+
-                    '<i class="fas fa-eye"></i> Ver</a></div>';
+                    '<i class="fas fa-eye"></i> Ver</a></div>'
                 }
             }
         ],

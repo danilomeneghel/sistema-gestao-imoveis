@@ -30,7 +30,7 @@ public class LocalidadeController {
     private ImovelService imovelService;
 
     @GetMapping("/estados")
-    public ModelAndView showEstados() {
+    public ModelAndView mostrarEstados() {
         ModelAndView mv = new ModelAndView("estado/estados");
         mv.addObject("estados", localidadeService.findAllEstados());
         return mv;
@@ -50,26 +50,26 @@ public class LocalidadeController {
             return mv;
         }
         mv.addObject("sucesso", "O Estado Foi Cadastrado com Sucesso!");
-        localidadeService.saveEstado(estado);
+        localidadeService.salvarEstado(estado);
         mv.addObject("estado", new Estado());
         return mv;
     }
 
     @GetMapping("/estado/editar/{id}")
-    public ModelAndView editarEstado(@PathVariable Long id) {
+    public ModelAndView editaEstado(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("estado/estadoEditar");
         mv.addObject("estado", localidadeService.findEstadoById(id));
         return mv;
     }
 
     @PostMapping("/estado/editar")
-    public ModelAndView editandoEstado(@Validated Estado estado, Errors errors) {
+    public ModelAndView editarEstado(@Validated Estado estado, Errors errors) {
         ModelAndView mv = new ModelAndView("estado/estadoEditar");
         if (errors.hasErrors()) {
             return mv;
         }
         mv.addObject("sucesso", "O Estado foi atualizado com sucesso!");
-        localidadeService.saveEstado(estado);
+        localidadeService.salvarEstado(estado);
         return mv;
     }
 
@@ -85,7 +85,7 @@ public class LocalidadeController {
     }
 
     @GetMapping("/municipios")
-    public ModelAndView showMunicipios() {
+    public ModelAndView mostrarMunicipios() {
         ModelAndView mv = new ModelAndView("municipio/municipios");
         mv.addObject("municipios", localidadeService.findAllMunicipios());
         return mv;
@@ -112,13 +112,13 @@ public class LocalidadeController {
         }
         mv.addObject("sucesso", "O Município foi cadastrado com sucesso!");
 
-        localidadeService.saveMunicipio(municipio);
+        localidadeService.salvarMunicipio(municipio);
         mv.addObject("municipio", new Municipio());
         return mv;
     }
 
     @GetMapping("/municipio/editar/{id}")
-    public ModelAndView editarMunicipio(@PathVariable Long id) {
+    public ModelAndView editaMunicipio(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("municipio/municipioEditar");
         mv.addObject("estados", localidadeService.findAllEstados());
         mv.addObject("municipio", localidadeService.findMunicipioById(id));
@@ -126,7 +126,7 @@ public class LocalidadeController {
     }
 
     @PostMapping("/municipio/editar")
-    public ModelAndView editandoMunicipio(@Validated Municipio municipio, Errors errors) {
+    public ModelAndView editarMunicipio(@Validated Municipio municipio, Errors errors) {
         ModelAndView mv = new ModelAndView("municipio/municipioEditar");
         mv.addObject("estados", localidadeService.findAllEstados());
         Estado estado = localidadeService.findEstadoByMunicipio(municipio);
@@ -135,7 +135,7 @@ public class LocalidadeController {
             return mv;
         }
 
-        localidadeService.saveMunicipio(municipio);
+        localidadeService.salvarMunicipio(municipio);
         mv.addObject("sucesso", "O Município foi atualizado com sucesso!");
         return mv;
     }
@@ -153,7 +153,7 @@ public class LocalidadeController {
     }
 
     @GetMapping("/bairros")
-    public ModelAndView showBairros() {
+    public ModelAndView mostrarBairros() {
         ModelAndView mv = new ModelAndView("bairro/bairros");
         mv.addObject("bairros", localidadeService.findAllBairros());
         return mv;
@@ -194,13 +194,13 @@ public class LocalidadeController {
             return mv;
         }
         mv.addObject("sucesso", "O Bairro foi cadastrado com sucesso!");
-        localidadeService.saveBairro(bairro);
+        localidadeService.salvarBairro(bairro);
         mv.addObject("bairro", new Bairro());
         return mv;
     }
 
     @GetMapping("/bairro/editar/{id}")
-    public ModelAndView editarBairro(@PathVariable Long id) {
+    public ModelAndView editaBairro(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("bairro/bairroEditar");
         Bairro bairro = localidadeService.findBairroById(id);
         mv.addObject("bairro", bairro);
@@ -210,7 +210,7 @@ public class LocalidadeController {
     }
 
     @PostMapping("/bairro/editar")
-    public ModelAndView editandoBairro(@Validated Bairro bairro, Errors errors) {
+    public ModelAndView editarBairro(@Validated Bairro bairro, Errors errors) {
         ModelAndView mv = new ModelAndView("bairro/bairroEditar");
         mv.addObject("estados", localidadeService.findAllEstados());
         mv.addObject("municipios", localidadeService.findAllMunicipios());
@@ -232,7 +232,7 @@ public class LocalidadeController {
         }
         mv.addObject("sucesso", "O Bairro foi atualizado com sucesso!");
 
-        localidadeService.saveBairro(bairro);
+        localidadeService.salvarBairro(bairro);
         mv.addObject("municipios", localidadeService.findMunicipioByBairro(bairro));
         return mv;
     }

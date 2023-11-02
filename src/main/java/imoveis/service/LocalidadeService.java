@@ -60,10 +60,10 @@ public class LocalidadeService {
         return estadoEscolhido;
     }
 
-    public Estado saveEstado(Estado estado) {
+    public Estado salvarEstado(Estado estado) {
         EstadoEntity estadoEntity = modelMapper.map(estado, EstadoEntity.class);
-        EstadoEntity saveCategoria = estRep.save(estadoEntity);
-        return modelMapper.map(saveCategoria, Estado.class);
+        EstadoEntity salvarEstado = estRep.save(estadoEntity);
+        return modelMapper.map(salvarEstado, Estado.class);
     }
 
     public void excluirEstadoById(Long id) {
@@ -96,10 +96,10 @@ public class LocalidadeService {
         return municipioEscolhido;
     }
 
-    public Municipio saveMunicipio(Municipio municipio) {
+    public Municipio salvarMunicipio(Municipio municipio) {
         MunicipioEntity municipioEntity = modelMapper.map(municipio, MunicipioEntity.class);
-        MunicipioEntity saveCategoria = munRep.save(municipioEntity);
-        return modelMapper.map(saveCategoria, Municipio.class);
+        MunicipioEntity salvarMunicipio = munRep.save(municipioEntity);
+        return modelMapper.map(salvarMunicipio, Municipio.class);
     }
 
     public void excluirMunicipioById(Long id) {
@@ -121,10 +121,10 @@ public class LocalidadeService {
         return bairros.stream().map(entity -> modelMapper.map(entity, Bairro.class)).collect(Collectors.toList());
     }
 
-    public Bairro saveBairro(Bairro bairro) {
+    public Bairro salvarBairro(Bairro bairro) {
         BairroEntity bairroEntity = modelMapper.map(bairro, BairroEntity.class);
-        BairroEntity saveCategoria = baiRep.save(bairroEntity);
-        return modelMapper.map(saveCategoria, Bairro.class);
+        BairroEntity salvarBairro = baiRep.save(bairroEntity);
+        return modelMapper.map(salvarBairro, Bairro.class);
     }
 
     public void excluirBairroById(Long id) {

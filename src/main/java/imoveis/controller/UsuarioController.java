@@ -45,13 +45,13 @@ public class UsuarioController {
             return mv;
         }
         mv.addObject("sucesso", "O Usuário foi cadastrado com sucesso!");
-        uServ.saveUsuario(usuario);
+        uServ.salvarUsuario(usuario);
         mv.addObject("usuario", new Usuario());
         return mv;
     }
 
     @GetMapping("/editar/{id}")
-    public ModelAndView editarUsuario(@PathVariable Long id) {
+    public ModelAndView editaUsuario(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("usuario/usuarioEditar");
         Usuario usuario = uServ.findUsuarioById(id);
         mv.addObject("usuario", usuario);
@@ -63,13 +63,13 @@ public class UsuarioController {
     }
 
     @PostMapping("/editar")
-    public ModelAndView editandoUsuario(@Validated Usuario usuario, Errors errors) {
+    public ModelAndView editarUsuario(@Validated Usuario usuario, Errors errors) {
         ModelAndView mv = new ModelAndView("usuario/usuarioEditar");
         if (errors.hasErrors()) {
             return mv;
         }
         mv.addObject("sucesso", "O Usuário foi atualizado com sucesso!");
-        uServ.saveUsuario(usuario);
+        uServ.salvarUsuario(usuario);
         return mv;
     }
 

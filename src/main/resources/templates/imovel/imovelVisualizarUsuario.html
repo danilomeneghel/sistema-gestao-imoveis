@@ -8,8 +8,8 @@
 </head>
 <body>
 <section layout:fragment="content" class="margem">
-    <h3 class="inline">Visualizar Imóvel</h3>
-    <a class="btn btn-primary voltar" th:href="@{/imovel/todos}">
+    <h3 class="inline">Visualização de Imóvel</h3>
+    <a class="btn btn-primary voltar" th:href="@{/imovel/todos/imoveis-usuario}">
         <i class="fas fa-arrow-left"></i> Voltar</a>
 
     <div class="margem-visualizar">
@@ -56,18 +56,6 @@
             <div class="card col-3" th:each="imagem:${imovel.imagens}">
                 <img class="card-img-imovel" th:src="@{${'/imagem/'+imagem.file}}">
             </div>
-        </div>
-        <br>
-        <div class="add-photo">
-            <form method="post" th:action="@{/imagem/armazenar-imagem}" enctype="multipart/form-data">
-                <h4 class="inline" for="file">Adicionar foto:</h4>
-                <br>
-                <input type="hidden" name="id" th:value="${imovel.id}">
-                <input class="form-control input-file" type="file" id="file" name="file"/>
-                <button type="submit" class="btn btn-success">
-                    <i class="fas fa-plus"></i> Adicionar
-                </button>
-            </form>
         </div>
     </div>
 </section>

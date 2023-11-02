@@ -17,20 +17,20 @@ public class LoginController {
     private UsuarioService usuarioService;
 
     @GetMapping("/login")
-    public ModelAndView loginPage() {
+    public ModelAndView login() {
         ModelAndView mv = new ModelAndView("security/login");
         return mv;
     }
 
     @GetMapping("/signup")
-    public ModelAndView cadastrarUsuario() {
+    public ModelAndView cadastroUsuario() {
         ModelAndView mv = new ModelAndView("security/signup");
         mv.addObject("user", new Usuario());
         return mv;
     }
 
     @PostMapping("/signup")
-    public ModelAndView cadastrando(@Validated Usuario usuario, Errors errors) {
+    public ModelAndView cadastrarUsuario(@Validated Usuario usuario, Errors errors) {
         ModelAndView mv = new ModelAndView("redirect:/");
         boolean erro = false;
         if (usuarioService.emailExistente(usuario.getEmail())) {
@@ -45,8 +45,7 @@ public class LoginController {
         }
         usuario.setActive(true);
         usuario.setRoles("ROLE_USER");
-        usuarioService.saveUsuario(usuario);
-
+        usuarioService.salvarUsuario(usuario);
         return mv;
     }
 

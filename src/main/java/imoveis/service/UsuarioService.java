@@ -41,11 +41,11 @@ public class UsuarioService {
         return modelMapper.map(usuario.get(), Usuario.class);
     }
 
-    public Usuario saveUsuario(Usuario usuario) {
+    public Usuario salvarUsuario(Usuario usuario) {
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         UsuarioEntity usuarioEntity = modelMapper.map(usuario, UsuarioEntity.class);
-        UsuarioEntity saveUsuario = rep.save(usuarioEntity);
-        return modelMapper.map(saveUsuario, Usuario.class);
+        UsuarioEntity salvarUsuario = rep.save(usuarioEntity);
+        return modelMapper.map(salvarUsuario, Usuario.class);
     }
 
     public void excluirUsuarioById(Long id) {
