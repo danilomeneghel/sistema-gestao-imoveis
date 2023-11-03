@@ -49,4 +49,9 @@ public class ApiImagemController {
         return new ResponseEntity<>(imagemService.armazenarImagem(idImovel, arquivos), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/excluir/{id}")
+    public void excluirImagem(@PathVariable Long id) {
+        imagemService.excluirImagem(id);
+    }
+
 }

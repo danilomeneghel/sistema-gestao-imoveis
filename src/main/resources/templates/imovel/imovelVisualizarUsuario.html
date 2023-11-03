@@ -54,7 +54,9 @@
         </div>
         <div class="row" th:if="${imovel.imagens.size>0}">
             <div class="card col-3" th:each="imagem:${imovel.imagens}">
-                <img class="card-img-imovel" th:src="@{${'/imagem/'+imagem.file}}">
+                <a th:href="@{${'/imagem/'+imagem.file}}" target="_blank">
+                    <img class="card-img-imovel" th:src="@{${'/imagem/'+imagem.file}}">
+                </a>
             </div>
         </div>
     </div>

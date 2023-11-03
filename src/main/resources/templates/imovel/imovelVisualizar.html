@@ -53,8 +53,13 @@
             <span>Sem fotos</span>
         </div>
         <div class="row" th:if="${imovel.imagens.size>0}">
-            <div class="card col-3" th:each="imagem:${imovel.imagens}">
-                <img class="card-img-imovel" th:src="@{${'/imagem/'+imagem.file}}">
+            <div class="card card-imovel col-3" th:each="imagem:${imovel.imagens}">
+                <span class="btn-delete-image" th:id="${imagem.id}">
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <a th:href="@{${'/imagem/'+imagem.file}}" target="_blank">
+                    <img class="card-img-imovel" th:src="@{${'/imagem/'+imagem.file}}">
+                </a>
             </div>
         </div>
         <br>

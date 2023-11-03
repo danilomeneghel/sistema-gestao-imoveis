@@ -71,9 +71,19 @@ body {
    text-decoration: underline !important;
 }
 
+.card-imovel span i {
+    margin-left: 88% !important;
+    margin-top: 10px !important;
+    position: absolute !important;
+    color: #f00 !important;
+    background-color: #fff !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+}
+
 .card-img-imovel {
     height: 220px !important;
-    width: auto !important;
+    width: 100% !important;
     margin: 3px 0px !important;
     border: 2px solid #333 !important;
 }
@@ -312,6 +322,16 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before {
 .alert-danger, .alert-success {
     padding: 12px !important;
     margin-bottom: 5px !important;
+}
+
+.alert span {
+    float: left !important;
+    display: block;
+    width: 97%;
+}
+
+.alert .btn-close {
+    float: right !important;
 }
 
 .col-login-image {

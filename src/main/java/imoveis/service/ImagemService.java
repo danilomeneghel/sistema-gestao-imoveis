@@ -112,4 +112,8 @@ public class ImagemService {
         return modelMapper.map(salvarImagem, Imagem.class);
     }
 
+    public void excluirImagem(Long id) {
+        imagemRepository.deleteById(id);
+    }
+
 }
