@@ -10,6 +10,7 @@ $(document).ready(function () {
                 titleAttr: 'Exportar para PDF',
                 className: 'btn btn-danger',
                 orientation:'landscape',
+                title: function () { return 'Gestão de Imóveis'; },
                 exportOptions: {
                     columns: ':visible :not(:last-child)'
                 },
@@ -23,6 +24,7 @@ $(document).ready(function () {
                 titleAttr: 'Exportar para Excel',
                 className: 'btn btn-success',
                 orientation:'landscape',
+                title: function () { return 'Gestão de Imóveis'; },
                 exportOptions: {
                     columns: ':visible :not(:last-child)'
                 }
@@ -33,6 +35,7 @@ $(document).ready(function () {
                 titleAttr: 'Imprimir',
                 className: 'btn btn-info',
                 orientation:'landscape',
+                title: function () { return 'Gestão de Imóveis'; },
                 exportOptions: {
                     columns: ':visible :not(:last-child)'
                }
