@@ -14,8 +14,9 @@ $(document).ready(function() {
         }
         return false;
     });
-    function toggle() {
-        $("#wrapper").toggleClass("toggled");
-        var elem = document.getElementById("menu-toggle");
-    }
 });
+
+function toggle() {
+    $("#wrapper").toggleClass("toggled");
+    var elem = document.getElementById("menu-toggle");
+}

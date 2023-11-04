@@ -5,14 +5,21 @@
       layout:decorate="~{fragments/layoutUsuario.html}">
 <body>
 <section layout:fragment="content" class="margin-card">
-    <div class="card col-3 bg-dark">
-        <a th:href="@{/imovel/todos/imoveis-usuario}">
-            <img class="card-img-home" th:src="@{images/imoveis.png}" alt="Imóveis">
-        </a>
-        <div class="card-body text-right">
-            <p class="card-text">
-                <a class="text-white" th:href="@{/imovel/todos/imoveis-usuario}"> IMÓVEIS ></a>
-            </p>
+    <div class="row">
+        <div class="card col-card bg-dark" th:each="imovel:${imoveis}">
+            <span th:unless="${imovel.imagens.size>0}">
+                <img class="card-img-imovel-home" th:src="@{/images/imoveis.png}" alt="Imóveis">
+            </span>
+            <a th:if="${imovel.imagens.size>0}" th:href="@{/imovel/visualizar/imovel-usuario/{id}(id=${imovel.id})}">
+                <img class="card-img-imovel-home" th:src="@{${'/imagem/'+imovel.imagens[0].file}}">
+            </a>
+            <div class="card-body text-white">
+                <h4 th:text="${imovel.negocio.nome+' ('+imovel.categoria.nome+')'}"></h4>
+                <p th:text="${imovel.bairro.municipio.nome+'/'+imovel.bairro.municipio.estado.uf}"></p>
+                <p th:inline="text">R$ [[${#numbers.formatDecimal(imovel.valor, 0, 'COMMA', 2, 'POINT')}]]</p>
+                <a class="text-white" th:href="@{/imovel/visualizar/imovel-usuario/{id}(id=${imovel.id})}">
+                    Mais detalhes ></a>
+            </div>
         </div>
     </div>
 </section>

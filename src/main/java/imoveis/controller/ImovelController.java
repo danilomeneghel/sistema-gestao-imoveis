@@ -31,6 +31,13 @@ public class ImovelController {
     @Autowired
     private ClassificadorService cServ;
 
+    @GetMapping("/home/imoveis-usuario")
+    public ModelAndView homeImoveisUsuario() {
+        ModelAndView mv = new ModelAndView("indexUsuario");
+        mv.addObject("imoveis", iServ.findAllImoveis());
+        return mv;
+    }
+
     @GetMapping("/todos/imoveis-usuario")
     public ModelAndView mostrarImoveisUsuario() {
         ModelAndView mv = new ModelAndView("imovel/imoveisUsuario");

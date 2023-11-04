@@ -17,9 +17,9 @@ public class IndexController {
         List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>)
                 SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_USER"))) {
-            mv = new ModelAndView("indexUsuario.html");
+            return new ModelAndView("redirect:/imovel/home/imoveis-usuario");
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-            mv = new ModelAndView("indexAdmin.html");
+            mv = new ModelAndView("indexAdmin");
         }
         mv.addObject("index", true);
         return mv;
