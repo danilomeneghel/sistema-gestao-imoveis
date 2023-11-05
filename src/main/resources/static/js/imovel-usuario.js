@@ -12,7 +12,24 @@ $(document).ready(function () {
                 orientation:'landscape',
                 title: function () { return 'Gestão de Imóveis'; },
                 exportOptions: {
-                    columns: ':visible :not(:last-child)'
+                    columns: ':visible :not(:last-child)',
+                    format: {
+                        header: function ( data, columnIdx ) {
+                            if(columnIdx == 0) {
+                                return 'Negócio';
+                            } else if(columnIdx == 1) {
+                                return 'Categoria';
+                            } else if(columnIdx == 2) {
+                                return 'Quarto';
+                            } else if(columnIdx == 3) {
+                                return 'Cidade/UF';
+                            } else if(columnIdx == 4) {
+                                return 'Preço';
+                            } else if(columnIdx == 5) {
+                                return 'Status';
+                            }
+                        }
+                    }
                 },
                 customize: function (doc) {
                     doc.content[1].table.widths = "*";
@@ -26,7 +43,24 @@ $(document).ready(function () {
                 orientation:'landscape',
                 title: function () { return 'Gestão de Imóveis'; },
                 exportOptions: {
-                    columns: ':visible :not(:last-child)'
+                    columns: ':visible :not(:last-child)',
+                    format: {
+                        header: function ( data, columnIdx ) {
+                            if(columnIdx == 0) {
+                                return 'Negócio';
+                            } else if(columnIdx == 1) {
+                                return 'Categoria';
+                            } else if(columnIdx == 2) {
+                                return 'Quarto';
+                            } else if(columnIdx == 3) {
+                                return 'Cidade/UF';
+                            } else if(columnIdx == 4) {
+                                return 'Preço';
+                            } else if(columnIdx == 5) {
+                                return 'Status';
+                            }
+                        }
+                    }
                 }
             },
             {
