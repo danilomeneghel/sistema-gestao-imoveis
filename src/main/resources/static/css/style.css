@@ -51,10 +51,38 @@ body {
     padding: .58rem 1.25rem !important;
 }
 
+.margin-card {
+    margin: 10px 90px !important;
+}
+
+.margin-card-imovel {
+    margin: 20px 10px !important;
+}
+
+.col-card {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 30%;
+    flex: 0 0 30%;
+    min-width: 30%;
+}
+
+.col-card-imovel {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 19%;
+    flex: 0 0 19%;
+    min-width: 19%;
+}
+
 .card {
 	padding: 2px;
 	margin: 15px;
 	border: 0px !important;
+}
+
+.card-imovel {
+  padding: 2px;
+  margin: 6px;
+  border: 0px !important;
 }
 
 .card-img-home {
@@ -63,11 +91,16 @@ body {
 	width: 100% !important;
 }
 
-.card-text a {
+.card-body p {
+    margin-top: 1px;
+    margin-bottom: 10px;
+}
+
+.card-body a {
    text-decoration: none !important;
 }
 
-.card-text a:hover {
+.card-body a:hover {
    text-decoration: underline !important;
 }
 
@@ -89,7 +122,7 @@ body {
 }
 
 .card-img-imovel-home {
-    height: 220px !important;
+    height: 200px !important;
     width: 100% !important;
     padding: 1px !important;
 }
@@ -140,6 +173,10 @@ form {
     margin: 5px 0px !important;
 }
 
+.btn-default {
+    border: 2px solid #999 !important;
+}
+
 .btn-primary, .btn-primary:focus {
     min-width: 75px !important;
     margin-top: 2px !important;
@@ -173,6 +210,27 @@ form {
 .navbar {
     padding: 8px !important;
     justify-content: left !important;
+    height: 60px !important;
+}
+
+.navbar span:first-child {
+    width: 60% !important;
+    float: left !important;
+}
+
+.navbar span:first-child button {
+    float: left !important;
+}
+
+.navbar .navbar-margin-left {
+    padding-left: 20px !important;
+}
+
+.navbar span:last-child {
+    width: 40% !important;
+    float: right !important;
+    text-align: right !important;
+    padding-right: 30px !important;
 }
 
 .text-center {
@@ -449,17 +507,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before {
     text-align: center !important;
     margin-top: 10px !important;
     color: #ffffff !important;
-}
-
-.margin-card {
-    margin: 10px 90px !important;
-}
-
-.col-card {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 25%;
-    flex: 0 0 25%;
-    min-width: 30%;
 }
 
 .input-search {

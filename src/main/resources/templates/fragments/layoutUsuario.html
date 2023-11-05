@@ -11,40 +11,20 @@
     <link href="/css/datatables.min.css" rel="stylesheet"/>
     <link href="/css/style.css" rel="stylesheet"/>
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/estado-municipio.js"></script>
-    <script src="/js/scripts.js"></script>
-
     <title>Gestão de Imóveis</title>
 </head>
 
 <body>
-
 <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-dark border-right text-white" id="sidebar-wrapper">
-        <div class="sidebar-heading text-dark">.</div>
-        <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/}">Home</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
-               th:href="@{/imovel/todos/imoveis-usuario}">Imóveis</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
-               th:href="@{/logout}">Sair</a>
-        </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
-
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <button class="btn" id="menu-toggle" onclick="toggle()">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <h2>Gestão de Imóveis</h2>
-            <!-- <a class="btn btn-primary voltar" th:unless="${index}" style="position:absolute;right: 5%; " th:href="@{/}">Voltar a tela inicial</a> -->
+            <span class="navbar-margin-left">
+                <h2>Gestão de Imóveis</h2>
+            </span>
+            <span>
+                <a class="btn btn-default" th:href="@{/logout}">Sair</a>
+            </span>
         </nav>
         <div class="container-fluid">
             <section layout:fragment="content">
@@ -54,7 +34,5 @@
     </div>
     <!-- /#page-content-wrapper -->
 </div>
-<script src="/js/datatables.min.js"></script>
-<th:block layout:fragment="script"/>
 </body>
 </html>

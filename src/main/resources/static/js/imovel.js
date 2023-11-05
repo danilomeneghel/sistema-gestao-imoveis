@@ -23,19 +23,7 @@ $(document).ready(function () {
                     columns: ':visible :not(:last-child)',
                     format: {
                         header: function ( data, columnIdx ) {
-                            if(columnIdx == 0) {
-                                return 'Negócio';
-                            } else if(columnIdx == 1) {
-                                return 'Categoria';
-                            } else if(columnIdx == 2) {
-                                return 'Quarto';
-                            } else if(columnIdx == 3) {
-                                return 'Cidade/UF';
-                            } else if(columnIdx == 4) {
-                                return 'Preço';
-                            } else if(columnIdx == 5) {
-                                return 'Status';
-                            }
+                            return $(data).attr('id');
                         }
                     }
                 },
@@ -54,19 +42,7 @@ $(document).ready(function () {
                     columns: ':visible :not(:last-child)',
                     format: {
                         header: function ( data, columnIdx ) {
-                            if(columnIdx == 0) {
-                                return 'Negócio';
-                            } else if(columnIdx == 1) {
-                                return 'Categoria';
-                            } else if(columnIdx == 2) {
-                                return 'Quarto';
-                            } else if(columnIdx == 3) {
-                                return 'Cidade/UF';
-                            } else if(columnIdx == 4) {
-                                return 'Preço';
-                            } else if(columnIdx == 5) {
-                                return 'Status';
-                            }
+                            return $(data).attr('id');
                         }
                     }
                 }
@@ -79,7 +55,12 @@ $(document).ready(function () {
                 orientation:'landscape',
                 title: function () { return 'Gestão de Imóveis'; },
                 exportOptions: {
-                    columns: ':visible :not(:last-child)'
+                    columns: ':visible :not(:last-child)',
+                    format: {
+                        header: function ( data, columnIdx ) {
+                            return $(data).attr('id');
+                        }
+                    }
                }
             }
         ],
@@ -95,9 +76,8 @@ $(document).ready(function () {
             $("#data-table thead .filters .filter").each( function ( colIdx ) {
                 var cell = $('.filters .filter').eq($(api.column(colIdx).header()).index());
                 var title = $(cell).text();
-                var select = null;
                 if(title == 'Status' || title == 'Negócio' || title == 'Categoria' || title == 'Quarto') {
-                    select = $('<select name="'+title+'"><option value="">'+title+'</option></select>')
+                    var select = $('<select id="'+title+'"><option value="">'+title+'</option></select>')
                     .appendTo( $(this).empty() )
                     .on( 'change', function () {
                         var val = $(this).val();
@@ -114,7 +94,7 @@ $(document).ready(function () {
                         }
                     } );
                 } else {
-                    $(cell).html( '<input type="text" name="'+title+'" placeholder="'+title+'" />' );
+                    $(cell).html( '<input type="text" id="'+title+'" placeholder="'+title+'" />' );
                     $('input', $('.filters .filter').eq($(api.column(colIdx).header()).index()) )
                     .off('keyup change')
                     .on('keyup change', function (e) {

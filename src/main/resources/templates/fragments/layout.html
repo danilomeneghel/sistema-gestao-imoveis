@@ -21,17 +21,15 @@
 </head>
 
 <body>
-
 <div class="d-flex" id="wrapper">
-
     <!-- Sidebar -->
     <div class="bg-dark border-right text-white" id="sidebar-wrapper">
         <div class="sidebar-heading text-dark">.</div>
         <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/}">Home</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
+            <a class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/}">Home</a>
+            <a class="list-group-item list-group-item-action bg-dark text-white"
                th:href="@{/classificador/categorias}">Categorias</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
+            <a class="list-group-item list-group-item-action bg-dark text-white"
                th:href="@{/classificador/negocios}">Negócios</a>
             <div class="dropright show">
                 <a class="list-group-item list-group-item-action bg-dark text-white dropdown-toggle"
@@ -44,14 +42,13 @@
                     <a class="dropdown-item text-white bg-dark" th:href="@{/localidade/bairros}">Bairros</a>
                 </div>
             </div>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
-            th:href="@{/classificador/quartos}">Quartos</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/imovel/todos}">Imóveis</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/usuario/todos}">Usuários</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
-               th:href="@{/swagger-ui.html}" target="_blank">Acessar API</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white"
-               th:href="@{/logout}">Sair</a>
+            <a class="list-group-item list-group-item-action bg-dark text-white"
+               th:href="@{/classificador/quartos}">Quartos</a>
+            <a class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/imovel/todos}">Imóveis</a>
+            <a class="list-group-item list-group-item-action bg-dark text-white"
+               th:href="@{/usuario/todos}">Usuários</a>
+            <a class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/swagger-ui.html}"
+               target="_blank">Acessar API</a>
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -59,11 +56,15 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <button class="btn" id="menu-toggle" onclick="toggle()">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <h3>Gestão de Imóveis</h3>
-            <!-- <a class="btn btn-primary voltar" th:unless="${index}" style="position:absolute;right: 5%; " th:href="@{/}">Voltar a tela inicial</a> -->
+            <span>
+                <button class="btn" id="menu-toggle" onclick="toggle()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h3>Gestão de Imóveis</h3>
+            </span>
+            <span>
+                <a class="btn btn-default" th:href="@{/logout}">Sair</a>
+            </span>
         </nav>
         <div class="container-fluid">
             <section layout:fragment="content">
