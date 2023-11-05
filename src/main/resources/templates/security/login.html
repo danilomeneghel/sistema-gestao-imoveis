@@ -18,6 +18,9 @@
             <div class="alert alert-success" th:if="${param.logout}">
                 <div>Sua conta foi desconectada</div>
             </div>
+            <div class="alert alert-success" th:if="${param.success}">
+                <div>Conta criada com sucesso</div>
+            </div>
 
             <form th:action="@{/login}" method="post">
                 <div class="form-item">

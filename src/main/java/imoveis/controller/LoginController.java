@@ -31,14 +31,13 @@ public class LoginController {
 
     @PostMapping("/signup")
     public ModelAndView cadastrarUsuario(@Validated Usuario usuario, Errors errors) {
-        ModelAndView mv = new ModelAndView("redirect:/");
-        boolean erro = false;
+        ModelAndView mv = new ModelAndView("security/signup");
         if (usuarioService.emailExistente(usuario.getEmail())) {
             mv.addObject("customMessage", "O e-mail já foi cadastrado");
             mv.addObject("erroEmail", true);
-            erro = true;
+            return mv;
         }
-        if (errors.hasErrors() || erro || usuario.getName().isEmpty() || usuario.getUsername().isEmpty() || usuario.getPassword().isEmpty()) {
+        if (errors.hasErrors() || usuario.getName().isEmpty() || usuario.getUsername().isEmpty() || usuario.getPassword().isEmpty()) {
             mv.addObject("customMessage", "Revise os campos obrigatórios");
             mv.setViewName("security/signup");
             return mv;
@@ -46,7 +45,7 @@ public class LoginController {
         usuario.setActive(true);
         usuario.setRoles("ROLE_USER");
         usuarioService.salvarUsuario(usuario);
-        return mv;
+        return new ModelAndView("redirect:/login?success");
     }
 
 }
