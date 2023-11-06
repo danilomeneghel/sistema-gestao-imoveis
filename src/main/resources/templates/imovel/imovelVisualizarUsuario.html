@@ -48,8 +48,10 @@
             </div>
         </div>
         <br>
-        <h4>Fotos:</h4>
-        <div th:unless="${imovel.imagens.size>0}">
+        <div class="row">
+            <h4>Fotos:</h4>
+        </div>
+        <div class="row" th:unless="${imovel.imagens.size>0}">
             <span>Sem fotos</span>
         </div>
         <div class="row" th:if="${imovel.imagens.size>0}">

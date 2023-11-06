@@ -56,7 +56,7 @@ body {
 }
 
 .margin-card-imovel {
-    margin: 20px 10px !important;
+    margin: 20px 2px !important;
 }
 
 .col-card {
@@ -160,9 +160,8 @@ form {
 }
 
 .add-photo form {
-   margin-top: 0px !important;
+   margin: 5px 0px !important;
    border: none !important;
-   padding: 0px;
 }
 
 .add-photo form input {
@@ -174,7 +173,8 @@ form {
 }
 
 .btn-default {
-    border: 2px solid #999 !important;
+    border: 1px solid #333 !important;
+    color: #333 !important;
 }
 
 .btn-primary, .btn-primary:focus {
@@ -208,29 +208,30 @@ form {
 }
 
 .navbar {
-    padding: 8px !important;
+    padding: 8px 20px !important;
     justify-content: left !important;
     height: 60px !important;
 }
 
-.navbar span:first-child {
+.navbar div:first-child {
     width: 60% !important;
     float: left !important;
 }
 
-.navbar span:first-child button {
+.navbar div:first-child button {
     float: left !important;
 }
 
-.navbar .navbar-margin-left {
-    padding-left: 20px !important;
+.navbar div:first-child button span {
+    margin-top: -6px !important;
+    margin-left: -15px !important;
+    width: 30px !important;
 }
 
-.navbar span:last-child {
+.navbar div:last-child {
     width: 40% !important;
     float: right !important;
     text-align: right !important;
-    padding-right: 30px !important;
 }
 
 .text-center {
@@ -439,6 +440,10 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before {
 #container-login .logo-login {
     margin-top: 0px !important;
     padding-bottom: 15px !important;
+}
+
+#container-login h3, #container-login a {
+    padding: 0px 8px !important;
 }
 
 #container-login form {

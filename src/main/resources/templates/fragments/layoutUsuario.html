@@ -19,12 +19,14 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <span class="navbar-margin-left">
+            <div class="navbar-margin-left">
                 <h2>Gestão de Imóveis</h2>
-            </span>
-            <span>
-                <a class="btn btn-default" th:href="@{/logout}">Sair</a>
-            </span>
+            </div>
+            <div>
+                <a class="btn btn-default" th:href="@{/logout}">
+                    <i class="fas fa-arrow-right"></i> Sair
+                </a>
+            </div>
         </nav>
         <div class="container-fluid">
             <section layout:fragment="content">

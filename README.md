@@ -7,11 +7,11 @@ Sistema para gestão de imóveis desenvolvido em Java com Spring Boot e API REST
 - Login
 - Categorias
 - Negócios
-- Imóveis
 - Estados
 - Municípios
 - Bairros
 - Quartos
+- Imóveis
 - Usuários
 
 ## Requisitos
@@ -29,6 +29,7 @@ Sistema para gestão de imóveis desenvolvido em Java com Spring Boot e API REST
 - Lombok
 - Spring Boot
 - Thymeleaf
+- DataTables
 - Json
 - MySql
 - Swagger

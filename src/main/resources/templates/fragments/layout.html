@@ -56,15 +56,17 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <span>
+            <div>
                 <button class="btn" id="menu-toggle" onclick="toggle()">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h3>Gestão de Imóveis</h3>
-            </span>
-            <span>
-                <a class="btn btn-default" th:href="@{/logout}">Sair</a>
-            </span>
+            </div>
+            <div>
+                <a class="btn btn-default" th:href="@{/logout}">
+                    <i class="fas fa-arrow-right"></i> Sair
+                </a>
+            </div>
         </nav>
         <div class="container-fluid">
             <section layout:fragment="content">
