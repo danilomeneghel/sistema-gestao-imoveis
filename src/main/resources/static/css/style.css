@@ -220,12 +220,8 @@ form {
 
 .navbar div:first-child button {
     float: left !important;
-}
-
-.navbar div:first-child button span {
-    margin-top: -6px !important;
+    margin-top: -3px !important;
     margin-left: -15px !important;
-    width: 30px !important;
 }
 
 .navbar div:last-child {
