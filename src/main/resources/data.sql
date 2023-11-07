@@ -1,73 +1,17 @@
-INSERT INTO categoria (nome) VALUES ('Casa'),('Apartamento'),('Condomínio'),('Chacára');
+INSERT INTO `bairro` VALUES (1,'Campolim',1),(2,'Mangal',1),(3,'Além-Ponte',1),(4,'Botafogo',2),(5,'Cambuí',2),(6,'Guanabara',2),(7,'Sumaré',3),(8,'Lapa',3),(9,'Bela Vista',3),(10,'Cachambi',4),(11,'Méier',4),(12,'Jacarepaguá',4),(13,'Galo Branco',5),(14,'Estrela do Norte',5),(15,'Lindo Parque',5),(16,'Figueira',6),(17,'Pantanal',6),(18,'Campos Elísios',6),(19,'Guarapes',7),(20,'Igapó',7),(21,'Lagoa Azul',7),(22,'Cascalho',8),(23,'Conjunto da Ponte',8),(24,'Santo Antônio',8),(25,'Fernando Pedrosa',9),(26,'Alto da Alegria',9),(27,'Prefeito Jaime Batista',9),(28,'Savassi',10),(29,'Lourdes',10),(30,'Pampulha',10),(31,'Catete',11),(32,'Barro Preto',11),(33,'Galego',11),(34,'Alterosas',12),(35,'Imbiruçu',12),(36,'Petrovale',12);
 
-INSERT INTO negocio (nome) VALUES('Venda'),('Aluguel'),('Financiamento');
+INSERT INTO `categoria` VALUES (1,'Casa'),(2,'Apartamento'),(3,'Condomínio'),(4,'Chacára'),(5,'Kitnet'),(6,'Sala Comercial');
 
-INSERT INTO quarto (descricao,quantidade) VALUES
-('Um quarto de solteiro',1),('Um quarto de casal',1),
-('Dois quartos de solteiro',2),('Dois quartos de casal',2),
-('Um quarto de casal e um quarto de solteiro',2);
+INSERT INTO `estado` VALUES (1,'São Paulo','SP'),(2,'Rio de Janeiro','RJ'),(3,'Rio Grande do Norte','RN'),(4,'Minas Gerais','MG');
 
-INSERT INTO estado (nome,uf) VALUES
-('São Paulo','SP'),('Rio de Janeiro','RJ'),
-('Rio Grande do Norte','RN'),('Minas Gerais','MG');
+INSERT INTO `imagem` VALUES (1,'680fdfa16007421aa438cff25a7ee736.jpg','uploads',1),(2,'a5531889d29f4324b96e6ed12f3e2eea.jpg','uploads',3),(3,'af5d5c72cede4bbea416ca36fa114e40.jpg','uploads',4),(4,'8441f2de046a4385a90df084bf8bf76f.jpg','uploads',5),(5,'c0c4cbf6457944a883f9c96c9d234b82.jpg','uploads',6),(6,'a158c22d4c434a69bf61afcf6b97cbeb.jpg','uploads',7),(7,'f6a18b3677bf45b098edc12ea3d7f489.jpg','uploads',8),(8,'762ceeb5debc43adb5117e9b58079ace.jpg','uploads',10),(9,'9b9ae47533434eb0ab7927e826a384a2.jpg','uploads',11),(10,'fcb5622994de4a9bb62e6849bdf7edf2.jpg','uploads',13);
 
-INSERT INTO municipio (nome,id_estado) VALUES
-('Sorocaba',1),('Campinas',1),('São Paulo',1),
-('Rio de Janeiro',2),('São Gonçalo',2),('Duque de Caxias',2),
-('Natal',3),('Alexandria',3),('Angicos',3),
-('Belo Horizonte',4),('Mariana',4),('Betim',4);
+INSERT INTO `imovel` VALUES (1,1,500000.00,1,1,NULL,NULL,1,5),(2,0,2000.00,2,1,NULL,NULL,2,2),(3,1,20000.00,3,1,NULL,NULL,3,3),(4,1,400000.00,4,2,NULL,NULL,1,4),(5,1,370000.00,5,2,NULL,NULL,1,1),(6,1,1700.00,6,2,NULL,NULL,2,1),(7,1,345000.00,11,4,NULL,NULL,1,2),(8,1,45000.00,8,3,NULL,NULL,3,3),(9,0,56000.00,9,3,NULL,NULL,3,2),(10,1,650000.00,10,4,NULL,NULL,1,5),(11,1,2300.00,7,3,NULL,NULL,2,4),(13,1,3000.00,13,1,NULL,NULL,2,3),(14,1,1200.00,14,1,NULL,NULL,2,5),(15,1,900.00,15,1,NULL,NULL,2,1),(16,1,16000.00,16,2,NULL,NULL,3,3),(17,1,23000.00,17,2,NULL,NULL,3,1),(18,1,21000.00,18,2,NULL,NULL,3,2),(19,1,850000.00,19,3,NULL,NULL,1,4),(20,1,120000.00,20,3,NULL,NULL,1,5),(21,1,650000.00,21,3,NULL,NULL,1,5),(22,1,222000.00,22,4,NULL,NULL,1,4),(23,1,4000.00,23,4,NULL,NULL,2,3),(24,1,1200.00,24,4,NULL,NULL,2,2),(25,1,750.00,25,1,NULL,NULL,2,1),(26,1,2500.00,26,1,NULL,NULL,2,5),(27,1,65000.00,27,1,NULL,NULL,3,2),(28,1,10000.00,28,2,NULL,NULL,3,4),(29,1,15600.00,29,2,NULL,NULL,3,1),(30,1,21500.00,30,2,NULL,NULL,3,3),(31,1,500000.00,31,3,NULL,NULL,1,3),(32,1,3100.00,32,3,NULL,NULL,2,2),(33,1,31000.00,33,3,NULL,NULL,3,5),(34,1,657000.00,34,4,NULL,NULL,1,4),(35,1,500.00,35,4,NULL,NULL,2,1),(36,1,15000.00,36,4,NULL,NULL,3,1),(58,1,1000.00,1,5,NULL,NULL,2,1),(59,1,12000.00,10,5,NULL,NULL,1,1);
 
-INSERT INTO bairro (nome,id_municipio) VALUES
-('Campolim',1),('Mangal',1),('Além-Ponte',1),
-('Botafogo',2),('Cambuí',2),('Guanabara',2),
-('Sumaré',3),('Lapa',3),('Bela Vista',3),
-('Cachambi',4),('Méier',4),('Jacarepaguá',4),
-('Galo Branco',5),('Estrela do Norte',5),('Lindo Parque',5),
-('Figueira',6),('Pantanal',6),('Campos Elísios',6),
-('Guarapes',7),('Igapó',7),('Lagoa Azul',7),
-('Cascalho',8),('Conjunto da Ponte',8),('Santo Antônio',8),
-('Fernando Pedrosa',9),('Alto da Alegria',9),('Prefeito Jaime Batista',9),
-('Savassi',10),('Lourdes',10),('Pampulha',10),
-('Catete',11),('Barro Preto',11),('Galego',11),
-('Alterosas',12),('Imbiruçu',12),('Petrovale',12);
+INSERT INTO `municipio` VALUES (1,'Sorocaba',1),(2,'Campinas',1),(3,'São Paulo',1),(4,'Rio de Janeiro',2),(5,'São Gonçalo',2),(6,'Duque de Caxias',2),(7,'Natal',3),(8,'Alexandria',3),(9,'Angicos',3),(10,'Belo Horizonte',4),(11,'Mariana',4),(12,'Betim',4);
 
-INSERT INTO imovel (id_categoria,id_negocio,id_quarto,valor,id_bairro,ativo) VALUES
-(1,1,5,500000,1,1),
-(1,2,2,2000,2,0),
-(1,3,3,20000,3,1),
-(2,1,4,400000,4,1),
-(2,1,1,370000,5,1),
-(2,2,1,1700,6,1),
-(3,2,4,2300,7,1),
-(3,3,3,45000,8,1),
-(3,3,2,56000,9,0),
-(4,1,5,650000,10,1),
-(4,1,2,345000,11,1),
-(4,1,4,290000,12,1),
-(1,2,3,3000,13,1),
-(1,2,5,1200,14,1),
-(1,2,1,900,15,1),
-(2,3,3,16000,16,1),
-(2,3,1,23000,17,1),
-(2,3,2,21000,18,1),
-(3,1,4,850000,19,1),
-(3,1,5,120000,20,1),
-(3,1,5,650000,21,1),
-(4,1,4,222000,22,1),
-(4,2,3,4000,23,1),
-(4,2,2,1200,24,1),
-(1,2,1,750,25,1),
-(1,2,5,2500,26,1),
-(1,3,2,65000,27,1),
-(2,3,4,10000,28,1),
-(2,3,1,15600,29,1),
-(2,3,3,21500,30,1),
-(3,1,3,500000,31,1),
-(3,2,2,3100,32,1),
-(3,3,5,31000,33,1),
-(4,1,4,657000,34,1),
-(4,2,1,500,35,1),
-(4,3,1,15000,36,1);
+INSERT INTO `negocio` VALUES (1,'Venda'),(2,'Aluguel'),(3,'Financiamento');
 
-INSERT INTO usuario (name,username,email,password,roles,active) VALUES
-("Admin", "admin","admin@admin.com","$2a$10$1HAxsgoqtXCVASxpXGcnheACN8.SbB8iQZ5o4sktAOPQEE/k2B9Ue","ROLE_ADMIN",1);
+INSERT INTO `quarto` VALUES (1,'Um quarto de solteiro',1),(2,'Um quarto de casal',1),(3,'Dois quartos de solteiro',2),(4,'Dois quartos de casal',2),(5,'Um quarto de casal e um quarto de solteiro',2),(6,'Sem quarto',0);
+
+INSERT INTO `usuario` VALUES (1,1,'admin@admin.com','Admin','$2a$10$1HAxsgoqtXCVASxpXGcnheACN8.SbB8iQZ5o4sktAOPQEE/k2B9Ue','ROLE_ADMIN','admin'),(2,1,'jose@jose.com','jose','$2a$10$5MnLWqAPG0pMmX3JTbXV/.RZMkq8NuMmKj3FaBFi4WH1cOUSpMueK','ROLE_USER','jose'),(3,0,'bruna@bruna.com','Bruna','$2a$10$sSuo.CAGj7FQ3hCqDgwMpOtooYuB6cQgko2.vaZy8JjW/Ru5EHKHu','ROLE_USER','bruna');
