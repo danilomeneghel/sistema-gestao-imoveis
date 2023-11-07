@@ -1,36 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/layoutUsuario.html}">
-<head>
-    <title>Imóveis</title>
-</head>
-<body>
-<section layout:fragment="content" class="margem">
-    <h3 class="titulo">Imóveis</h3>
-
-    <div th:replace="fragments/mensagemSucesso"></div>
-    <div th:replace="fragments/mensagemErroSemForm"></div>
-
-    <table id="data-table" class="table table-striped">
-        <thead>
-        <tr class="filters">
-            <th class="col-2 filter">Negócio</th>
-            <th class="col-2 filter">Categoria</th>
-            <th class="col-1 filter">Quarto</th>
-            <th class="col-2 filter">Cidade/UF</th>
-            <th class="col-1 filter">Valor</th>
-            <th class="col-1 filter">Status</th>
-            <th class="col-3"></th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</section>
-<th:block layout:fragment="script">
-    <script src="/js/imovel-usuario.js"></script>
-</th:block>
-</body>
-</html>
+<div class="card-imovel col-card-imovel bg-dark" th:each="imovel:${imoveis}">
+            <span th:unless="${imovel.imagens.size>0}">
+                <img class="card-img-imovel-home" th:src="@{/images/imoveis.png}" alt="Imóveis">
+            </span>
+    <a th:if="${imovel.imagens.size>0}" th:href="@{/imovel/visualizar/imovel-usuario/{id}(id=${imovel.id})}">
+        <img class="card-img-imovel-home" th:src="@{${'/imagem/'+imovel.imagens[0].file}}">
+    </a>
+    <div class="card-body text-white">
+        <h5 th:text="${imovel.negocio.nome+' ('+imovel.categoria.nome+')'}"></h5>
+        <p th:text="${imovel.bairro.municipio.nome+'/'+imovel.bairro.municipio.estado.uf}"></p>
+        <p th:inline="text">R$ [[${#numbers.formatDecimal(imovel.valor, 0, 'COMMA', 2, 'POINT')}]]</p>
+        <a class="text-white" th:href="@{/imovel/visualizar/imovel-usuario/{id}(id=${imovel.id})}">
+            Mais detalhes ></a>
+    </div>
+</div>

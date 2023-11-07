@@ -51,11 +51,4 @@ public class ApiImovelController {
         imovelService.excluirImovelById(id);
     }
 
-    @GetMapping("/imovel/pesquisa")
-    public ResponseEntity<List<Imovel>> pesquisarImovel(Imovel imovel, Long idMunicipio, Long idEstado,
-                                                        BigDecimal valorMinimo, BigDecimal valorMaximo) {
-        return new ResponseEntity<>(imovelService.findImovelByExample(imovel, idMunicipio, idEstado,
-                valorMinimo, valorMaximo), HttpStatus.OK);
-    }
-
 }

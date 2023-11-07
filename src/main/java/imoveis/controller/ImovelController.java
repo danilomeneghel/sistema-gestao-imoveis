@@ -35,29 +35,20 @@ public class ImovelController {
     public ModelAndView homeImoveisUsuario() {
         ModelAndView mv = new ModelAndView("indexUsuario");
         mv.addObject("categorias", cServ.findAllCategorias());
-        mv.addObject("imoveis", iServ.findImoveisAtivo());
+        mv.addObject("imoveis", iServ.findImoveisByAtivo());
         return mv;
     }
 
     @GetMapping("/filtrar/imoveis-usuario/{idCategoria}")
     public ModelAndView filtrarImoveisUsuario(@PathVariable Long idCategoria) {
-        ModelAndView mv = new ModelAndView("indexUsuario");
-        if (idCategoria != null) {
+        ModelAndView mv = new ModelAndView("imovel/imoveisUsuario");
+        if (idCategoria != 0) {
             Categoria categoria = cServ.findCategoriaById(idCategoria);
-            if(iServ.findImovelByCategoria(categoria) != null) {
-                mv.addObject("imoveis", iServ.findImovelByCategoria(categoria));
-            }
+            mv.addObject("imoveis", iServ.findImoveisByAtivoAndCategoria(categoria));
         } else {
-            mv.addObject("imoveis", iServ.findImoveisAtivo());
+            mv.addObject("imoveis", iServ.findImoveisByAtivo());
         }
         mv.addObject("categorias", cServ.findAllCategorias());
-        return mv;
-    }
-
-    @GetMapping("/todos/imoveis-usuario")
-    public ModelAndView mostrarImoveisUsuario() {
-        ModelAndView mv = new ModelAndView("imovel/imoveisUsuario");
-        mv.addObject("imoveis", iServ.findAllImoveis());
         return mv;
     }
 

@@ -9,12 +9,14 @@ public interface ImovelRepository extends JpaRepository<ImovelEntity, Long> {
 
     List<ImovelEntity> findByAtivoTrue();
 
-    ImovelEntity findByCategoria(CategoriaEntity categoriaEntity);
+    List<ImovelEntity> findByAtivoTrueAndCategoria(CategoriaEntity categoriaEntity);
 
-    ImovelEntity findByNegocio(NegocioEntity negocioEntity);
+    List<ImovelEntity> findByCategoria(CategoriaEntity categoriaEntity);
 
-    ImovelEntity findByQuarto(QuartoEntity quartoEntity);
+    List<ImovelEntity> findByNegocio(NegocioEntity negocioEntity);
 
-    ImovelEntity findByBairro(BairroEntity bairroEntity);
+    List<ImovelEntity> findByQuarto(QuartoEntity quartoEntity);
+
+    List<ImovelEntity> findByBairro(BairroEntity bairroEntity);
 
 }
