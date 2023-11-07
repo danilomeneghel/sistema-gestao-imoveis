@@ -45,6 +45,8 @@
             <a class="list-group-item list-group-item-action bg-dark text-white"
                th:href="@{/classificador/quartos}">Quartos</a>
             <a class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/imovel/todos}">Imóveis</a>
+            <a class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/imovel/imoveis-disponiveis}"
+               target="_blank">Imóveis Disponíveis</a>
             <a class="list-group-item list-group-item-action bg-dark text-white"
                th:href="@{/usuario/todos}">Usuários</a>
             <a class="list-group-item list-group-item-action bg-dark text-white" th:href="@{/swagger-ui.html}"
@@ -63,7 +65,7 @@
                 <h3>Gestão de Imóveis</h3>
             </div>
             <div>
-                <a class="btn btn-logout" th:href="@{/logout}">
+                <a class="btn btn-default voltar" th:href="@{/logout}">
                     <i class="fas fa-arrow-right"></i> Sair
                 </a>
             </div>

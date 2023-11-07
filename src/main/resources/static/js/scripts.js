@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#filtrar-imovel').on('change', function() {
         var value = $(this).val();
         $.ajax({
-            url: '/imovel/filtrar/imoveis-usuario/' + value,
+            url: '/imovel/imoveis-disponiveis/' + value,
             type: 'GET',
             success: function(result) {
                 $("#imoveis").html(result);

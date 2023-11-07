@@ -9,7 +9,7 @@
 <body>
 <section layout:fragment="content" class="margem">
     <h3 class="inline">Editar Estado</h3>
-    <a class="btn btn-primary voltar" th:href="@{/localidade/estados}">
+    <a class="btn btn-default voltar" th:href="@{/localidade/estados}">
         <i class="fas fa-arrow-left"></i> Voltar</a>
 
     <form th:action="@{/localidade/estado/editar}" method="post" th:object="${estado}">

@@ -31,7 +31,7 @@ public class ImovelController {
     @Autowired
     private ClassificadorService cServ;
 
-    @GetMapping("/home/imoveis-usuario")
+    @GetMapping("/imoveis-disponiveis")
     public ModelAndView homeImoveisUsuario() {
         ModelAndView mv = new ModelAndView("indexUsuario");
         mv.addObject("categorias", cServ.findAllCategorias());
@@ -39,9 +39,9 @@ public class ImovelController {
         return mv;
     }
 
-    @GetMapping("/filtrar/imoveis-usuario/{idCategoria}")
+    @GetMapping("/imoveis-disponiveis/{idCategoria}")
     public ModelAndView filtrarImoveisUsuario(@PathVariable Long idCategoria) {
-        ModelAndView mv = new ModelAndView("imovel/imoveisUsuario");
+        ModelAndView mv = new ModelAndView("imovel/imoveisFiltro");
         if (idCategoria != 0) {
             Categoria categoria = cServ.findCategoriaById(idCategoria);
             mv.addObject("imoveis", iServ.findImoveisByAtivoAndCategoria(categoria));
