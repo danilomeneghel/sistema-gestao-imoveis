@@ -28,6 +28,11 @@ public class ImovelService {
         return imoveis.stream().map(entity -> modelMapper.map(entity, Imovel.class)).collect(Collectors.toList());
     }
 
+    public List<Imovel> findImoveisAtivo() {
+        List<ImovelEntity> imoveis = rep.findByAtivoTrue();
+        return imoveis.stream().map(entity -> modelMapper.map(entity, Imovel.class)).collect(Collectors.toList());
+    }
+
     public Imovel findImovelById(Long id) {
         Optional<ImovelEntity> imovelEntity = rep.findById(id);
         if(!imovelEntity.isEmpty()) {

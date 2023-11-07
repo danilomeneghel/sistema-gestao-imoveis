@@ -2,9 +2,19 @@
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/layoutUsuario.html}">
+      layout:decorate="~{fragments/layoutUsuario.html}" id="imoveis">
 <body>
 <section layout:fragment="content" class="margin-card-imovel">
+    <div class="row">
+        <div class="col-6"><h4>Imóveis Disponíveis</h4></div>
+        <div class="col-6 text-right">
+            Filtrar por <select id="filtrar-imovel">
+            <option value="" selected>Categoria</option>
+            <option th:selected="${cat.id==idCategoria}" th:each="cat:${categorias}" th:value="${cat.id}"
+                    th:text="${cat.nome}">
+        </select>
+        </div>
+    </div>
     <div class="row">
         <div class="card-imovel col-card-imovel bg-dark" th:each="imovel:${imoveis}">
             <span th:unless="${imovel.imagens.size>0}">

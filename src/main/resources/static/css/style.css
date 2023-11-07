@@ -172,9 +172,10 @@ form {
     margin: 5px 0px !important;
 }
 
-.btn-default {
-    border: 1px solid #333 !important;
+.btn-logout {
     color: #333 !important;
+    font-size: 17px !important;
+    padding: .375rem .40rem !important;
 }
 
 .btn-primary, .btn-primary:focus {
@@ -232,6 +233,10 @@ form {
 
 .text-center {
     text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
 }
 
 div.dataTables_wrapper div.dataTables_filter input {

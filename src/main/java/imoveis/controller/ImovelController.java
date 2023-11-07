@@ -34,7 +34,23 @@ public class ImovelController {
     @GetMapping("/home/imoveis-usuario")
     public ModelAndView homeImoveisUsuario() {
         ModelAndView mv = new ModelAndView("indexUsuario");
-        mv.addObject("imoveis", iServ.findAllImoveis());
+        mv.addObject("categorias", cServ.findAllCategorias());
+        mv.addObject("imoveis", iServ.findImoveisAtivo());
+        return mv;
+    }
+
+    @GetMapping("/filtrar/imoveis-usuario/{idCategoria}")
+    public ModelAndView filtrarImoveisUsuario(@PathVariable Long idCategoria) {
+        ModelAndView mv = new ModelAndView("indexUsuario");
+        if (idCategoria != null) {
+            Categoria categoria = cServ.findCategoriaById(idCategoria);
+            if(iServ.findImovelByCategoria(categoria) != null) {
+                mv.addObject("imoveis", iServ.findImovelByCategoria(categoria));
+            }
+        } else {
+            mv.addObject("imoveis", iServ.findImoveisAtivo());
+        }
+        mv.addObject("categorias", cServ.findAllCategorias());
         return mv;
     }
 

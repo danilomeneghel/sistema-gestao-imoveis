@@ -1,4 +1,15 @@
 $(document).ready(function() {
+    $('#filtrar-imovel').on('change', function() {
+        var value = $(this).val();
+        $.ajax({
+            url: '/imovel/filtrar/imoveis-usuario/' + value,
+            type: 'GET',
+            success: function(result) {
+                $("#imoveis").html(result);
+            }
+        });
+    });
+
     $(".btn-delete-image").click(function showAlert() {
         var btn = $(this);
         if(confirm("Tem certeza que deseja excluir essa foto?")) {

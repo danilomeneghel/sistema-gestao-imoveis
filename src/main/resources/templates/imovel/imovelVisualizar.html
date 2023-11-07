@@ -42,10 +42,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-3">
+                <b>Valor: </b>
+                <span th:text="${'R$ ' + imovel.valor}"></span>
+            </div>
+            <div class="col-3">
                 <b>Status: </b>
                 <span th:text="${imovel.ativo} ? 'Ativo' : 'Inativo'"></span>
             </div>
+            <div class="col-6"></div>
         </div>
         <br>
         <div class="row">
