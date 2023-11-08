@@ -172,6 +172,10 @@ form {
     margin: 5px 0px !important;
 }
 
+.fa, .fas {
+    margin-right: 3px !important;
+}
+
 .btn-default {
     color: #333 !important;
     font-size: 17px !important;
