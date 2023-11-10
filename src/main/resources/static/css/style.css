@@ -24,7 +24,11 @@ body {
     padding: 8px;
 }
 
-.bg-dark {
+.bg-menu {
+    background-color: #013268 !important;
+}
+
+.bg-card {
     background-color: #013268 !important;
 }
 
@@ -37,22 +41,22 @@ body {
 }
 
 .list-group-item {
-    padding: .55rem 1.25rem !important;
+    padding: .70rem 1.25rem !important;
 }
 
 .dropdown-menu {
     transform: translate3d(240px, 227px, 0px) !important;
-    top: -48px !important;
+    top: -34px !important;
     left: -1px !important;
     padding: 0px !important;
 }
 
 .dropdown-item {
-    padding: .58rem 1.25rem !important;
+    padding: .70rem 1.25rem !important;
 }
 
 .margin-card {
-    margin: 10px 90px !important;
+    margin: 20px 30px !important;
 }
 
 .margin-card-imovel {
@@ -62,8 +66,8 @@ body {
 .col-card {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 30%;
-    flex: 0 0 30%;
-    min-width: 30%;
+    flex: 0 0 22%;
+    min-width: 22%;
 }
 
 .col-card-imovel {
@@ -79,6 +83,16 @@ body {
 	border: 0px !important;
 }
 
+.card-icon {
+    text-align: center;
+    padding: 45px 35px;
+    background-color: #fff !important;
+}
+
+.card-icon i {
+    color: #0b9100 !important;
+}
+
 .card-imovel {
   padding: 2px;
   margin: 6px;
@@ -91,16 +105,19 @@ body {
 	width: 100% !important;
 }
 
-.card-body p {
-    margin-top: 1px;
-    margin-bottom: 10px;
+.card-text {
+    padding: 18px 10px;
 }
 
-.card-body a {
+.card-imovel-text {
+    padding: 10px;
+}
+
+.card-text a {
    text-decoration: none !important;
 }
 
-.card-body a:hover {
+.card-text a:hover {
    text-decoration: underline !important;
 }
 
@@ -535,7 +552,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before {
 }
 
 #sidebar-wrapper .sidebar-heading {
-    padding: 0.875rem 1.25rem;
+    padding: 0.950rem 1.25rem;
     font-size: 1.2rem;
 }
 

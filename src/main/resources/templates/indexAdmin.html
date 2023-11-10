@@ -6,74 +6,84 @@
 <body>
 <section layout:fragment="content" class="margin-card">
     <div class="row">
-        <div class="card col-card bg-dark">
-            <a th:href="@{/classificador/categorias}">
-                <img class="card-img-home" th:src="@{/images/categorias.png}">
-            </a>
-            <div class="card-body text-right">
-                <p class="card-text">
-                    <a class="text-white" th:href="@{/classificador/categorias}">CATEGORIAS ></a>
-                </p>
+        <div class="card col-card bg-card">
+            <div class="card-icon">
+                <a th:href="@{/classificador/categorias}">
+                    <i class="fas fa-folder-open fa-fw fa-4x padding-y-3xs"></i>
+                </a>
+            </div>
+            <div class="card-text text-right">
+                <a class="text-white" th:href="@{/classificador/categorias}">CATEGORIAS ></a>
             </div>
         </div>
-        <div class="card col-card bg-dark">
-            <a th:href="@{/classificador/negocios}">
-                <img class="card-img-home" th:src="@{/images/negocios.png}" alt="Negócios">
-            </a>
-            <div class="card-body text-right">
-                <p class="card-text">
-                    <a class="text-white" th:href="@{/classificador/negocios}">NEGÓCIOS ></a>
-                </p>
+        <div class="card col-card bg-card">
+            <div class="card-icon">
+                <a th:href="@{/classificador/negocios}">
+                    <i class="fas fa-briefcase fa-fw fa-4x padding-y-3xs"></i>
+                </a>
+            </div>
+            <div class="card-text text-right">
+                <a class="text-white" th:href="@{/classificador/negocios}">NEGÓCIOS ></a>
             </div>
         </div>
-        <div class="card col-card bg-dark">
-            <a th:href="@{/imovel/todos}">
-                <img class="card-img-home" th:src="@{/images/imoveis.png}" alt="Imóveis">
-            </a>
-            <div class="card-body text-right">
-                <p class="card-text">
-                    <a class="text-white" th:href="@{/imovel/todos}"> IMÓVEIS ></a>
-                </p>
+        <div class="card col-card bg-card">
+            <div class="card-icon">
+                <a th:href="@{/imovel/todos}">
+                    <i class="fas fa-building fa-fw fa-4x padding-y-3xs"></i>
+                </a>
+            </div>
+            <div class="card-text text-right">
+                <a class="text-white" th:href="@{/imovel/todos}"> IMÓVEIS ></a>
             </div>
         </div>
-        <div class="card col-card bg-dark">
-            <a th:href="@{/localidade/estados}">
-                <img class="card-img-home" th:src="@{/images/estados.png}" alt="Estados">
-            </a>
-            <div class="card-body text-right">
-                <p class="card-text">
-                    <a class="text-white" th:href="@{/localidade/estados}">ESTADOS ></a>
-                </p>
+        <div class="card col-card bg-card">
+            <div class="card-icon">
+                <a th:href="@{/imovel/imoveis-disponiveis}" target="_blank">
+                    <i class="fas fa-building fa-fw fa-4x padding-y-3xs" style="font-weight: 100 !important"></i>
+                </a>
+            </div>
+            <div class="card-text text-right">
+                <a class="text-white" th:href="@{/imovel/imoveis-disponiveis}" target="_blank"> IMÓVEIS DISPONÍVEIS ></a>
             </div>
         </div>
-        <div class="card col-card bg-dark">
-            <a th:href="@{/localidade/municipios}">
-                <img class="card-img-home" th:src="@{/images/municipios.png}" alt="Municípios">
-            </a>
-            <div class="card-body text-right">
-                <p class="card-text">
-                    <a class="text-white" th:href="@{/localidade/municipios}">MUNICÍPIOS ></a>
-                </p>
+        <div class="card col-card bg-card">
+            <div class="card-icon">
+                <a th:href="@{/localidade/estados}">
+                    <i class="fas fa-map fa-fw fa-4x padding-y-3xs"></i>
+                </a>
+            </div>
+            <div class="card-text text-right">
+                <a class="text-white" th:href="@{/localidade/estados}">ESTADOS ></a>
             </div>
         </div>
-        <div class="card col-card bg-dark">
-            <a th:href="@{/localidade/bairros}">
-                <img class="card-img-home" th:src="@{/images/bairros.png}" alt="Bairros">
-            </a>
-            <div class="card-body text-right">
-                <p class="card-text">
-                    <a class="text-white" th:href="@{/localidade/bairros}">BAIRROS ></a>
-                </p>
+        <div class="card col-card bg-card">
+            <div class="card-icon">
+                <a th:href="@{/localidade/municipios}">
+                    <i class="fas fa-map-signs fa-fw fa-4x padding-y-3xs"></i>
+                </a>
+            </div>
+            <div class="card-text text-right">
+                <a class="text-white" th:href="@{/localidade/municipios}">MUNICÍPIOS ></a>
             </div>
         </div>
-        <div class="card col-card bg-dark">
-            <a th:href="@{/classificador/quartos}">
-                <img class="card-img-home" th:src="@{/images/quartos.png}" alt="Quartos">
-            </a>
-            <div class="card-body text-right">
-                <p class="card-text">
-                    <a class="text-white" th:href="@{/classificador/quartos}">QUARTOS ></a>
-                </p>
+        <div class="card col-card bg-card">
+            <div class="card-icon">
+                <a th:href="@{/localidade/bairros}">
+                    <i class="fas fa-map-pin fa-fw fa-4x padding-y-3xs"></i>
+                </a>
+            </div>
+            <div class="card-text text-right">
+                <a class="text-white" th:href="@{/localidade/bairros}">BAIRROS ></a>
+            </div>
+        </div>
+        <div class="card col-card bg-card">
+            <div class="card-icon">
+                <a th:href="@{/classificador/quartos}">
+                    <i class="fas fa-bed fa-fw fa-4x padding-y-3xs"></i>
+                </a>
+            </div>
+            <div class="card-text text-right">
+                <a class="text-white" th:href="@{/classificador/quartos}">QUARTOS ></a>
             </div>
         </div>
     </div>
