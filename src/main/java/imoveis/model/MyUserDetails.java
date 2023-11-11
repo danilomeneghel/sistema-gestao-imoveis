@@ -14,8 +14,8 @@ public class MyUserDetails implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     private String name;
-    private String username;
     private String email;
+    private String username;
     private String password;
     private boolean active;
     private List<GrantedAuthority> authorities;
@@ -36,6 +36,14 @@ public class MyUserDetails implements UserDetails {
         return authorities;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
     @Override
     public String getPassword() {
         return this.password;
@@ -44,10 +52,6 @@ public class MyUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return this.username;
-    }
-
-    public String getEmail() {
-        return this.email;
     }
 
     @Override

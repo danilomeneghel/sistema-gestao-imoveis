@@ -67,12 +67,16 @@
                 <button class="btn" id="menu-toggle" onclick="toggle()">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <h3>Gestão de Imóveis</h3>
+                <h4>Gestão de Imóveis</h4>
             </div>
-            <div>
-                <a class="btn btn-default voltar" th:href="@{/logout}">
-                    <i class="fas fa-arrow-right"></i> Sair
+            <div class="navbar-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img th:src="@{/images/avatar-placeholder.svg}" alt="" width="30" class="img-circle">
+                    <span th:text="${#authentication.getPrincipal().getName()}"></span> <span class="caret"></span>
                 </a>
+                <div class="dropdown-menu dropdown-menu-logout">
+                    <a class="dropdown-item" th:href="@{/logout}">Sair</a>
+                </div>
             </div>
         </nav>
         <div class="container-fluid">
