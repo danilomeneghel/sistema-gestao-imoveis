@@ -32,6 +32,10 @@ body {
     background-color: #013268 !important;
 }
 
+.list-group-flush {
+    border-top: 1px solid rgba(0,0,0,.125) !important;
+}
+
 .list-group a {
     background-color: #013268 !important;
 }
@@ -42,30 +46,41 @@ body {
 
 .list-group-item {
     padding: .70rem 1.25rem !important;
+    border: 0px;
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
 }
 
 .dropdown-menu {
     margin-left: -1px !important;
     padding: 0px !important;
+    border: 1px solid rgba(0,0,0,.125);
+    border-bottom: 0px !important;
+    z-index: 100;
 }
 
 .dropdown-item {
-    padding: .62rem 1.25rem !important;
-    border: 1px solid rgba(0,0,0,.125);
+    padding: 0.66rem 1.25rem !important;
+    border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
 .dropdown-menu-logout {
     position: absolute;
-    z-index: 100;
-    width: 15% !important;
-    margin-top: 15px !important;
+    width: 17% !important;
     background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity)) !important;
-    border: 1px solid #dee2e6 !important;
+    border: 1px solid #dee2e6;
+    border-bottom: 0px !important;
     text-align: left !important;
+    margin-top: 14px !important;
+    margin-left: 30px !important;
+}
+
+.dropdown-menu-logout .dropdown-item {
+    padding: 0.66rem 1.25rem !important;
+    border-bottom: 1px solid #dee2e6;
 }
 
 .dropdown-menu-logout .dropdown-item:hover {
-    background-color: #ddd !important
+    background-color: #ddd !important;
 }
 
 .dropdown-menu-logout .dropdown-item.active, .dropdown-menu-logout .dropdown-item:active {
@@ -267,7 +282,7 @@ form {
 }
 
 .navbar div:first-child {
-    width: 85% !important;
+    width: 80% !important;
     float: left !important;
 }
 
@@ -278,7 +293,7 @@ form {
 }
 
 .navbar div:last-child {
-    width: 15%;
+    width: 20%;
     text-align: right;
 }
 
@@ -591,6 +606,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before {
 #sidebar-wrapper .sidebar-heading {
     padding: 0.950rem 1.25rem;
     font-size: 1.2rem;
+    height: 59px;
 }
 
 #sidebar-wrapper .list-group {

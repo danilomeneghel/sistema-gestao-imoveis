@@ -26,7 +26,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/localidade/**", "/classificador/**", "/usuario/**",
                         "/api/localidade/**", "/api/classificador/**", "/api/usuario/**", "/api/imovel/**", "/swagger-ui/**").hasRole("ADMIN")
-                .antMatchers("/", "/imovel/**", "/api/imovel-usuario/**", "/imagem/**", "/ajax/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/", "/imovel/**", "/perfil", "/api/imovel-usuario/**", "/imagem/**", "/ajax/**").hasAnyRole("USER", "ADMIN")
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout()
                 .logoutUrl("/logout")
