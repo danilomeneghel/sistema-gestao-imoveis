@@ -13,12 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class PerfilController {
 
     @Autowired
-    private UsuarioService uServ;
+    private UsuarioService usuarioService;
 
     @GetMapping("/usuario/{username}")
     public ModelAndView perfil(@PathVariable String username) {
         ModelAndView mv = new ModelAndView("usuario/perfil");
-        mv.addObject("usuario", uServ.findUsuarioByUsername(username));
+        mv.addObject("usuario", usuarioService.findUsuarioByUsername(username));
         return mv;
     }
 

@@ -12,6 +12,14 @@
     <a class="btn btn-default voltar" th:href="@{/imovel/todos}">
         <i class="fas fa-arrow-left"></i> Voltar</a>
 
+    <h4 th:if="${#lists.isEmpty(estados)}" class="is-invalid">Não é possível cadastrar Imóvel sem Estado</h4>
+    <div th:unless="${semMunicipios}">
+        <h4 th:if="${#lists.isEmpty(municipios)}" class="is-invalid">Não é possível cadastrar Imóvel sem Municipio</h4>
+    </div>
+    <div th:unless="${semBairros}">
+        <h4 th:unless="${!#lists.isEmpty(bairros)}" class="is-invalid">Não é possível cadastrar Imóvel sem Bairro</h4>
+    </div>
+
     <div>
         <form th:action="@{/imovel/editar}" method="post" th:object="${imovel}" enctype="multipart/form-data">
             <div th:replace="fragments/mensagemErro"></div>

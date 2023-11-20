@@ -20,12 +20,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService uServ;
+    private UsuarioService usuarioService;
 
     @GetMapping("/todos")
     public ModelAndView mostrarUsuarios() {
         ModelAndView mv = new ModelAndView("usuario/usuarios");
-        mv.addObject("usuarios", uServ.findAllUsuarios());
+        mv.addObject("usuarios", usuarioService.findAllUsuarios());
         return mv;
     }
 
@@ -45,7 +45,7 @@ public class UsuarioController {
             return mv;
         }
         mv.addObject("sucesso", "O Usuário foi cadastrado com sucesso!");
-        uServ.salvarUsuario(usuario);
+        usuarioService.salvarUsuario(usuario);
         mv.addObject("usuario", new Usuario());
         return mv;
     }
@@ -53,7 +53,7 @@ public class UsuarioController {
     @GetMapping("/editar/{id}")
     public ModelAndView editaUsuario(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("usuario/usuarioEditar");
-        Usuario usuario = uServ.findUsuarioById(id);
+        Usuario usuario = usuarioService.findUsuarioById(id);
         mv.addObject("usuario", usuario);
         mv.addObject("valorAtivo", usuario.isActive());
         mv.addObject("active", Ativo.values());
@@ -69,15 +69,15 @@ public class UsuarioController {
             return mv;
         }
         mv.addObject("sucesso", "O Usuário foi atualizado com sucesso!");
-        uServ.salvarUsuario(usuario);
+        usuarioService.salvarUsuario(usuario);
         return mv;
     }
 
     @GetMapping("/excluir/{id}")
     public ModelAndView excluirUsuario(@PathVariable Long id, RedirectAttributes ra) {
-        Usuario usuario = uServ.findUsuarioById(id);
+        Usuario usuario = usuarioService.findUsuarioById(id);
         if(usuario != null) {
-            uServ.excluirUsuarioById(id);
+            usuarioService.excluirUsuarioById(id);
             ra.addFlashAttribute("sucesso", "O Usuário foi excluído com sucesso.");
         } else {
             ra.addFlashAttribute("erro", "O Usuário não foi encontrado.");
