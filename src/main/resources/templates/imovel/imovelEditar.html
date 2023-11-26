@@ -88,7 +88,9 @@
                         <option th:selected="${b.id==idBairro}" th:each="b:${bairros}" th:value="${b.id}" th:text="${b.nome}">
                     </select>
                 </div>
+            </div>
 
+            <div class="row">
                 <div class="form-item col-5" th:classappend="${erroAtivo}? is-invalid">
                     <label for="ativo-select">Status</label>
                     <select id="ativo-select" class="form-control" th:field="*{ativo}">
