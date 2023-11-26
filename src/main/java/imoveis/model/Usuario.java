@@ -13,6 +13,8 @@ public class Usuario {
 
     private Long id;
 
+    private boolean active;
+
     private String name;
 
     private String email;
@@ -20,8 +22,6 @@ public class Usuario {
     private String username;
 
     private String password;
-
-    private boolean active;
 
     private String roles;
 

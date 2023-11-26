@@ -18,6 +18,8 @@ public class ImovelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private boolean ativo;
+
     @NotNull(message = "O valor do imóvel não pode estar em branco.")
     @DecimalMin(value = "0.01", message = "O valor do imóvel não pode ser R$0.00 ou negativo.")
     @DecimalMax(value = "99999999.99", message = "O valor do imóvel não pode ser maior que R$10000000.00")
@@ -49,7 +51,5 @@ public class ImovelEntity {
 
     @OneToMany(mappedBy = "imovel", cascade = CascadeType.REMOVE)
     private List<ImagemEntity> imagens;
-
-    private boolean ativo;
 
 }

@@ -17,6 +17,8 @@ public class Imovel {
 
     private Long id;
 
+    private boolean ativo;
+
     private BigDecimal valor;
 
     private Negocio negocio;
@@ -34,7 +36,5 @@ public class Imovel {
     private List<Imagem> imagens;
 
     private MultipartFile[] files;
-
-    private boolean ativo;
 
 }
