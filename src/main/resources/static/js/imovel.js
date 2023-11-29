@@ -120,7 +120,7 @@ $(document).ready(function () {
             { "data": "quarto.quantidade" },
             {
                 "data": null, "render": function ( data, type, row ) {
-                    return row.municipio.nome + "/" + row.municipio.estado.uf;
+                    return row.bairro.municipio.nome + "/" + row.bairro.municipio.estado.uf;
                  }
             },
             {
