@@ -97,12 +97,12 @@ Projeto licenciado sob <a href="LICENSE">The MIT License (MIT)</a>.<br><br>
 ![Screenshots](screenshots/screenshot07.png) <br><br>
 ![Screenshots](screenshots/screenshot08.png) <br><br>
 ![Screenshots](screenshots/screenshot09.png) <br><br>
-![Screenshots](screenshots/screenshot10.png) <br><br>
 ![Screenshots](screenshots/screenshot11.png) <br><br>
 ![Screenshots](screenshots/screenshot12.png) <br><br>
 ![Screenshots](screenshots/screenshot13.png) <br><br>
-![Screenshots](screenshots/screenshot14.png) <br><br>
 ![Screenshots](screenshots/screenshot15.png) <br><br>
+![Screenshots](screenshots/screenshot16.png) <br><br>
+![Screenshots](screenshots/screenshot17.png) <br><br>
 ![Screenshots](screenshots/screenshot16.png) <br><br>
 ![Screenshots](screenshots/screenshot17.png) <br>
 

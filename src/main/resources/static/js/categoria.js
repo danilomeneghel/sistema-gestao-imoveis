@@ -2,17 +2,9 @@ $(document).ready(function () {
     dataTable = $('#data-table').DataTable({
         responsive: true,
         dom: 'Blfrtip',
-        buttons:[
+        buttons: [
             {
-                text:      '<i class="fas fa-plus"></i> Adicionar',
-                titleAttr: 'Adicionar',
-                className: 'btn btn-success buttons-add',
-                action: function (e, dt, node, config) {
-                    window.location.href = '/classificador/categoria/cadastro';
-                }
-            },
-            {
-                extend:    'pdfHtml5',
+                extend:    'pdf',
                 text:      '<i class="fas fa-file-pdf"></i> ',
                 titleAttr: 'Exportar para PDF',
                 className: 'btn btn-danger',
@@ -26,12 +18,21 @@ $(document).ready(function () {
                 }
             },
             {
-                extend:    'excelHtml5',
+                extend:    'excel',
                 text:      '<i class="fas fa-file-excel"></i> ',
                 titleAttr: 'Exportar para Excel',
                 className: 'btn btn-success',
                 orientation:'landscape',
                 title: function () { return 'Gestão de Imóveis - Categorias'; },
+                exportOptions: {
+                    columns: ':visible :not(:last-child)'
+                }
+            },
+            {
+                extend:    'csv',
+                text:      '<i class="fas fa-file-csv"></i> ',
+                titleAttr: 'Exportar para CSV',
+                className: 'btn btn-info',
                 exportOptions: {
                     columns: ':visible :not(:last-child)'
                 }
@@ -45,7 +46,7 @@ $(document).ready(function () {
                 title: function () { return 'Gestão de Imóveis - Categorias'; },
                 exportOptions: {
                     columns: ':visible :not(:last-child)'
-               }
+                }
             }
         ],
         ajax: {
@@ -55,6 +56,10 @@ $(document).ready(function () {
             dataSrc: ''
         },
         initComplete: function() {
+            $('#data-table_length').each(function () {
+                $(this).append('<a class="btn btn-success btn-add" href="/classificador/categoria/cadastro">' +
+                '<i class="fas fa-plus"></i> Adicionar</a>');
+            });
             $('[type=search]').each(function () {
                 $(this).after('<i class="fa fa-search"></i>');
             });
@@ -72,7 +77,8 @@ $(document).ready(function () {
             }
         ],
         language: {
-            "url": "../json/Portuguese.json"
+            "url": "../json/Portuguese.json",
+            "searchPlaceholder": "Pesquisar"
         }
     });
 });

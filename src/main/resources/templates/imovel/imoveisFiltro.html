@@ -1,4 +1,4 @@
-<div class="card-imovel col-card-imovel bg-dark" th:each="imovel:${imoveis}">
+<div class="card-imovel col-card-imovel bg-card" th:each="imovel:${imoveis}">
             <span th:unless="${imovel.imagens.size>0}">
                 <img class="card-img-imovel-home" th:src="@{/images/imoveis.png}" alt="Imóveis">
             </span>
