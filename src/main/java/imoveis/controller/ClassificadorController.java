@@ -74,7 +74,7 @@ public class ClassificadorController {
     public ModelAndView excluirCategoria(@PathVariable Long id, RedirectAttributes ra) {
         Categoria categoria = servCla.findCategoriaById(id);
         if (categoria != null) {
-            if (!servImo.findImoveisByCategoria(categoria).isEmpty()) {
+            if (servImo.findImoveisByCategoria(categoria) != null) {
                 ra.addFlashAttribute("customMessage", "Não é possível excluir uma categoria com imóveis vinculados.");
             }
             servCla.excluirCategoria(id);
@@ -133,7 +133,7 @@ public class ClassificadorController {
     public ModelAndView excluirNegocio(@PathVariable Long id, RedirectAttributes ra) {
         Negocio negocio = servCla.findNegocioById(id);
         if (negocio != null) {
-            if (!servImo.findImoveisByNegocio(negocio).isEmpty()) {
+            if (servImo.findImoveisByNegocio(negocio) != null) {
                 ra.addFlashAttribute("customMessage", "Não é possível excluir um negócio com imóveis vinculados.");
             }
             servCla.excluirNegocio(id);
@@ -193,7 +193,7 @@ public class ClassificadorController {
     public ModelAndView excluirQuarto(@PathVariable Long id, RedirectAttributes ra) {
         Quarto quarto = servCla.findQuartoById(id);
         if (quarto != null) {
-            if (!servImo.findImoveisByQuarto(quarto).isEmpty()) {
+            if (servImo.findImoveisByQuarto(quarto) != null) {
                 ra.addFlashAttribute("customMessage", "Não é possível excluir um quarto com imóveis vinculados.");
             }
             servCla.excluirQuarto(id);

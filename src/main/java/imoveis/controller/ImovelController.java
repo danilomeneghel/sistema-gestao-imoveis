@@ -234,8 +234,7 @@ public class ImovelController {
 
     @GetMapping("/excluir/{id}")
     public ModelAndView excluirImovel(@PathVariable Long id, RedirectAttributes ra) {
-        Imovel imovel = iServ.findImovelById(id);
-        if (imovel != null) {
+        if (iServ.findImovelById(id) != null) {
             iServ.excluirImovelById(id);
             ra.addFlashAttribute("sucesso", "O Imóvel foi excluído com sucesso.");
         } else {

@@ -31,14 +31,20 @@ public class UsuarioService {
 
     public Usuario findUsuarioById(Long id) {
         Optional<UsuarioEntity> usuario = rep.findById(id);
-        usuario.get().setPassword(null);
-        return modelMapper.map(usuario.get(), Usuario.class);
+        if(usuario.get() != null) {
+            usuario.get().setPassword(null);
+            return modelMapper.map(usuario.get(), Usuario.class);
+        }
+        return null;
     }
 
     public Usuario findUsuarioByUsername(String username) {
         Optional<UsuarioEntity> usuario = rep.findByUsername(username);
-        usuario.get().setPassword(null);
-        return modelMapper.map(usuario.get(), Usuario.class);
+        if(usuario.get() != null) {
+            usuario.get().setPassword(null);
+            return modelMapper.map(usuario.get(), Usuario.class);
+        }
+        return null;
     }
 
     public Usuario salvarUsuario(Usuario usuario) {
@@ -49,7 +55,9 @@ public class UsuarioService {
     }
 
     public void excluirUsuarioById(Long id) {
-        rep.deleteById(id);
+        if (id != null) {
+            rep.deleteById(id);
+        }
     }
 
     public boolean emailExistente(String email) {

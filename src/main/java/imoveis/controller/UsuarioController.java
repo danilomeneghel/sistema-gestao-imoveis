@@ -75,8 +75,7 @@ public class UsuarioController {
 
     @GetMapping("/excluir/{id}")
     public ModelAndView excluirUsuario(@PathVariable Long id, RedirectAttributes ra) {
-        Usuario usuario = usuarioService.findUsuarioById(id);
-        if(usuario != null) {
+        if(usuarioService.findUsuarioById(id) != null) {
             usuarioService.excluirUsuarioById(id);
             ra.addFlashAttribute("sucesso", "O Usuário foi excluído com sucesso.");
         } else {
