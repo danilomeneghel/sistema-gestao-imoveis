@@ -51,7 +51,9 @@ public class ClassificadorService {
     }
 
     public void excluirCategoria(Long id) {
-        catRep.deleteById(id);
+        if (id != null) {
+            catRep.deleteById(id);
+        }
     }
 
     public List<Categoria> findCategoriaByNome(String nome) {
@@ -79,7 +81,9 @@ public class ClassificadorService {
     }
 
     public void excluirNegocio(Long id) {
-        negRep.deleteById(id);
+        if (id != null) {
+            negRep.deleteById(id);
+        }
     }
 
     public List<Negocio> findNegocioByNome(String nome) {
@@ -107,7 +111,9 @@ public class ClassificadorService {
     }
 
     public void excluirQuarto(Long id) {
-        quaRep.deleteById(id);
+        if (id != null) {
+            quaRep.deleteById(id);
+        }
     }
 
     public List<Quarto> findQuartoByQuantidade(Integer quantidade) {
