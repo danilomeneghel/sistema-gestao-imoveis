@@ -108,6 +108,13 @@ Projeto licenciado sob <a href="LICENSE">The MIT License (MIT)</a>.<br><br>
 
 * Fotos de Imóveis meramente ilustrativas.<br><br>
 
+## GOSTOU DESSE SISTEMA? <br>
+
+Adquira a versão completa clicando no link: <br>
+
+https://clica.ai/HQ5bZYy
+
+<br><br>
 
 Desenvolvido por<br>
 Danilo Meneghel<br>
