@@ -104,7 +104,7 @@ Projeto licenciado sob <a href="LICENSE">The MIT License (MIT)</a>.<br><br>
 ![Screenshots](screenshots/screenshot16.png) <br><br>
 ![Screenshots](screenshots/screenshot17.png) <br><br>
 
-* Fotos de Imóveis meramente ilustrativas.
+* Fotos de Imóveis meramente ilustrativas.<br><br>
 
 ## GOSTOU DESSE SISTEMA? <br>
 
