@@ -104,16 +104,14 @@ Projeto licenciado sob <a href="LICENSE">The MIT License (MIT)</a>.<br><br>
 ![Screenshots](screenshots/screenshot16.png) <br><br>
 ![Screenshots](screenshots/screenshot17.png) <br><br>
 
-<<<<<<< HEAD
+* Fotos de Imóveis meramente ilustrativas.
+
 ## GOSTOU DESSE SISTEMA? <br>
 
 Adquira a versão completa clicando no link: <br>
 
 https://clica.ai/HQ5bZYy
 
-=======
-* Fotos de Imóveis meramente ilustrativas.
->>>>>>> ea9926d (Atualização de arquivos)
 <br><br>
 
 Desenvolvido por<br>
